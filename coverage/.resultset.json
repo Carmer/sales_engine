@@ -1,17 +1,20 @@
 {
   "Unit Tests": {
     "coverage": {
-      "/Users/Carmer/Documents/Turing/projects/sales_engine/lib/customer.rb": [
-        1,
-        1,
-        null,
+      "/Users/Carmer/Documents/Turing/projects/sales_engine/lib/invoice.rb": [
         1,
         null,
+        1,
+        null,
+        1,
+        null,
+        null,
         null,
         null,
         null,
         null,
         1,
+        8,
         8,
         8,
         8,
@@ -22,14 +25,13 @@
       ],
       "/Users/Carmer/Documents/Turing/projects/sales_engine/lib/parser.rb": [
         1,
-        1,
         null,
         1,
         1,
-        17,
+        8,
         null,
-        17,
-        17000,
+        8,
+        38744,
         null,
         null,
         null,
@@ -58,6 +60,6 @@
         null
       ]
     },
-    "timestamp": 1426123126
+    "timestamp": 1426168172
   }
 }

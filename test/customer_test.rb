@@ -3,11 +3,6 @@ require './lib/customer'
 
 class CustomerTest < Minitest::Test
 
-  def setup
-    customers = Parser.new.parse("customers.csv")
-    @data = customers[0]
-  end
-
   def test_it_exists
     customers = Customer
   end
@@ -76,5 +71,4 @@ class CustomerTest < Minitest::Test
     assert_equal "Loyal", customer.first_name
     assert_equal "Considine", customer.last_name
   end
-
 end

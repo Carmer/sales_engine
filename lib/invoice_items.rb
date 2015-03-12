@@ -1,4 +1,14 @@
+require_relative "parser"
+
 class InvoiceItems
+
+  attr_reader :id,
+              :item_id,
+              :invoice_id,
+              :quantity,
+              :unit_price,
+              :created_at,
+              :updated_at
 
   def initialize(data)
     @id          = data[:id]
@@ -10,6 +20,3 @@ class InvoiceItems
     @updated_at  = data[:updated_at]
   end
 end
-
-
-ii = InvoiceItems.new(data)
