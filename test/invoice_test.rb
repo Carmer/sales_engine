@@ -8,7 +8,7 @@ class InvoiceTest < Minitest::Test
   end
 
   def test_it_can_instantiate_an_invoice_object
-    invoices = Parser.new.parse("sample_invoices.csv")
+    invoices = Parser.new.parse("./data/", "sample_invoices.csv")
     @data = invoices[0]
 
     invoice = Invoice.new(@data)
@@ -16,7 +16,7 @@ class InvoiceTest < Minitest::Test
   end
 
   def test_it_has_an_invoice_id
-    invoice = Parser.new.parse("sample_invoices.csv")
+    invoice = Parser.new.parse("./data/", "sample_invoices.csv")
     @data = invoice[0]
 
     invoice = Invoice.new(@data)
@@ -24,7 +24,7 @@ class InvoiceTest < Minitest::Test
   end
 
   def test_there_is_a_invoice_id_for_the_invoice
-    invoice = Parser.new.parse("sample_invoices.csv")
+    invoice = Parser.new.parse("./data/", "sample_invoices.csv")
     @data = invoice[0]
 
     invoice = Invoice.new(@data)
@@ -32,7 +32,7 @@ class InvoiceTest < Minitest::Test
   end
 
   def test_there_is_a_last_name_for_invoice
-    invoice = Parser.new.parse("sample_invoices.csv")
+    invoice = Parser.new.parse("./data/", "sample_invoices.csv")
     @data = invoice[0]
 
     invoice = Invoice.new(@data)
@@ -40,7 +40,7 @@ class InvoiceTest < Minitest::Test
   end
 
   def test_there_is_a_status_for_an_invoice
-    invoice = Parser.new.parse("sample_invoices.csv")
+    invoice = Parser.new.parse("./data/", "sample_invoices.csv")
     @data = invoice[0]
 
     invoice = Invoice.new(@data)
@@ -48,7 +48,7 @@ class InvoiceTest < Minitest::Test
   end
 
   def test_there_is_a_created_at_date
-    invoice = Parser.new.parse("sample_invoices.csv")
+    invoice = Parser.new.parse("./data/", "sample_invoices.csv")
     @data = invoice[0]
 
     invoice = Invoice.new(@data)
@@ -56,7 +56,7 @@ class InvoiceTest < Minitest::Test
   end
 
   def test_there_is_an_updated_date
-    invoice = Parser.new.parse("sample_invoices.csv")
+    invoice = Parser.new.parse("./data/", "sample_invoices.csv")
     @data = invoice[0]
 
     invoice = Invoice.new(@data)
@@ -64,7 +64,7 @@ class InvoiceTest < Minitest::Test
   end
 
   def test_it_can_check_another_invoice_id
-    invoice = Parser.new.parse("sample_invoices.csv")
+    invoice = Parser.new.parse("./data/", "sample_invoices.csv")
     @data = invoice[5]
 
     invoice = Invoice.new(@data)
