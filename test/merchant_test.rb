@@ -8,7 +8,7 @@ class TestMerchant < Minitest::Test
   end
 
   def test_it_can_instantiate_a_merchant_object
-    merchants = Parser.new.parse("merchants.csv")
+    merchants = Parser.new.parse("sample_merchants.csv")
     data = merchants[0]
 
     merchant = Merchant.new(data)
@@ -16,7 +16,7 @@ class TestMerchant < Minitest::Test
   end
 
   def test_a_merchant_has_a_name
-    merchants = Parser.new.parse("merchants.csv")
+    merchants = Parser.new.parse("sample_merchants.csv")
     data = merchants[0]
 
     merchant = Merchant.new(data)
@@ -24,7 +24,7 @@ class TestMerchant < Minitest::Test
   end
 
   def test_a_merchant_has_an_id
-    merchants = Parser.new.parse("merchants.csv")
+    merchants = Parser.new.parse("sample_merchants.csv")
     data = merchants[0]
 
     merchant = Merchant.new(data)
@@ -32,7 +32,7 @@ class TestMerchant < Minitest::Test
   end
 
   def test_a_merchant_has_a_created_at
-    merchants = Parser.new.parse("merchants.csv")
+    merchants = Parser.new.parse("sample_merchants.csv")
     data = merchants[0]
 
     merchant = Merchant.new(data)
@@ -40,7 +40,7 @@ class TestMerchant < Minitest::Test
   end
 
   def test_a_merchant_has_an_updated_at
-    merchants = Parser.new.parse("merchants.csv")
+    merchants = Parser.new.parse("sample_merchants.csv")
     data = merchants[0]
 
     merchant = Merchant.new(data)
@@ -49,7 +49,7 @@ class TestMerchant < Minitest::Test
 
 
   def test_another_merchant_has_a_name
-    merchants = Parser.new.parse("merchants.csv")
+    merchants = Parser.new.parse("sample_merchants.csv")
     data = merchants[8]
 
     merchant = Merchant.new(data)
@@ -57,7 +57,7 @@ class TestMerchant < Minitest::Test
   end
 
   def test_another_merchant_has_an_id
-    merchants = Parser.new.parse("merchants.csv")
+    merchants = Parser.new.parse("sample_merchants.csv")
     data = merchants[8]
 
     merchant = Merchant.new(data)
@@ -65,7 +65,7 @@ class TestMerchant < Minitest::Test
   end
 
   def test_another_merchant_has_a_created_at
-    merchants = Parser.new.parse("merchants.csv")
+    merchants = Parser.new.parse("sample_merchants.csv")
     data = merchants[8]
 
     merchant = Merchant.new(data)
@@ -73,7 +73,7 @@ class TestMerchant < Minitest::Test
   end
 
   def test_another_merchant_has_an_updated_at
-    merchants = Parser.new.parse("merchants.csv")
+    merchants = Parser.new.parse("sample_merchants.csv")
     data = merchants[8]
 
     merchant = Merchant.new(data)

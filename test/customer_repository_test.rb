@@ -1,5 +1,5 @@
 require "./test/test_helper"
-require_relative "customer_repository"
+require "./lib/customer_repository"
 
 class CustomerRepositortyTest < Minitest::Test
 
@@ -8,10 +8,10 @@ class CustomerRepositortyTest < Minitest::Test
   end
 
   def test_it_creates_an_array_of_customer_objects
-    customers_data = Parser.new.parse("customers.csv")
+    customers_data = Parser.new.parse("sample_customers.csv")
 
     customers_array = CustomerRepository.new(customers_data).customers
-    assert_equal 1000, customers_array.size
+    assert_equal 19, customers_array.size
     assert_equal Array, customers_array.class
   end
 end

@@ -4,11 +4,11 @@ require './lib/customer'
 class CustomerTest < Minitest::Test
 
   def test_it_exists
-    customers = Customer
+    sample_customers = Customer
   end
 
   def test_it_can_instantiate_a_customer_object
-    customers = Parser.new.parse("customers.csv")
+    customers = Parser.new.parse("sample_customers.csv")
     @data = customers[0]
 
     customer = Customer.new(@data)
@@ -16,7 +16,7 @@ class CustomerTest < Minitest::Test
   end
 
   def test_it_has_customer_id
-    customer = Parser.new.parse("customers.csv")
+    customer = Parser.new.parse("sample_customers.csv")
     @data = customer[0]
 
     customer = Customer.new(@data)
@@ -24,7 +24,7 @@ class CustomerTest < Minitest::Test
   end
 
   def test_there_is_a_first_name_for_customer
-    customer = Parser.new.parse("customers.csv")
+    customer = Parser.new.parse("sample_customers.csv")
     @data = customer[0]
 
     customer = Customer.new(@data)
@@ -32,7 +32,7 @@ class CustomerTest < Minitest::Test
   end
 
   def test_there_is_a_last_name_for_customer
-    customer = Parser.new.parse("customers.csv")
+    customer = Parser.new.parse("sample_customers.csv")
     @data = customer[0]
 
     customer = Customer.new(@data)
@@ -40,7 +40,7 @@ class CustomerTest < Minitest::Test
   end
 
   def test_there_is_a_created_at_date
-    customer = Parser.new.parse("customers.csv")
+    customer = Parser.new.parse("sample_customers.csv")
     @data = customer[0]
 
     customer = Customer.new(@data)
@@ -48,7 +48,7 @@ class CustomerTest < Minitest::Test
   end
 
   def test_there_is_an_updated_date
-    customer = Parser.new.parse("customers.csv")
+    customer = Parser.new.parse("sample_customers.csv")
     @data = customer[0]
 
     customer = Customer.new(@data)
@@ -56,7 +56,7 @@ class CustomerTest < Minitest::Test
   end
 
   def test_it_can_check_another_customer_id
-    customer = Parser.new.parse("customers.csv")
+    customer = Parser.new.parse("sample_customers.csv")
     @data = customer[5]
 
     customer = Customer.new(@data)
@@ -64,7 +64,7 @@ class CustomerTest < Minitest::Test
   end
 
   def test_it_can_find_a_different_user_first_and_last_name
-    customer = Parser.new.parse("customers.csv")
+    customer = Parser.new.parse("sample_customers.csv")
     @data = customer[7]
 
     customer = Customer.new(@data)

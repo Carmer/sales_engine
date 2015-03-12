@@ -1,0 +1,17 @@
+require "./test/test_helper"
+require "./lib/invoice_repository"
+
+class InvoiceRepositortyTest < Minitest::Test
+
+  def test_it_exists
+    assert InvoiceRepository
+  end
+
+  def test_it_creates_an_array_of_invoice_objects
+    invoice_data = Parser.new.parse("sample_invoices.csv")
+
+    invoice_data = InvoiceRepository.new(invoice_data).invoice
+    assert_equal 19, invoice_data.size
+    assert_equal Array, invoice_data.class
+  end
+end
