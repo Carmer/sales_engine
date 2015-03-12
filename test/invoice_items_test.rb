@@ -37,21 +37,21 @@ class InvoiceItemsTest < Minitest::Test
   def test_there_is_an_invoice_id_asssociated_with_an_invoice_item
     invoice_items = Parser.new.parse("sample_invoice_items.csv")
     @data  = invoice_items[3]
-    @data1 = invoice_items[44]
+    @data1 = invoice_items[4]
 
     i  = InvoiceItems.new(@data)
     assert_equal "1", i.invoice_id
     ii = InvoiceItems.new(@data1)
-    assert_equal "8", ii.invoice_id
+    assert_equal "1", ii.invoice_id
   end
 
   def test_there_is_a_quantity_in_the_invoice_items_table
     invoice_items = Parser.new.parse("sample_invoice_items.csv")
-    @data  = invoice_items[77]
+    @data  = invoice_items[7]
     @data1 = invoice_items[9]
 
     i  = InvoiceItems.new(@data)
-    assert_equal "1", i.quantity
+    assert_equal "6", i.quantity
     ii = InvoiceItems.new(@data1)
     assert_equal "4", ii.quantity
   end
@@ -69,7 +69,7 @@ class InvoiceItemsTest < Minitest::Test
 
   def test_there_is_a_time_associated_with_the_creation_of_the_invoice_item
     invoice_items = Parser.new.parse("sample_invoice_items.csv")
-    @data  = invoice_items[65]
+    @data  = invoice_items[5]
     @data1 = invoice_items[8]
 
     i  = InvoiceItems.new(@data)
@@ -80,12 +80,12 @@ class InvoiceItemsTest < Minitest::Test
 
   def test_there_is_a_time_associated_with_the_creation_of_the_invoice_item
     invoice_items = Parser.new.parse("sample_invoice_items.csv")
-    @data  = invoice_items[65]
+    @data  = invoice_items[6]
     @data1 = invoice_items[8]
 
     i  = InvoiceItems.new(@data)
-    assert_equal "2012-03-27 14:54:10 UTC", i.updated_at
+    assert_equal "2012-03-27 14:54:09 UTC", i.updated_at
     ii = InvoiceItems.new(@data1)
-    assert_equal "2012-03-27 14:54:10 UTC", i.updated_at
+    assert_equal "2012-03-27 14:54:09 UTC", i.updated_at
   end
 end

@@ -11,7 +11,7 @@ class CustomerRepositortyTest < Minitest::Test
     customers_data = Parser.new.parse("sample_customers.csv")
 
     customers_array = CustomerRepository.new(customers_data).customers
-    assert_equal 1000, customers_array.size
+    assert_equal 19, customers_array.size
     assert_equal Array, customers_array.class
   end
 end
