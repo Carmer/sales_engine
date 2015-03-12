@@ -7,68 +7,56 @@ class CustomerTest < Minitest::Test
     sample_customers = Customer
   end
 
-  def test_it_can_instantiate_a_customer_object
-    customers = Parser.new.parse("sample_customers.csv")
-    @data = customers[0]
+  def setup
+    @customers = Parser.new.parse("./data/", "sample_customers.csv")
+  end
 
-    customer = Customer.new(@data)
+  def test_it_can_instantiate_a_customer_object
+    data = @customers[0]
+    customer = Customer.new(data)
     assert customer
   end
 
   def test_it_has_customer_id
-    customer = Parser.new.parse("sample_customers.csv")
-    @data = customer[0]
-
-    customer = Customer.new(@data)
-    assert_equal "1", customer.id
+    data = @customers[0]
+    cust = Customer.new(data)
+    assert_equal "1", cust.id
   end
 
   def test_there_is_a_first_name_for_customer
-    customer = Parser.new.parse("sample_customers.csv")
-    @data = customer[0]
-
-    customer = Customer.new(@data)
-    assert_equal "Joey", customer.first_name
+    data = @customers[0]
+    cust = Customer.new(data)
+    assert_equal "Joey", cust.first_name
   end
 
   def test_there_is_a_last_name_for_customer
-    customer = Parser.new.parse("sample_customers.csv")
-    @data = customer[0]
-
-    customer = Customer.new(@data)
-    assert_equal "Ondricka", customer.last_name
+    data = @customers[0]
+    cust = Customer.new(data)
+    assert_equal "Ondricka", cust.last_name
   end
 
   def test_there_is_a_created_at_date
-    customer = Parser.new.parse("sample_customers.csv")
-    @data = customer[0]
-
-    customer = Customer.new(@data)
-    assert_equal "2012-03-27 14:54:09 UTC", customer.created_at
+    data = @customers[0]
+    cust = Customer.new(data)
+    assert_equal "2012-03-27 14:54:09 UTC", cust.created_at
   end
 
   def test_there_is_an_updated_date
-    customer = Parser.new.parse("sample_customers.csv")
-    @data = customer[0]
-
-    customer = Customer.new(@data)
-    assert_equal "2012-03-27 14:54:09 UTC", customer.updated_at
+    data = @customers[0]
+    cust = Customer.new(data)
+    assert_equal "2012-03-27 14:54:09 UTC", cust.updated_at
   end
 
   def test_it_can_check_another_customer_id
-    customer = Parser.new.parse("sample_customers.csv")
-    @data = customer[5]
-
-    customer = Customer.new(@data)
-    assert_equal "6", customer.id
+    data = @customers[5]
+    cust = Customer.new(data)
+    assert_equal "6", cust.id
   end
 
   def test_it_can_find_a_different_user_first_and_last_name
-    customer = Parser.new.parse("sample_customers.csv")
-    @data = customer[7]
-
-    customer = Customer.new(@data)
-    assert_equal "Loyal", customer.first_name
-    assert_equal "Considine", customer.last_name
+    data = @customers[7]
+    cust = Customer.new(data)
+    assert_equal "Loyal", cust.first_name
+    assert_equal "Considine", cust.last_name
   end
 end
