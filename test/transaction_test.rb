@@ -1,17 +1,17 @@
 require "./test/test_helper"
-require "./lib/transactions"
+require "./lib/transaction"
 
 class TestTransactions < Minitest::Test
 
   def test_it_exists
-    assert Transactions
+    assert Transaction
   end
 
   def test_it_can_instantiate_a_transaction
     transactions = Parser.new.parse("sample_transactions.csv")
     data = transactions[0]
 
-    transaction = Transactions.new(data)
+    transaction = Transaction.new(data)
     assert transaction
   end
 
@@ -19,7 +19,7 @@ class TestTransactions < Minitest::Test
     transactions = Parser.new.parse("sample_transactions.csv")
     data = transactions[0]
 
-    transaction = Transactions.new(data)
+    transaction = Transaction.new(data)
     assert_equal "1", transaction.id
   end
 
@@ -27,7 +27,7 @@ class TestTransactions < Minitest::Test
     transactions = Parser.new.parse("sample_transactions.csv")
     data = transactions[3]
 
-    transaction = Transactions.new(data)
+    transaction = Transaction.new(data)
     assert_equal "4", transaction.id
   end
 
@@ -35,7 +35,7 @@ class TestTransactions < Minitest::Test
     transactions = Parser.new.parse("sample_transactions.csv")
     data = transactions[3]
 
-    transaction = Transactions.new(data)
+    transaction = Transaction.new(data)
     assert_equal "5", transaction.invoice_id
   end
 
@@ -43,7 +43,7 @@ class TestTransactions < Minitest::Test
     transactions = Parser.new.parse("sample_transactions.csv")
     data = transactions[10]
 
-    transaction = Transactions.new(data)
+    transaction = Transaction.new(data)
     assert_equal "12", transaction.invoice_id
   end
 
@@ -51,7 +51,7 @@ class TestTransactions < Minitest::Test
     transactions = Parser.new.parse("sample_transactions.csv")
     data = transactions[10]
 
-    transaction = Transactions.new(data)
+    transaction = Transaction.new(data)
     assert_equal "4800749911485986", transaction.credit_card_number
   end
 
@@ -59,7 +59,7 @@ class TestTransactions < Minitest::Test
     transactions = Parser.new.parse("sample_transactions.csv")
     data = transactions[5]
 
-    transaction = Transactions.new(data)
+    transaction = Transaction.new(data)
     assert_equal "4203696133194408", transaction.credit_card_number
   end
 
@@ -67,7 +67,7 @@ class TestTransactions < Minitest::Test
     transactions = Parser.new.parse("sample_transactions.csv")
     data = transactions[5]
 
-    transaction = Transactions.new(data)
+    transaction = Transaction.new(data)
     assert_equal nil, transaction.credit_card_expiration_date
   end
 
@@ -75,7 +75,7 @@ class TestTransactions < Minitest::Test
     transactions = Parser.new.parse("sample_transactions.csv")
     data = transactions[5]
 
-    transaction = Transactions.new(data)
+    transaction = Transaction.new(data)
     assert_equal "success", transaction.result
   end
 
@@ -83,7 +83,7 @@ class TestTransactions < Minitest::Test
     transactions = Parser.new.parse("sample_transactions.csv")
     data = transactions[11]
 
-    transaction = Transactions.new(data)
+    transaction = Transaction.new(data)
     assert_equal "failed", transaction.result
   end
 
@@ -91,7 +91,7 @@ class TestTransactions < Minitest::Test
     transactions = Parser.new.parse("sample_transactions.csv")
     data = transactions[11]
 
-    transaction = Transactions.new(data)
+    transaction = Transaction.new(data)
     assert_equal "2012-03-27 14:54:10 UTC", transaction.created_at
   end
 
@@ -99,7 +99,7 @@ class TestTransactions < Minitest::Test
     transactions = Parser.new.parse("sample_transactions.csv")
     data = transactions[9]
 
-    transaction = Transactions.new(data)
+    transaction = Transaction.new(data)
     assert_equal "2012-03-27 14:54:10 UTC", transaction.created_at
   end
 
@@ -107,7 +107,7 @@ class TestTransactions < Minitest::Test
     transactions = Parser.new.parse("sample_transactions.csv")
     data = transactions[9]
 
-    transaction = Transactions.new(data)
+    transaction = Transaction.new(data)
     assert_equal "2012-03-27 14:54:10 UTC", transaction.updated_at
   end
 
@@ -115,7 +115,7 @@ class TestTransactions < Minitest::Test
     transactions = Parser.new.parse("sample_transactions.csv")
     data = transactions[5]
 
-    transaction = Transactions.new(data)
-    assert_equal "2012-03-27 14:54:10 UTC", transaction.updated_at            
+    transaction = Transaction.new(data)
+    assert_equal "2012-03-27 14:54:10 UTC", transaction.updated_at
   end
 end
