@@ -7,41 +7,37 @@ class TestMerchant < Minitest::Test
     assert Merchant
   end
 
-  def test_it_can_instantiate_a_merchant_object
-    merchants = Parser.new.parse("sample_merchants.csv")
-    data = merchants[0]
+  def setup
+    @merchants = Parser.new.parse("./data/", "sample_merchants.csv")
+  end
 
-    merchant = Merchant.new(data)
-    assert merchant
+  def test_it_can_instantiate_a_merchant_object
+    assert @merchants
   end
 
   def test_a_merchant_has_a_name
-    merchants = Parser.new.parse("sample_merchants.csv")
-    data = merchants[0]
+    data = @merchants[0]
 
     merchant = Merchant.new(data)
     assert_equal "Schroeder-Jerde", merchant.name
   end
 
   def test_a_merchant_has_an_id
-    merchants = Parser.new.parse("sample_merchants.csv")
-    data = merchants[0]
+    data = @merchants[0]
 
     merchant = Merchant.new(data)
     assert_equal "1", merchant.id
   end
 
   def test_a_merchant_has_a_created_at
-    merchants = Parser.new.parse("sample_merchants.csv")
-    data = merchants[0]
+    data = @merchants[0]
 
     merchant = Merchant.new(data)
     assert_equal "2012-03-27 14:53:59 UTC", merchant.created_at
   end
 
   def test_a_merchant_has_an_updated_at
-    merchants = Parser.new.parse("sample_merchants.csv")
-    data = merchants[0]
+    data = @merchants[0]
 
     merchant = Merchant.new(data)
     assert_equal "2012-03-27 14:53:59 UTC", merchant.updated_at
@@ -49,32 +45,28 @@ class TestMerchant < Minitest::Test
 
 
   def test_another_merchant_has_a_name
-    merchants = Parser.new.parse("sample_merchants.csv")
-    data = merchants[8]
+    data = @merchants[8]
 
     merchant = Merchant.new(data)
     assert_equal "Hand-Spencer", merchant.name
   end
 
   def test_another_merchant_has_an_id
-    merchants = Parser.new.parse("sample_merchants.csv")
-    data = merchants[8]
+    data = @merchants[8]
 
     merchant = Merchant.new(data)
     assert_equal "9", merchant.id
   end
 
   def test_another_merchant_has_a_created_at
-    merchants = Parser.new.parse("sample_merchants.csv")
-    data = merchants[8]
+    data = @merchants[8]
 
     merchant = Merchant.new(data)
     assert_equal "2012-03-27 14:53:59 UTC", merchant.created_at
   end
 
   def test_another_merchant_has_an_updated_at
-    merchants = Parser.new.parse("sample_merchants.csv")
-    data = merchants[8]
+    data = @merchants[8]
 
     merchant = Merchant.new(data)
     assert_equal "2012-03-27 14:53:59 UTC", merchant.updated_at
