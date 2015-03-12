@@ -1,4 +1,4 @@
-require_relative "invoices"
+require_relative "invoice"
 
 class InvoiceRepository
 
@@ -6,7 +6,7 @@ class InvoiceRepository
     @data = data
   end
 
-  def invoice_items
-    @data.map {|row| InvoiceItems.new(row)}
+  def invoice
+    @data.map {|row| Invoice.new(row)}
   end
 end

@@ -10,5 +10,4 @@ class ItemRepository
   def items
     @data.map {|row| Item.new(row)}
   end
-
 end

@@ -7,6 +7,6 @@ class InvoiceItemsRepository
   end
 
   def invoice_items
-    data.map {|row| InvoiceItems.new(row)}
+    @data.map {|row| InvoiceItems.new(row)}
   end
 end
