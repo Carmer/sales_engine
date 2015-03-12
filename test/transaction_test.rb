@@ -55,49 +55,42 @@ class TestTransactions < Minitest::Test
 
   def test_a_transaction_has_a_credit_card_expiration_date
     data = @transactions[5]
-
     trans = Transaction.new(data)
     assert_equal nil, trans.credit_card_expiration_date
   end
 
   def test_a_transaction_has_a_result
     data = @transactions[5]
-
     transaction = Transaction.new(data)
     assert_equal "success", transaction.result
   end
 
   def test_another_transaction_has_a_result
     data = @transactions[11]
-
     transaction = Transaction.new(data)
     assert_equal "failed", transaction.result
   end
 
   def test_a_transaction_has_a_created_at
     data = @transactions[11]
-
     transaction = Transaction.new(data)
     assert_equal "2012-03-27 14:54:10 UTC", transaction.created_at
   end
 
   def test_another_transaction_has_a_created_at
     data = @transactions[9]
-
     transaction = Transaction.new(data)
     assert_equal "2012-03-27 14:54:10 UTC", transaction.created_at
   end
 
   def test_a_transaction_has_an_updated_at
     data = @transactions[9]
-
     transaction = Transaction.new(data)
     assert_equal "2012-03-27 14:54:10 UTC", transaction.updated_at
   end
 
   def test_another_transaction_has_an_upadated_at
     data = @transactions[5]
-
     transaction = Transaction.new(data)
     assert_equal "2012-03-27 14:54:10 UTC", transaction.updated_at
   end
