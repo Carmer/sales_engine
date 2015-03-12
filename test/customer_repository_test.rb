@@ -7,12 +7,14 @@ class CustomerRepositortyTest < Minitest::Test
     assert CustomerRepository
   end
 
-  def test_it_creates_an_array_of_customer_objects
-    customers_data = Parser.new.parse("./data/","sample_customers.csv")
+  def setup
+    @customers_data = Parser.new.parse("./data/","sample_customers.csv")
+  end
 
-    customers_array = CustomerRepository.new(customers_data).customers
-    assert_equal 19, customers_array.size
-    assert_equal Array, customers_array.class
+  def test_it_creates_an_array_of_customer_objects
+    cust = CustomerRepository.new(@customers_data).customers
+    assert_equal 19, cust.size
+    assert_equal Array, cust.class
   end
 
   def test_it_can_pull_a_random_sample_customer

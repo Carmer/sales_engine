@@ -4,12 +4,14 @@ require_relative "transaction"
 class TransactionRepository
 
   def initialize(data)
-    @data = data
-    @transactions = @data.map {|row| Transaction.new(row)}
-  end
-  
-  def inspect
-    "#<#{self.class} #{@items.size} rows>"
+    @transactions = data.map {|row| Transaction.new(row)}
   end
 
+  def transactions
+    @transactions
+  end
+
+  def inspect
+    "#<#{self.class} #{@transactions.size} rows>"
+  end
 end

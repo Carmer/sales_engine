@@ -3,8 +3,11 @@ require_relative "invoice"
 class InvoiceRepository
 
   def initialize(data)
-    @data = data
-    @invoices = @data.map {|row| Invoice.new(row)}
+    @invoice = data.map {|row| Invoice.new(row)}
+  end
+
+  def invoices
+    @invoice
   end
 
   def inspect
