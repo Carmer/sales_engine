@@ -6,12 +6,11 @@ class CustomerRepository
     @data = data
   end
 
-  def load_data
+  def customers
     @data.map {|row| Customer.new(row)}
   end
 end
 
-c = CustomerRepository.new([{:id=>"1", :name=>"Schroeder-Jerde", :created_at=>"2012-03-27 14:53:59 UTC", :updated_at=>"2012-03-27 14:53:59 UTC"},
- {:id=>"1", :name=>"Schroeder-Jerde", :created_at=>"2012-03-27 14:53:59 UTC", :updated_at=>"2012-03-27 14:53:59 UTC"}])
+c = CustomerRepository.new(Parser.new.parse("customers.csv"))
 
-c.load_data
+puts c.customers
