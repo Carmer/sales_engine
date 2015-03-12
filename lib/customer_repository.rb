@@ -7,7 +7,7 @@ class CustomerRepository
   end
 
   def load_data
-    @data.map {|row| puts Customer.new(row)}
+    @data.map {|row| Customer.new(row)}
   end
 end
 
