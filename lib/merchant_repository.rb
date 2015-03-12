@@ -11,6 +11,3 @@ class MerchantRepository
     @data.map {|row| Merchant.new(row)}
   end
 end
-
-mr = MerchantRepository.new(Parser.new.parse("merchants.csv"))
-puts mr.merchants[9].name
