@@ -14,3 +14,5 @@ class Customer
     @updated_at = data[:updated_at]
   end
 end
+
+customer = Customer.new(data)
