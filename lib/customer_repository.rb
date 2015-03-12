@@ -11,6 +11,6 @@ class CustomerRepository
   end
 end
 
-c = CustomerRepository.new(Parser.new.parse("customers.csv"))
-
-puts c.customers
+# c = CustomerRepository.new(Parser.new.parse("customers.csv"))
+#
+# puts c.customers

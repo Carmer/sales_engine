@@ -1,15 +1,17 @@
 require "./test/test_helper"
-require "./lib/customer_repository"
+require_relative "customer_repository"
 
 class CustomerRepositortyTest < Minitest::Test
 
-
-  def setup
-     custrepo = CustomerRepository.new([{:id=>"1", :name=>"Schroeder-Jerde", :created_at=>"2012-03-27 14:53:59 UTC", :updated_at=>"2012-03-27 14:53:59 UTC"},
-     {:id=>"1", :name=>"Schroeder-Jerde", :created_at=>"2012-03-27 14:53:59 UTC", :updated_at=>"2012-03-27 14:53:59 UTC"}])
-  end
-
   def test_it_exists
     assert CustomerRepository
+  end
+
+  def test_it_creates_an_array_of_customer_objects
+    customers_data = Parser.new.parse("customers.csv")
+
+    customers_array = CustomerRepository.new(customers_data).customers
+    assert_equal 1000, customers_array.size
+    assert_equal Array, customers_array.class
   end
 end
