@@ -2,10 +2,13 @@ require_relative "customer"
 
 class CustomerRepository
 
-  attr_reader :customers
 
   def initialize(data)
     @customers ||= data.map {|row| Customer.new(row)}
+  end
+
+  def inspect
+    "#<#{self.class} #{@customers.size} rows>"
   end
 
   def all
