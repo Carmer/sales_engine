@@ -1,3 +1,4 @@
+require_relative "parser"
 class Customer
 
   attr_reader :id,
@@ -14,5 +15,3 @@ class Customer
     @updated_at = data[:updated_at]
   end
 end
-
-customer = Customer.new(data)
