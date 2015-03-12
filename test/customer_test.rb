@@ -1,5 +1,5 @@
-require './test/test_helper'
-require './lib/customer'
+require "./test/test_helper"
+require "./lib/customer"
 
 class CustomerTest < Minitest::Test
 

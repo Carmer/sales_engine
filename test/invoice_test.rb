@@ -1,5 +1,5 @@
-require './test/test_helper'
-require './lib/invoice'
+require "./test/test_helper"
+require "./lib/invoice"
 
 class InvoiceTest < Minitest::Test
 
@@ -7,7 +7,7 @@ class InvoiceTest < Minitest::Test
     invoices = Invoice
   end
 
-  def test_it_can_instantiate_a_customer_object
+  def test_it_can_instantiate_an_invoice_object
     invoices = Parser.new.parse("sample_invoices.csv")
     @data = invoices[0]
 
@@ -15,7 +15,7 @@ class InvoiceTest < Minitest::Test
     assert invoice
   end
 
-  def test_it_has_customer_id
+  def test_it_has_an_invoice_id
     invoice = Parser.new.parse("sample_invoices.csv")
     @data = invoice[0]
 
@@ -23,7 +23,7 @@ class InvoiceTest < Minitest::Test
     assert_equal "1", invoice.id
   end
 
-  def test_there_is_a_customer_id_for_the_invoice
+  def test_there_is_a_invoice_id_for_the_invoice
     invoice = Parser.new.parse("sample_invoices.csv")
     @data = invoice[0]
 
@@ -31,7 +31,7 @@ class InvoiceTest < Minitest::Test
     assert_equal "1", invoice.customer_id
   end
 
-  def test_there_is_a_last_name_for_customer
+  def test_there_is_a_last_name_for_invoice
     invoice = Parser.new.parse("sample_invoices.csv")
     @data = invoice[0]
 
@@ -63,7 +63,7 @@ class InvoiceTest < Minitest::Test
     assert_equal "2012-03-25 09:54:09 UTC", invoice.updated_at
   end
 
-  def test_it_can_check_another_customer_id
+  def test_it_can_check_another_invoice_id
     invoice = Parser.new.parse("sample_invoices.csv")
     @data = invoice[5]
 
