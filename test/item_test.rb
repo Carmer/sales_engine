@@ -7,7 +7,7 @@ class TestItem < Minitest::Test
   end
 
   def test_it_can_instantiate_an_item_object
-    items = Parser.new.parse("sample_items.csv")
+    items = Parser.new.parse("./data/", "sample_items.csv")
     data = items[0]
 
     item = Item.new(data)
@@ -15,7 +15,7 @@ class TestItem < Minitest::Test
   end
 
   def test_an_item_has_a_name
-    items = Parser.new.parse("sample_items.csv")
+    items = Parser.new.parse("./data/", "sample_items.csv")
     data = items[0]
 
     item = Item.new(data)
@@ -23,7 +23,7 @@ class TestItem < Minitest::Test
   end
 
   def test_a_different_item_has_a_name
-    items = Parser.new.parse("sample_items.csv")
+    items = Parser.new.parse("./data/", "sample_items.csv")
     data = items[5]
 
     item = Item.new(data)
@@ -31,7 +31,7 @@ class TestItem < Minitest::Test
   end
 
   def test_an_item_has_an_id
-    items = Parser.new.parse("sample_items.csv")
+    items = Parser.new.parse("./data/", "sample_items.csv")
     data = items[0]
 
     item = Item.new(data)
@@ -39,7 +39,7 @@ class TestItem < Minitest::Test
   end
 
   def test_a_different_item_has_an_id
-    items = Parser.new.parse("sample_items.csv")
+    items = Parser.new.parse("./data/", "sample_items.csv")
     data = items[5]
 
     item = Item.new(data)
@@ -47,7 +47,7 @@ class TestItem < Minitest::Test
   end
 
   def test_an_item_has_a_description
-    items = Parser.new.parse("sample_items.csv")
+    items = Parser.new.parse("./data/", "sample_items.csv")
     data = items[7]
 
     item = Item.new(data)
@@ -55,7 +55,7 @@ class TestItem < Minitest::Test
   end
 
   def test_a_different_item_has_a_description
-    items = Parser.new.parse("sample_items.csv")
+    items = Parser.new.parse("./data/", "sample_items.csv")
     data = items[8]
 
     item = Item.new(data)
@@ -63,7 +63,7 @@ class TestItem < Minitest::Test
   end
 
   def test_an_item_has_a_unit_price
-    items = Parser.new.parse("sample_items.csv")
+    items = Parser.new.parse("./data/", "sample_items.csv")
     data = items[0]
 
     item = Item.new(data)
@@ -71,7 +71,7 @@ class TestItem < Minitest::Test
   end
 
   def test_a_different_item_has_a_unit_price
-    items = Parser.new.parse("sample_items.csv")
+    items = Parser.new.parse("./data/", "sample_items.csv")
     data = items[2]
 
     item = Item.new(data)
@@ -79,7 +79,7 @@ class TestItem < Minitest::Test
   end
 
   def test_an_item_has_a_merchant_id
-    items = Parser.new.parse("sample_items.csv")
+    items = Parser.new.parse("./data/", "sample_items.csv")
     data = items[7]
 
     item = Item.new(data)
@@ -87,7 +87,7 @@ class TestItem < Minitest::Test
   end
 
   def test_a_different_item_has_a_merchant_id
-    items = Parser.new.parse("sample_items.csv")
+    items = Parser.new.parse("./data/", "sample_items.csv")
     data = items[2]
 
     item = Item.new(data)
@@ -95,7 +95,7 @@ class TestItem < Minitest::Test
   end
 
   def test_an_item_has_a_created_at
-    items = Parser.new.parse("sample_items.csv")
+    items = Parser.new.parse("./data/", "sample_items.csv")
     data = items[2]
 
     item = Item.new(data)
@@ -103,7 +103,7 @@ class TestItem < Minitest::Test
   end
 
   def test_a_different_item_has_a_created_at
-    items = Parser.new.parse("sample_items.csv")
+    items = Parser.new.parse("./data/", "sample_items.csv")
     data = items[3]
 
     item = Item.new(data)
@@ -111,7 +111,7 @@ class TestItem < Minitest::Test
   end
 
   def test_an_item_has_an_updated_at
-    items = Parser.new.parse("sample_items.csv")
+    items = Parser.new.parse("./data/", "sample_items.csv")
     data = items[6]
 
     item = Item.new(data)
@@ -119,7 +119,7 @@ class TestItem < Minitest::Test
   end
 
   def test_a_different_item_has_an_updated_at
-    items = Parser.new.parse("sample_items.csv")
+    items = Parser.new.parse("./data/", "sample_items.csv")
     data = items[9]
 
     item = Item.new(data)

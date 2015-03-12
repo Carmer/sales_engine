@@ -8,7 +8,7 @@ class InvoiceItemsTest < Minitest::Test
   end
 
   def test_it_can_instantiate_an_invoice_item_object
-    invoice_items = Parser.new.parse("sample_invoice_items.csv")
+    invoice_items = Parser.new.parse("./data/", "sample_invoice_items.csv")
     @data = invoice_items[0]
 
     invoice_items = InvoiceItems.new(@data)
@@ -16,7 +16,7 @@ class InvoiceItemsTest < Minitest::Test
   end
 
   def test_there_is_an_invoice_item_id
-    invoice_items = Parser.new.parse("sample_invoice_items.csv")
+    invoice_items = Parser.new.parse("./data/", "sample_invoice_items.csv")
     @data = invoice_items[1]
 
     invoice_items = InvoiceItems.new(@data)
@@ -24,7 +24,7 @@ class InvoiceItemsTest < Minitest::Test
   end
 
   def test_there_is_are_item_ids
-    invoice_items = Parser.new.parse("sample_invoice_items.csv")
+    invoice_items = Parser.new.parse("./data/", "sample_invoice_items.csv")
     @data  = invoice_items[4]
     @data1 = invoice_items[9]
 
@@ -35,7 +35,7 @@ class InvoiceItemsTest < Minitest::Test
   end
 
   def test_there_is_an_invoice_id_asssociated_with_an_invoice_item
-    invoice_items = Parser.new.parse("sample_invoice_items.csv")
+    invoice_items = Parser.new.parse("./data/", "sample_invoice_items.csv")
     @data  = invoice_items[3]
     @data1 = invoice_items[4]
 
@@ -46,7 +46,7 @@ class InvoiceItemsTest < Minitest::Test
   end
 
   def test_there_is_a_quantity_in_the_invoice_items_table
-    invoice_items = Parser.new.parse("sample_invoice_items.csv")
+    invoice_items = Parser.new.parse("./data/", "sample_invoice_items.csv")
     @data  = invoice_items[7]
     @data1 = invoice_items[9]
 
@@ -57,7 +57,7 @@ class InvoiceItemsTest < Minitest::Test
   end
 
   def test_there_is_a_unit_price
-    invoice_items = Parser.new.parse("sample_invoice_items.csv")
+    invoice_items = Parser.new.parse("./data/", "sample_invoice_items.csv")
     @data  = invoice_items[3]
     @data1 = invoice_items[7]
 
@@ -68,7 +68,7 @@ class InvoiceItemsTest < Minitest::Test
   end
 
   def test_there_is_a_time_associated_with_the_creation_of_the_invoice_item
-    invoice_items = Parser.new.parse("sample_invoice_items.csv")
+    invoice_items = Parser.new.parse("./data/", "sample_invoice_items.csv")
     @data  = invoice_items[5]
     @data1 = invoice_items[8]
 
@@ -79,7 +79,7 @@ class InvoiceItemsTest < Minitest::Test
   end
 
   def test_there_is_a_time_associated_with_the_creation_of_the_invoice_item
-    invoice_items = Parser.new.parse("sample_invoice_items.csv")
+    invoice_items = Parser.new.parse("./data/", "sample_invoice_items.csv")
     @data  = invoice_items[6]
     @data1 = invoice_items[8]
 

@@ -4,9 +4,10 @@ class InvoiceRepository
 
   def initialize(data)
     @data = data
+    @invoices = @data.map {|row| Invoice.new(row)}
   end
 
-  def invoices
-    @data.map {|row| Invoice.new(row)}
+  def inspect
+    "#<#{self.class} #{@items.size} rows>"
   end
 end

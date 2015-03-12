@@ -8,7 +8,7 @@ class TestTransactions < Minitest::Test
   end
 
   def test_it_can_instantiate_a_transaction
-    transactions = Parser.new.parse("sample_transactions.csv")
+    transactions = Parser.new.parse("./data/", "sample_transactions.csv")
     data = transactions[0]
 
     transaction = Transaction.new(data)
@@ -16,7 +16,7 @@ class TestTransactions < Minitest::Test
   end
 
   def test_a_transaction_has_an_id
-    transactions = Parser.new.parse("sample_transactions.csv")
+    transactions = Parser.new.parse("./data/", "sample_transactions.csv")
     data = transactions[0]
 
     transaction = Transaction.new(data)
@@ -24,7 +24,7 @@ class TestTransactions < Minitest::Test
   end
 
   def test_another_transaction_has_an_id
-    transactions = Parser.new.parse("sample_transactions.csv")
+    transactions = Parser.new.parse("./data/", "sample_transactions.csv")
     data = transactions[3]
 
     transaction = Transaction.new(data)
@@ -32,7 +32,7 @@ class TestTransactions < Minitest::Test
   end
 
   def test_a_transaction_has_an_invoice_id
-    transactions = Parser.new.parse("sample_transactions.csv")
+    transactions = Parser.new.parse("./data/", "sample_transactions.csv")
     data = transactions[3]
 
     transaction = Transaction.new(data)
@@ -40,7 +40,7 @@ class TestTransactions < Minitest::Test
   end
 
   def test_another_transaction_has_an_invoice_id
-    transactions = Parser.new.parse("sample_transactions.csv")
+    transactions = Parser.new.parse("./data/", "sample_transactions.csv")
     data = transactions[10]
 
     transaction = Transaction.new(data)
@@ -48,7 +48,7 @@ class TestTransactions < Minitest::Test
   end
 
   def test_a_transation_has_a_credit_card_number
-    transactions = Parser.new.parse("sample_transactions.csv")
+    transactions = Parser.new.parse("./data/", "sample_transactions.csv")
     data = transactions[10]
 
     transaction = Transaction.new(data)
@@ -56,7 +56,7 @@ class TestTransactions < Minitest::Test
   end
 
   def test_another_transaction_has_a_credit_card_number
-    transactions = Parser.new.parse("sample_transactions.csv")
+    transactions = Parser.new.parse("./data/", "sample_transactions.csv")
     data = transactions[5]
 
     transaction = Transaction.new(data)
@@ -64,7 +64,7 @@ class TestTransactions < Minitest::Test
   end
 
   def test_a_transaction_has_a_credit_card_expiration_date
-    transactions = Parser.new.parse("sample_transactions.csv")
+    transactions = Parser.new.parse("./data/", "sample_transactions.csv")
     data = transactions[5]
 
     transaction = Transaction.new(data)
@@ -72,7 +72,7 @@ class TestTransactions < Minitest::Test
   end
 
   def test_a_transaction_has_a_result
-    transactions = Parser.new.parse("sample_transactions.csv")
+    transactions = Parser.new.parse("./data/", "sample_transactions.csv")
     data = transactions[5]
 
     transaction = Transaction.new(data)
@@ -80,7 +80,7 @@ class TestTransactions < Minitest::Test
   end
 
   def test_another_transaction_has_a_result
-    transactions = Parser.new.parse("sample_transactions.csv")
+    transactions = Parser.new.parse("./data/", "sample_transactions.csv")
     data = transactions[11]
 
     transaction = Transaction.new(data)
@@ -88,7 +88,7 @@ class TestTransactions < Minitest::Test
   end
 
   def test_a_transaction_has_a_created_at
-    transactions = Parser.new.parse("sample_transactions.csv")
+    transactions = Parser.new.parse("./data/", "sample_transactions.csv")
     data = transactions[11]
 
     transaction = Transaction.new(data)
@@ -96,7 +96,7 @@ class TestTransactions < Minitest::Test
   end
 
   def test_another_transaction_has_a_created_at
-    transactions = Parser.new.parse("sample_transactions.csv")
+    transactions = Parser.new.parse("./data/", "sample_transactions.csv")
     data = transactions[9]
 
     transaction = Transaction.new(data)
@@ -104,7 +104,7 @@ class TestTransactions < Minitest::Test
   end
 
   def test_a_transaction_has_an_updated_at
-    transactions = Parser.new.parse("sample_transactions.csv")
+    transactions = Parser.new.parse("./data/", "sample_transactions.csv")
     data = transactions[9]
 
     transaction = Transaction.new(data)
@@ -112,7 +112,7 @@ class TestTransactions < Minitest::Test
   end
 
   def test_another_transaction_has_an_upadated_at
-    transactions = Parser.new.parse("sample_transactions.csv")
+    transactions = Parser.new.parse("./data/", "sample_transactions.csv")
     data = transactions[5]
 
     transaction = Transaction.new(data)
