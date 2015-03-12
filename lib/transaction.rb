@@ -1,6 +1,6 @@
 require_relative "parser"
 
-class Transactions
+class Transaction
 
   attr_reader :id,
               :invoice_id,

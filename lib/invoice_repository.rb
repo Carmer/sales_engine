@@ -6,7 +6,7 @@ class InvoiceRepository
     @data = data
   end
 
-  def invoice
+  def invoices
     @data.map {|row| Invoice.new(row)}
   end
 end

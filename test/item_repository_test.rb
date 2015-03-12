@@ -8,7 +8,7 @@ class ItemRepositortyTest < Minitest::Test
   end
 
   def test_it_creates_an_array_of_item_objects
-    item_data = Parser.new.parse("items_sample.csv")
+    item_data = Parser.new.parse("sample_items.csv")
 
     item_data = ItemRepository.new(item_data).items
     assert_equal 10, item_data.size
