@@ -10,7 +10,3 @@ class CustomerRepository
     @data.map {|row| Customer.new(row)}
   end
 end
-
-# c = CustomerRepository.new(Parser.new.parse("customers.csv"))
-#
-# puts c.customers

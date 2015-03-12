@@ -1,7 +1,11 @@
 require_relative "parser"
 
 class Merchant
-  attr_accessor :id, :name, :created_at, :updated_at
+
+  attr_accessor :id,
+                :name,
+                :created_at,
+                :updated_at
 
   def initialize(data)
     @id = data[:id]
