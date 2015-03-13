@@ -11,10 +11,14 @@ class ItemRepositoryTest < Minitest::Test
     assert ItemRepository
   end
 
+  def setup
+    @item_data = Parser.new.parse("./data", "sample_items.csv")
+  end
+
   def test_it_creates_an_array_of_item_objects
-    item_data = ItemRepository.new(@item_data)
-    assert_equal 10, item_data.items.size
-    assert_equal Array, item_data.items.class
+    item = ItemRepository.new(@item_data, nil).items
+    assert_equal 10, item.size
+    assert_equal Array, item.class
   end
 
   def test_it_has_an_all_method

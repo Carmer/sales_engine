@@ -2,8 +2,9 @@ require_relative "invoice"
 
 class InvoiceRepository
 
-  def initialize(data)
-    @invoice = data.map {|row| Invoice.new(row)}
+  def initialize(data, sales_engine)
+    @invoice      = data.map {|row| Invoice.new(row)}
+    @sales_engine = sales_engine
   end
 
   def invoices
