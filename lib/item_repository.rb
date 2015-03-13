@@ -2,7 +2,7 @@ require_relative "parser"
 require_relative "item"
 
 class ItemRepository
-  #attr_reader :items
+  attr_reader :items
 
   def initialize(data)
     @items = data.map {|row| Item.new(row)}
@@ -11,7 +11,7 @@ class ItemRepository
   def inspect
     "#<#{self.class} #{@items.size} rows>"
   end
-  
+
   def all
     items
   end
@@ -46,7 +46,8 @@ end
 
 #id,name,description,unit_price,merchant_id,created_at,updated_at
 
-# items_data = Parser.new.parse("sample_items.csv")
-# items_array = ItemRepository.new(items_data)
-# p items_array.find_by_id("3").name
-#items.items.each{|item|puts item.name}
+items_data = Parser.new.parse("./data/", "sample_items.csv")
+items_array = ItemRepository.new(items_data)
+puts items_array.find_by_name("Item Qui Esse").description
+#p items_array.find_by_id("3").name
+#items_array.items.each{|item|puts item.name}
