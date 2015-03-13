@@ -5,7 +5,6 @@ require_relative "item_repository"
 require_relative "invoice_items_repository"
 require_relative "invoice_repository"
 require_relative "transaction_repository"
-require_relative "parser"
 
 class SalesEngine
 
@@ -37,37 +36,36 @@ class SalesEngine
     @customer_repository = CustomerRepository.new(data, self)
   end
 
-  def merchant_repository
-    data = Parser.new.parse(@filepath, "merchants.csv")
-    @merchant_repository = MerchantRepository.new(data, self)
+  def merhcant_repository
+    data = Parser.new.parse(@filepath, "sample_merchant.csv")
+    @merhcant_repository = MerchantRepository.new(data, self)
   end
 
   def item_repository
-    data = Parser.new.parse(@filepath, "items.csv")
+    data = Parser.new.parse(@filepath, "sample_items.csv")
     @item_repository = ItemRepository.new(data, self)
   end
 
   def invoice_items_repository
-    data = Parser.new.parse(@filepath, "invoice_items.csv")
+    data = Parser.new.parse(@filepath, "sample_invoice_items.csv")
     @invoice_items_repository = InvoiceItemsRepository.new(data, self)
   end
 
   def invoice_repository
-    data = Parser.new.parse(@filepath, "invoices.csv")
+    data = Parser.new.parse(@filepath, "sample_invoices.csv")
     @invoice_repository = InvoiceRepository.new(data, self)
   end
 
   def transaction_repository
-    data = Parser.new.parse(@filepath, "transactions.csv")
+    data = Parser.new.parse(@filepath, "sample_transactions.csv")
     @transaction_repository = TransactionRepository.new(data, self)
   end
 end
 
 
+engine = SalesEngine.new("./data")
 
-# engine = SalesEngine.new("./data")
-#
-# engine.startup
-# # require "pry"
-# # binding.pry
-# puts engine.customer_repository.find_by_id(3).class
+engine.startup
+require "pry"
+binding.pry
+puts engine.customer_repository.find_by_id(3).class
