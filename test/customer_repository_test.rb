@@ -18,11 +18,57 @@ class CustomerRepositortyTest < Minitest::Test
   end
 
   def test_it_can_pull_a_random_sample_customer
-    customers_data = Parser.new.parse("./data/", "sample_customers.csv")
-
-    customers = CustomerRepository.new(customers_data)
+    customers = CustomerRepository.new(@customers_data)
     sample = []
     10.times {sample << customers.random}
     assert sample.uniq
+  end
+
+  def test_it_can_search_for_a_customer_by_first_name
+    customers = CustomerRepository.new(@customers_data)
+    result = customers.find_by_first_name("Joey")
+    assert_equal "Joey", result.first_name
+  end
+
+  def test_it_can_search_for_a_customer_by_first_name_in_all_capital_letters
+    customers = CustomerRepository.new(@customers_data)
+    result = customers.find_by_first_name("JOEY")
+    assert_equal "Joey", result.first_name
+  end
+
+  def test_it_can_search_fro_a_customer_by_first_name_in_all_lowercaed_letters
+    customers = CustomerRepository.new(@customers_data)
+    result = customers.find_by_first_name("joey")
+    assert_equal "Joey", result.first_name
+  end
+
+  def test_it_can_search_fro_a_customer_by_first_name_in_mixedcased_letters
+    customers = CustomerRepository.new(@customers_data)
+    result = customers.find_by_first_name("jOeY")
+    assert_equal "Joey", result.first_name
+  end
+
+  def test_it_can_search_for_customer_by_last_name
+      customers = CustomerRepository.new(@customers_data)
+      result = customers.find_by_last_name("Hettinger")
+      assert_equal "Hettinger", result.last_name
+  end
+
+  def test_it_can_search_for_customer_by_last_name_in_all_capital_letters
+      customers = CustomerRepository.new(@customers_data)
+      result = customers.find_by_last_name("HETTINGER")
+      assert_equal "Hettinger", result.last_name
+  end
+
+  def test_it_can_search_for_customer_by_last_name_in_all_lowercase_letters
+      customers = CustomerRepository.new(@customers_data)
+      result = customers.find_by_last_name("hettinger")
+      assert_equal "Hettinger", result.last_name
+  end
+
+  def test_it_can_search_for_customer_by_last_name_in_mixedcase_letters
+      customers = CustomerRepository.new(@customers_data)
+      result = customers.find_by_last_name("heTTingEr")
+      assert_equal "Hettinger", result.last_name
   end
 end
