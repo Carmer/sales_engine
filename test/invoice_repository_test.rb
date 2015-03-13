@@ -8,11 +8,11 @@ class InvoiceRepositortyTest < Minitest::Test
   end
 
   def setup
-    @invoice_data = Parser.new.parse("./data/","sample_invoices.csv")
+    @invoice_data = Parser.new.parse("./data","sample_invoices.csv")
   end
 
   def test_it_creates_an_array_of_invoice_objects
-    invoice_data = InvoiceRepository.new(@invoice_data).invoices
+    invoice_data = InvoiceRepository.new(@invoice_data, nil).invoices
     assert_equal 19, invoice_data.size
     assert_equal Array, invoice_data.class
   end

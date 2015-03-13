@@ -2,16 +2,18 @@ require_relative "parser"
 require_relative "item"
 
 class ItemRepository
-  #attr_reader :items
 
-  def initialize(data)
+  attr_reader :items
+
+  def initialize(data, sales_engine)
     @items = data.map {|row| Item.new(row)}
+    @sales_engine = sales_engine
   end
 
   def inspect
     "#<#{self.class} #{@items.size} rows>"
   end
-  
+
   def all
     items
   end
