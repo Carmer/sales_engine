@@ -17,4 +17,52 @@ class TransactionRepository
   def inspect
     "#<#{self.class} #{@transactions.size} rows>"
   end
+
+  def all
+  end
+
+  def random
+  end
+
+  def find_by_id()
+  end
+
+  def find_by_item_id()
+  end
+
+  def find_by_credit_card_number()
+  end
+
+  def find_by_credit_card_expiration_date()
+  end
+
+  def find_by_result()
+  end
+
+  def find_by_created_at()
+  end
+
+  def find_by_updated_at()
+  end
+
+  def find_all_by_id()
+  end
+
+  def find_all_by_invoice_id()
+  end
+
+  def find_all_by_credit_card_number()
+  end
+
+  def find_all_by_credit_card_expiration_date()
+  end
+
+  def find_all_by_result()
+  end
+
+  def find_all_by_created_at()
+  end
+
+  def find_all_by_updated_at()
+  end
 end
