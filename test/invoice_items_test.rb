@@ -4,7 +4,7 @@ require "./lib/invoice_items_repository"
 class InvoiceItemsTest < Minitest::Test
 
   def setup
-    @invoice_items = Parser.new.parse("./data/", "sample_invoice_items.csv")
+    @invoice_items = Parser.new.parse("./data", "sample_invoice_items.csv")
   end
 
   def test_it_exists

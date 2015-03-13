@@ -8,8 +8,9 @@ class CustomerRepository
   attr_reader :customers
 
 
-  def initialize(data)
-    @customers ||= data.map {|row| Customer.new(row)}
+  def initialize(data, sales_engine)
+    @customers  ||= data.map {|row| Customer.new(row, self)}
+    @sales_engine = sales_engine
   end
 
   def inspect
@@ -33,7 +34,11 @@ class CustomerRepository
   end
 
   def find_by_id(id)
-    find_by_attribute(customers, :id, id)
+    find_by_parameter(customers, :id, id)
+  end
+
+  def find_all_by_id(id)
+    find_all_by_parameter(customers, :id, id)
   end
 
   def find_customers_by_created_at(created_at)
@@ -43,9 +48,12 @@ class CustomerRepository
   def find_customers_by_updated_at(updated_at)
     find_all_by_parameter(customers, :updated_at, updated_at)
   end
-end
 
-
+  # def find_all_by_parameter(category, parameter, input)
+  #   category.select {|thing| thing.send(parameter) == input}
+  # end
   #
-  # c = CustomerRepository.new(Parser.new.parse("sample_customers.csv"))
-  # puts c.find_customer_by_first_name("Joey")
+  # def find_by_parameter(category, parameter, input)
+  #   category.detect {|thing| thing.send(parameter) == input}
+  # end
+end
