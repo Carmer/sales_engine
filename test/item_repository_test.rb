@@ -12,20 +12,20 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_it_creates_an_array_of_item_objects
-    item = ItemRepository.new(@item_data)
-    assert_equal 10, item_data.items.size
-    assert_equal Array, item_data.items.class
+    item = ItemRepository.new(@item_data, nil).items
+    assert_equal 10, item.size
+    assert_equal Array, item.class
   end
 
   def test_it_has_an_all_method
-    item = ItemRepository.new(@item_data)
-    assert_equal 10, item_data.all.size
-    assert_equal Array, item_data.all.class
+    item = ItemRepository.new(@item_data, nil)
+    assert_equal 10, item.all.size
+    assert_equal Array, item.all.class
   end
 
   def test_it_has_a_random_method
-    item = ItemRepository.new(@item_data)
-    assert_equal Item, item_data.random.class
+    item = ItemRepository.new(@item_data, nil)
+    assert_equal Item, item.random.class
   end
 
 
@@ -34,6 +34,4 @@ class ItemRepositoryTest < Minitest::Test
     assert_equal 10, item.size
     assert_equal Array, item.class
   end
-
-
 end
