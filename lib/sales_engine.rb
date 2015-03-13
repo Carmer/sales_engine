@@ -25,14 +25,14 @@ class SalesEngine
   def startup
     merchant_repository
     customer_repository
-    item_repositoy
+    item_repository
     invoice_items_repository
     invoice_repository
     transaction_repository
   end
 
   def customer_repository
-    data = Parser.new.parse(@filepath, "sample_customers.csv")
+    data = Parser.new.parse(@filepath, "customers.csv")
     @customer_repository = CustomerRepository.new(data, self)
   end
 
@@ -61,3 +61,11 @@ class SalesEngine
     @transaction_repository = TransactionRepository.new(data, self)
   end
 end
+
+
+engine = SalesEngine.new("./data")
+
+engine.startup
+# require "pry"
+# binding.pry
+puts engine.customer_repository.find_by_id(3).class

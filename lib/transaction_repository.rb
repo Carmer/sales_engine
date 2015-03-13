@@ -3,8 +3,11 @@ require_relative "transaction"
 
 class TransactionRepository
 
-  def initialize(data)
+  attr_reader :transactions
+
+  def initialize(data, sales_engine)
     @transactions = data.map {|row| Transaction.new(row)}
+    @sales_engine = sales_engine
   end
 
   def transactions
