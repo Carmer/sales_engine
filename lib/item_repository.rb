@@ -44,4 +44,27 @@ class ItemRepository
 
   def find_by_updated_at()
   end
+
+  def find_all_by_id()
+  end
+
+  def find_all_by_name()
+  end
+
+  def find_all_by_description()
+  end
+
+  def find_all_by_unit_price()
+  end
+
+  def find_all_by_merchant_id()
+  end
+
+  def find_all_by_created_at()
+  end
+
+  def find_all_by_updated_at()
+  end
+  
+
 end
