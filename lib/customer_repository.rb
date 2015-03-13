@@ -26,7 +26,7 @@ class CustomerRepository
   end
 
   def find_by_first_name(first_name)
-    customers.find {|customer| customer.first_name.upcase == first_name.upcase}
+    string_find_by(customers, :first_name, first_name)
   end
 
   def find_by_last_name(last_name)
@@ -48,12 +48,4 @@ class CustomerRepository
   def find_customers_by_updated_at(updated_at)
     find_all_by_parameter(customers, :updated_at, updated_at)
   end
-
-  # def find_all_by_parameter(category, parameter, input)
-  #   category.select {|thing| thing.send(parameter) == input}
-  # end
-  #
-  # def find_by_parameter(category, parameter, input)
-  #   category.detect {|thing| thing.send(parameter) == input}
-  # end
 end
