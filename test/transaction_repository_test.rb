@@ -71,7 +71,18 @@ class TransactionRepositoryTest < Minitest::Test
 
   def test_it_can_find_all_items_by_result
     trans = TransactionRepository.new(@transaction_data, nil)
-    assert_equal 4, trans.find_all_by_result("failed").length    
+    assert_equal 4, trans.find_all_by_result("failed").length
+    assert_equal 15, trans.find_all_by_result("success").length
   end
 
+  def test_it_can_find_all_items_by_created_at
+    trans = TransactionRepository.new(@transaction_data, nil)
+    assert_equal 17, trans.find_all_by_created_at("2012-03-27 14:54:10 UTC").length
+  end
+
+  def test_it_can_find_all_items_by_updated_at
+    trans = TransactionRepository.new(@transaction_data, nil)
+    assert_equal 2, trans.find_all_by_updated_at("2012-03-27 14:54:09 UTC").length
+  end
+  
 end
