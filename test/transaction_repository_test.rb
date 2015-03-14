@@ -54,9 +54,16 @@ class TransactionRepositoryTest < Minitest::Test
 
   def test_it_can_find_an_item_by_updated_at
     trans = TransactionRepository.new(@transaction_data, nil)
-    assert_equal "1", trans.find_by_updated_at("2012-03-27 14:54:09 UTC").id    
+    assert_equal "1", trans.find_by_updated_at("2012-03-27 14:54:09 UTC").id
   end
 
+  def test_it_can_find_all_items_by_id
+    trans = TransactionRepository.new(@transaction_data, nil)
+    assert_equal "4436110257010678", trans.find_all_by_id("19")[0].credit_card_number
+  end
 
+  def test_it_can_find_all_items_by_
+
+  end
 
 end
