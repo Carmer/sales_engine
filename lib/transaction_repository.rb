@@ -19,9 +19,11 @@ class TransactionRepository
   end
 
   def all
+    transactions
   end
 
   def random
+    transactions.sample
   end
 
   def find_by_id()

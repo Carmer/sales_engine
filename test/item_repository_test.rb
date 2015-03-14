@@ -60,5 +60,50 @@ class ItemRepositoryTest < Minitest::Test
     assert_equal "Fuga assumenda occaecati hic dolorem tenetur dolores nisi. Est tenetur adipisci voluptatem vel. Culpa adipisci consequatur illo. Necessitatibus quis quo velit sed repellendus ut amet.", items.find_by_description("Fuga assumenda occaecati hic dolorem tenetur dolores nisi. Est tenetur adipisci voluptatem vel. Culpa adipisci consequatur ILLO. Necessitatibus quis quo velit sed repellendus ut AMET.").description
   end
 
-    
+  def test_it_can_find_an_item_by_unit_price
+    items = ItemRepository.new(@item_data, nil)
+    assert_equal "Item Provident At", items.find_by_unit_price("15925").name
+  end
+
+  def test_it_can_find_an_item_by_merchant_id
+    items = ItemRepository.new(@item_data, nil)
+    assert_equal "Item Qui Esse", items.find_by_merchant_id("1").name
+    refute_equal "Item Ea Voluptatum", items.find_by_merchant_id("1").name
+  end
+
+  def test_it_can_find_an_item_by_created_at
+    items = ItemRepository.new(@item_data, nil)
+    assert_equal "Item Qui Esse", items.find_by_created_at("2012-03-27 14:53:59 UTC").name
+  end
+
+  def test_it_can_find_an_item_by_updated_at
+    items = ItemRepository.new(@item_data, nil)
+    assert_equal "Item Qui Esse", items.find_by_updated_at("2012-03-27 14:53:59 UTC").name
+  end
+
+  def test_it_can_find_all_items_by_name
+    items = ItemRepository.new(@item_data, nil)
+    assert_equal [], items.find_all_by_name("Item Quidem Nothing")
+  end
+
+  def test_it_can_find_all_items_by_merchant_id
+    items = ItemRepository.new(@item_data, nil)
+    assert_equal 10, items.find_all_by_merchant_id("1").length
+  end
+
+  def test_it_can_find_all_items_by_merchant_id_and_access_it
+    items = ItemRepository.new(@item_data, nil)
+    assert_equal "Item Qui Esse", items.find_all_by_merchant_id("1")[0].name
+  end
+
+  def test_it_can_find_all_items_by_created_at
+    items = ItemRepository.new(@item_data, nil)
+    assert_equal 10, items.find_all_by_created_at("2012-03-27 14:53:59 UTC").length
+  end
+
+  def test_it_can_find_all_items_by_updated_at
+    items = ItemRepository.new(@item_data, nil)
+    assert_equal 10, items.find_all_by_updated_at("2012-03-27 14:53:59 UTC").length    
+  end
+
 end
