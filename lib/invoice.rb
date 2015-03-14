@@ -9,7 +9,7 @@ class Invoice
               :created_at,
               :updated_at
 
-  def initialize(data)
+  def initialize(data, repository)
     @id           = data[:id]
     @customer_id  = data[:customer_id]
     @merchant_id  = data[:merchant_id]
