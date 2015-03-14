@@ -45,10 +45,6 @@ class CustomerRepository
     find_by_parameter(customers, :id, id)
   end
 
-  def find_all_by_id(id)
-    find_all_by_parameter(customers, :id, id)
-  end
-
   def find_customers_by_created_at(created_at)
     find_all_by_parameter(customers, :created_at, created_at)
   end

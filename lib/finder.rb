@@ -1,6 +1,6 @@
 module Finder
 
-  def find_all_by_parameter(respository, column_header, input)
+  def find_all_by_parameter(repository, column_header, input)
     repository.select {|thing| thing.send(column_header) == input}
   end
 

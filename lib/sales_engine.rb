@@ -63,9 +63,7 @@ class SalesEngine
 end
 
 
-  # engine = SalesEngine.new("./data")
-  #
-  # engine.startup
-  # require "pry"
-  # binding.pry
-  # puts engine.customer_repository.find_by_id(3).class
+  engine = SalesEngine.new("./data")
+
+  engine.startup
+  puts engine.customer_repository.find_all_by_first_name("Joey")
