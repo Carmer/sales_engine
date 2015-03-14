@@ -27,7 +27,7 @@ class TransactionRepository
   def find_by_id()
   end
 
-  def find_by_item_id()
+  def find_by_invoice_id()
   end
 
   def find_by_credit_card_number()

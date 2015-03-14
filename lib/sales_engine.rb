@@ -61,9 +61,3 @@ class SalesEngine
     @transaction_repository = TransactionRepository.new(data, self)
   end
 end
-
-
-  engine = SalesEngine.new("./data")
-
-  engine.startup
-  puts engine.customer_repository.find_all_by_first_name("Joey")
