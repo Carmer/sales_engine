@@ -1,6 +1,9 @@
 require_relative "invoice"
+require_relative "finder"
 
 class InvoiceRepository
+
+  include Finder
 
   attr_reader :invoices
 

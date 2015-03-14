@@ -12,8 +12,16 @@ class InvoiceRepositortyTest < Minitest::Test
   end
 
   def test_it_creates_an_array_of_invoice_objects
-    invoice_data = InvoiceRepository.new(@invoice_data, nil).invoices
-    assert_equal 19, invoice_data.size
-    assert_equal Array, invoice_data.class
+    invoice1 = InvoiceRepository.new(@invoice_data, nil).invoices
+    assert_equal 19, invoice1.size
+    assert_equal Array, invoice1.class
   end
+
+  def test_it_can_find_by_invoice_status
+    invoice1 = InvoiceRepository.new(@invoice_data, nil)
+    result = invoice1.find_by_status("shipped")
+    assert_equal "shipped", result.status
+  end
+
+
 end
