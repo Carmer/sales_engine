@@ -54,6 +54,5 @@ class TestMerchantRepository < Minitest::Test
   def test_another_object_has_an_updated_at
     merch = MerchantRepository.new(@merchants, nil).merchant
     assert_equal "2012-03-27 14:53:59 UTC", merch[8].updated_at
-
   end
 end
