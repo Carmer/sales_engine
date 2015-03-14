@@ -3,6 +3,8 @@ require "./lib/invoice_items_repository"
 
 class InvoiceItemsRepositortyTest < Minitest::Test
 
+  include Finder
+
   def test_it_exists
     assert InvoiceItemsRepository
   end
