@@ -16,4 +16,8 @@ class InvoiceItemsRepositortyTest < Minitest::Test
     assert_equal 19, invoice_items_array.size
     assert_equal Array, invoice_items_array.class
   end
+
+  def test_it_finds_an_item_by_id
+    
+  end
 end
