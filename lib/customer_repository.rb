@@ -5,7 +5,8 @@ class CustomerRepository
 
   include Finder
 
-  attr_reader :customers
+  attr_reader :customers,
+              :sales_engine
 
 
   def initialize(data, sales_engine)
@@ -60,4 +61,9 @@ class CustomerRepository
   def find_all_by_updated_at(updated_at)
     find_all_by_parameter(customers, :updated_at, updated_at)
   end
+
+  def all_invoices(customer_id)
+    sales_engine.all_customer_invoices(customer_id)
+  end
+
 end

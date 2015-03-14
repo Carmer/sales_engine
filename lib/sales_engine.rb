@@ -1,4 +1,4 @@
-require 'csv'
+# require 'csv'
 require_relative "customer_repository"
 require_relative "merchant_repository"
 require_relative "item_repository"
@@ -17,7 +17,7 @@ class SalesEngine
                 :invoice_repository,
                 :transaction_repository
 
-  def initialize(filepath)
+  def initialize(filepath='./data/fixtures')
     @filepath = filepath
     startup
   end
@@ -33,7 +33,7 @@ class SalesEngine
 
   def customer_repository
     data = Parser.new.parse(@filepath, "customers.csv")
-    @customer_repository = CustomerRepository.new(data, self)
+    @customer_repository ||= CustomerRepository.new(data, self)
   end
 
   def merchant_repository
@@ -59,5 +59,13 @@ class SalesEngine
   def transaction_repository
     data = Parser.new.parse(@filepath, "transactions.csv")
     @transaction_repository = TransactionRepository.new(data, self)
+  end
+
+  def find_invoices_by_customer_id(id)
+    customer_repository.find_by_id(id)
+  end
+
+  def all_customer_invoices(customer_id)
+    invoice_repository.find_all_by_customer_id(customer_id)
   end
 end
