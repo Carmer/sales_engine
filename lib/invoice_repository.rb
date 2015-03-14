@@ -33,11 +33,11 @@ class InvoiceRepository
   end
 
   def find_by_customer_id(customer_id)
-    find_by_parameter(invoices, :cust_id, customer_id)
+    find_by_parameter(invoices, :customer_id, customer_id)
   end
 
   def find_all_by_customer_id(customer_id)
-    find_all_by_parameter(invoices, :cust_id, customer_id)
+    find_all_by_parameter(invoices, :customer_id, customer_id)
   end
 
   def find_by_merchant_id(merchant_id)

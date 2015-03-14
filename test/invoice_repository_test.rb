@@ -23,5 +23,16 @@ class InvoiceRepositortyTest < Minitest::Test
     assert_equal "shipped", result.status
   end
 
+  def test_it_can_find_by_customer_id
+    invoice1 = InvoiceRepository.new(@invoice_data, nil)
+    result = invoice1.find_by_customer_id("4")
+    assert_equal "4", result.customer_id
+  end
 
+  def test_it_can_find_all_by_customer_id
+    invoice1 = InvoiceRepository.new(@invoice_data, nil)
+    result = invoice1.find_by_customer_id("3")
+    assert_equal "3", result.customer_id
+
+  end
 end
