@@ -54,9 +54,24 @@ class TransactionRepositoryTest < Minitest::Test
 
   def test_it_can_find_an_item_by_updated_at
     trans = TransactionRepository.new(@transaction_data, nil)
-    assert_equal "1", trans.find_by_updated_at("2012-03-27 14:54:09 UTC").id    
+    assert_equal "1", trans.find_by_updated_at("2012-03-27 14:54:09 UTC").id
   end
 
+  def test_it_can_find_all_items_by_id_and_if_none_returns_an_empty_array
+    trans = TransactionRepository.new(@transaction_data, nil)
+    assert_equal "4436110257010678", trans.find_all_by_id("19")[0].credit_card_number
+    assert_equal [], trans.find_all_by_id("29")
+  end
 
+  def test_it_can_find_all_items_by_credit_card_number
+    trans = TransactionRepository.new(@transaction_data, nil)
+    assert_equal "4436110257010678", trans.find_all_by_credit_card_number("4436110257010678")[0].credit_card_number
+    assert_equal 1, trans.find_all_by_credit_card_number("4436110257010678")[0..1].length
+  end
+
+  def test_it_can_find_all_items_by_result
+    trans = TransactionRepository.new(@transaction_data, nil)
+    assert_equal 4, trans.find_all_by_result("failed").length    
+  end
 
 end
