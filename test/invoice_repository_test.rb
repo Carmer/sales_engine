@@ -33,6 +33,17 @@ class InvoiceRepositortyTest < Minitest::Test
     invoice1 = InvoiceRepository.new(@invoice_data, nil)
     result = invoice1.find_by_customer_id("3")
     assert_equal "3", result.customer_id
+  end
 
+  def test_it_can_find_by_merchant_id
+    invoice1 = InvoiceRepository.new(@invoice_data, nil)
+    result = invoice1.find_by_merchant_id("26")
+    assert_equal "26", result.merchant_id
+  end
+
+  def test_it_can_find_all_by_merchant_id
+    invoice1 = InvoiceRepository.new(@invoice_data, nil)
+    result = invoice1.find_by_merchant_id("76")
+    assert_equal "76", result.merchant_id
   end
 end
