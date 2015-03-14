@@ -1,4 +1,5 @@
 require_relative "invoice_items"
+require_relative "finder"
 
 class InvoiceItemsRepository
 
@@ -79,5 +80,4 @@ class InvoiceItemsRepository
   def find_all_by_updated_at(updated_at)
     find_all_by_parameter(invoice_items, :updated_at, updated_at)
   end
-
 end
