@@ -8,7 +8,7 @@ class InvoiceItemsRepository
   attr_reader :invoice_items
 
   def initialize(data, sales_engine)
-    @invoice_items = data.map {|row| InvoiceItems.new(row)}
+    @invoice_items = data.map {|row| InvoiceItems.new(row, self)}
     @sales_engine  = sales_engine
   end
 

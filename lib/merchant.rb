@@ -12,5 +12,6 @@ class Merchant
     @name = data[:name]
     @created_at = data[:created_at]
     @updated_at = data[:updated_at]
+    @reposiotry = repository
   end
 end

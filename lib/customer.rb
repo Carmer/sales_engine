@@ -7,19 +7,18 @@ class Customer
               :last_name,
               :created_at,
               :updated_at,
-              :repo
+              :repository
 
-  def initialize(data, repo)
+  def initialize(data, repository)
     @id         = data[:id]
     @first_name = data[:first_name]
     @last_name  = data[:last_name]
     @created_at = data[:created_at]
     @updated_at = data[:updated_at]
-    @repo       = repo
+    @repository = repository
   end
 
   def invoices
-    # binding.pry
-    repo.all_invoices(id)
+    repository.all_invoices(id)
   end
 end

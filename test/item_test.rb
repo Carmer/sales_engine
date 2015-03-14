@@ -1,5 +1,6 @@
 require "./test/test_helper"
 require "./lib/item"
+require "./lib/sales_engine"
 
 class TestItem < Minitest::Test
   def test_it_exists
@@ -7,111 +8,17 @@ class TestItem < Minitest::Test
   end
 
   def setup
-    @items = Parser.new.parse("./data/", "sample_items.csv")
+    sales_engine = SalesEngine.new
+    @item = sales_engine.item_repository.find_by_id("3")
   end
 
-  def test_it_can_instantiate_an_item_object
-    data = @items[0]
-
-    item = Item.new(data)
-    assert item
-  end
-
-  def test_an_item_has_a_name
-    data = @items[0]
-
-    item = Item.new(data)
-    assert_equal "Item Qui Esse", item.name
-  end
-
-  def test_a_different_item_has_a_name
-    data = @items[5]
-
-    item = Item.new(data)
-    assert_equal "Item Provident At", item.name
-  end
-
-  def test_an_item_has_an_id
-    data = @items[0]
-
-    item = Item.new(data)
-    assert_equal "1", item.id
-  end
-
-  def test_a_different_item_has_an_id
-    data = @items[5]
-
-    item = Item.new(data)
-    assert_equal "6", item.id
-  end
-
-  def test_an_item_has_a_description
-    data = @items[7]
-
-    item = Item.new(data)
-    assert_equal "Reprehenderit est officiis cupiditate quia eos. Voluptatem illum reprehenderit quo vel eligendi. Et eum omnis id ut aliquid veniam.", item.description
-  end
-
-  def test_a_different_item_has_a_description
-    data = @items[8]
-
-    item = Item.new(data)
-    assert_equal "Culpa deleniti adipisci voluptates aut. Sed eum quisquam nisi. Voluptatem est rerum est qui id reprehenderit. Molestiae laudantium non velit alias. Ipsa consequatur modi quibusdam.", item.description
-  end
-
-  def test_an_item_has_a_unit_price
-    data = @items[0]
-
-    item = Item.new(data)
-    assert_equal "75107", item.unit_price
-  end
-
-  def test_a_different_item_has_a_unit_price
-    data = @items[2]
-
-    item = Item.new(data)
-    assert_equal "32301", item.unit_price
-  end
-
-  def test_an_item_has_a_merchant_id
-    data = @items[7]
-
-    item = Item.new(data)
-    assert_equal "1", item.merchant_id
-  end
-
-  def test_a_different_item_has_a_merchant_id
-    data = @items[2]
-
-    item = Item.new(data)
-    assert_equal "1", item.merchant_id
-  end
-
-  def test_an_item_has_a_created_at
-    data = @items[2]
-
-    item = Item.new(data)
-    assert_equal "2012-03-27 14:53:59 UTC", item.created_at
-  end
-
-  def test_a_different_item_has_a_created_at
-    data = @items[3]
-
-    item = Item.new(data)
-    assert_equal "2012-03-27 14:53:59 UTC", item.created_at
-  end
-
-  def test_an_item_has_an_updated_at
-    data = @items[6]
-
-    item = Item.new(data)
-    assert_equal "2012-03-27 14:53:59 UTC", item.updated_at
-  end
-
-  def test_a_different_item_has_an_updated_at
-    data = @items[9]
-
-    item = Item.new(data)
-    assert_equal "2012-03-27 14:53:59 UTC", item.updated_at
+  def test_an_item_attributes
+    assert_equal "Item Ea Voluptatum", @item.name
+    assert_equal "3", @item.id
+    assert_equal "Sunt officia eum qui molestiae. Nesciunt quidem cupiditate reiciendis est commodi non. Atque eveniet sed. Illum excepturi praesentium reiciendis voluptatibus eveniet odit perspiciatis. Odio optio nisi rerum nihil ut.", @item.description
+    assert_equal "32301", @item.unit_price
+    assert_equal "1", @item.merchant_id
+    assert_equal "2012-03-27 14:53:59 UTC", @item.created_at
+    assert_equal "2012-03-27 14:53:59 UTC", @item.updated_at
   end
 end

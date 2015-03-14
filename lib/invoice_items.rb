@@ -8,9 +8,10 @@ class InvoiceItems
               :quantity,
               :unit_price,
               :created_at,
-              :updated_at
+              :updated_at,
+              :repository
 
-  def initialize(data)
+  def initialize(data, repository)
     @id          = data[:id]
     @item_id     = data[:item_id]
     @invoice_id  = data[:invoice_id]
@@ -18,5 +19,6 @@ class InvoiceItems
     @unit_price  = data[:unit_price]
     @created_at  = data[:created_at]
     @updated_at  = data[:updated_at]
+    @reposiotry  = repository
   end
 end
