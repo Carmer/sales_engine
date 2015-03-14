@@ -61,11 +61,3 @@ class SalesEngine
     @transaction_repository = TransactionRepository.new(data, self)
   end
 end
-
-
-  # engine = SalesEngine.new("./data")
-  #
-  # engine.startup
-  # require "pry"
-  # binding.pry
-  # puts engine.customer_repository.find_by_id(3).class
