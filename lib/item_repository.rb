@@ -40,8 +40,8 @@ class ItemRepository
     find_by_string_parameter(items, :unit_price, unit_price)
   end
 
-  def find_by_merchant_id(merchant)
-    find_by_parameter(items, :merchant, merchant)
+  def find_by_merchant_id(merchant_id)
+    find_by_parameter(items, :merchant_id, merchant_id)
   end
 
   def find_by_created_at(created_at)
