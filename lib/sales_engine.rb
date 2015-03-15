@@ -113,6 +113,9 @@ class SalesEngine
     item_repository.find_by_id(item_id)
   end
 
+  def find_an_invoice_instance(invoice_id)
+    invoice_repository.find_by_id(invoice_id)
+  end
   # def find_all_items_on_invoice(invoice_id)
   #   find_all_invoice_items(invoice_id).map {|item| item_repository.find_by_id(item.item_id)}
   # end
