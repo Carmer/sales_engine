@@ -85,4 +85,7 @@ class ItemRepository
     sales_engine.all_invoice_item_instances(item_id)
   end
 
+  def find_merchant(merchant_id)
+    sales_engine.merchant_information(merchant_id)
+  end
 end
