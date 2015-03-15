@@ -25,7 +25,6 @@ class InvoiceItemsRepository
     "#<#{self.class} #{@invoice_item.size} rows>"
   end
 
-
   def find_by_id(id)
     find_by_parameter(invoice_item, :id, id)
   end

@@ -19,4 +19,8 @@ class Customer
   def invoices
     repository.all_invoices(id)
   end
+
+  def transactions
+    invoices.map { |invoice| invoice.transactions }
+  end
 end

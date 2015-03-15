@@ -13,8 +13,8 @@ class InvoiceItemsRepositortyTest < Minitest::Test
   end
 
   def test_it_creates_an_array_of_invoice_items_objects
-    assert_equal 101, @invoice_item_objects.invoice_items.size
-    assert_equal Array, @invoice_item_objects.invoice_items.class
+    assert_equal 101, @invoice_item_objects.invoice_item.size
+    assert_equal Array, @invoice_item_objects.invoice_item.class
   end
 
   def test_it_can_select_at_random
