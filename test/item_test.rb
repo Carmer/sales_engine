@@ -23,6 +23,6 @@ class TestItem < Minitest::Test
   end
 
   def test_it_returns_a_collection_of_invoice_items
-    assert_equal 10, @item.invoice_items.size
+    assert_equal 0, @item.invoice_items.size
   end
 end
