@@ -6,7 +6,8 @@ class MerchantRepository
   include Finder
 
   attr_reader :merchant,
-              :inspect
+              :inspect,
+              :sales_engine
 
   def initialize(data, sales_engine)
     @merchant   ||= data.map {|row| Merchant.new(row, self)}
@@ -52,5 +53,13 @@ class MerchantRepository
 
   def find_all_by_updated_at(updated_at)
     find_all_by_string_parameter(merchant, :updated_at, updated_at)
+  end
+
+  def all_items(merchant_id)
+    sales_engine.find_items_sold_by_merchant(merchant_id)
+  end
+
+  def all_invoices(merchant_id)
+    sales_engine.find_invoices_for_merchant(merchant_id)
   end
 end
