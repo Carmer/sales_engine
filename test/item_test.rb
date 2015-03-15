@@ -30,4 +30,8 @@ class TestItem < Minitest::Test
     assert_equal "14", @item.merchant.id
     assert_equal "Dicki-Bednar", @item.merchant.name
   end
+
+  def test_it_can_return_the_best_day
+    assert_equal "2012-03-27 14:54:10 UTC", @item.best_day
+  end
 end

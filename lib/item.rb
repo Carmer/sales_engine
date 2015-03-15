@@ -29,4 +29,9 @@ class Item
   def merchant
     repository.find_merchant(merchant_id)
   end
+
+  def best_day
+    dates = invoice_items.map { |invoice_items| invoice_items.created_at }
+    best = dates.group_by { |date| date }.first[0]
+  end
 end
