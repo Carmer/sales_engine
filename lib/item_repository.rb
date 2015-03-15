@@ -5,7 +5,8 @@ class ItemRepository
 
   include Finder
 
-  attr_reader :items
+  attr_reader :items,
+              :sales_engine
 
   def initialize(data, sales_engine)
     @items = data.map {|row| Item.new(row, self)}
