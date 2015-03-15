@@ -5,7 +5,8 @@ class ItemRepository
 
   include Finder
 
-  attr_reader :items
+  attr_reader :items,
+              :sales_engine
 
   def initialize(data, sales_engine)
     @items = data.map {|row| Item.new(row, self)}
@@ -52,10 +53,6 @@ class ItemRepository
     find_by_parameter(items, :updated_at, updated_at)
   end
 
-  def find_all_by_id(id)
-    find_all_by_parameter(items, :id, id)
-  end
-
   def find_all_by_name(name)
     find_all_by_string_parameter(items, :name, name)
   end
@@ -84,4 +81,7 @@ class ItemRepository
     @sales_engine.all_invoice_item_instances(item_id)
   end
 
+  def find_merchant(merchant_id)
+    sales_engine.merchant_information(merchant_id)
+  end
 end
