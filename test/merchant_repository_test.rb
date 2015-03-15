@@ -105,6 +105,6 @@ class TestMerchantRepository < Minitest::Test
   def test_it_returns_top_n_revenue_earners
     assert_equal 1, @merchant_objects.most_revenue(1).length
     assert_equal Array, @merchant_objects.most_revenue(3).class
-    assert_equal ["Dicki-Bednar"], @merchant_objects.most_revenue(1).map {|merchant| merchant.name }
+    assert_equal ["Gibson Group"], @merchant_objects.most_revenue(1).map {|merchant| merchant.name }
   end
 end

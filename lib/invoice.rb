@@ -43,4 +43,10 @@ class Invoice
     items = item_ids.each { |item_id| repository.find_item(item_id) }
     items
   end
+
+  def successful?
+    transactions.all? do |transaction|
+      transaction.result == "success"
+    end
+  end
 end

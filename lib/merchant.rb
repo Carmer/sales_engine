@@ -1,5 +1,4 @@
 require_relative "parser"
-require_relative "invoice"
 
 class Merchant
 
@@ -26,11 +25,24 @@ class Merchant
   end
 
   def total_revenue
-    invoice_items = self.invoices.map do |invoice|
-      invoice.invoice_items
+    invoices = self.invoices
+
+    successful_invoices = invoices.select do |invoice|
+      invoice.successful?
+    end
+
+    invoice_items = successful_invoices.map do |successful|
+      successful.invoice_items
     end.flatten
+
     invoice_items.reduce(1) do |product, invoice_item|
       product * invoice_item.quantity.to_i * invoice_item.unit_price.to_i
     end
+    # invoice_items = self.invoices.map do |invoice|
+    #   invoice.invoice_items
+    # end.flatten
+    # invoice_items.reduce(1) do |product, invoice_item|
+    #   product * invoice_item.quantity.to_i * invoice_item.unit_price.to_i
+    # end
   end
 end
