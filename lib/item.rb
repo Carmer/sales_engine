@@ -32,6 +32,6 @@ class Item
 
   def best_day
     dates = invoice_items.map { |invoice_items| invoice_items.created_at }
-    best = dates.group_by { |date| date }.first[0]
+    dates.max_by { |date| dates.include?(date) }  
   end
 end
