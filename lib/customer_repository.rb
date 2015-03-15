@@ -65,5 +65,4 @@ class CustomerRepository
   def all_invoices(customer_id)
     sales_engine.all_customer_invoices(customer_id)
   end
-
 end

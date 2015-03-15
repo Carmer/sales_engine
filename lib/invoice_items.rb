@@ -19,6 +19,10 @@ class InvoiceItems
     @unit_price  = data[:unit_price]
     @created_at  = data[:created_at]
     @updated_at  = data[:updated_at]
-    @reposiotry  = repository
+    @repository  = repository
+  end
+
+  def invoice
+    repository.invoice_instance(invoice_id)
   end
 end
