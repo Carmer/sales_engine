@@ -101,4 +101,10 @@ class TestMerchantRepository < Minitest::Test
   def test_it_can_find_a_merchant_by_updated_at
     assert_equal "Schroeder-Jerde", @merchant_objects.find_by_updated_at("2012-03-27 14:53:59 UTC").name
   end
+
+  def test_it_returns_an_array_of_the_merchants_with_the_most_revenue
+    assert_equal 3, @merchant_objects.most_revenue(3).length
+    assert_equal Array, @merchant_objects.most_revenue(3).class
+    assert_equal ["44", "78", "84"], @merchant_objects.most_revenue(3).map {|merchant| merchant.id }
+  end
 end

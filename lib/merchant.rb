@@ -1,4 +1,5 @@
 require_relative "parser"
+require_relative "invoice"
 
 class Merchant
 
@@ -22,5 +23,15 @@ class Merchant
 
   def invoices
     repository.all_invoices(id)
+  end
+
+  def total_revenue
+    invoice_items = self.invoices.map do |invoice|
+      invoice.invoice_items
+    end.flatten
+
+    invoice_items.reduce(1) do |product, invoice_item|
+      product * invoice_item.quantity.to_i * invoice_item.unit_price.to_i
+    end
   end
 end
