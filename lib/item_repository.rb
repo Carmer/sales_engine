@@ -80,5 +80,8 @@ class ItemRepository
     find_all_by_parameter(items, :updated_at, updated_at)
   end
 
+  def find_all_invoice_items(item_id)
+    sales_engine.all_invoice_item_instances(item_id)
+  end
 
 end

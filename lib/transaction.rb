@@ -20,4 +20,8 @@ class Transaction
     @created_at = data[:created_at]
     @updated_at = data[:updated_at]
   end
+
+  # def invoice
+  #   find_invoice_by_id
+  # end
 end
