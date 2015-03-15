@@ -5,82 +5,78 @@ class TransactionRepository
 
   include Finder
 
-  attr_reader :transactions,
+  attr_reader :transaction,
               :sales_engine
 
   def initialize(data, sales_engine)
-    @transactions = data.map {|row| Transaction.new(row, self)}
+    @transaction = data.map {|row| Transaction.new(row, self)}
     @sales_engine = sales_engine
   end
 
-  def transactions
-    @transactions
-  end
-
   def inspect
-    "#<#{self.class} #{@transactions.size} rows>"
+    "#<#{self.class} #{@transaction.size} rows>"
   end
 
   def all
-    transactions
+    transaction
   end
 
   def random
-    transactions.sample
+    transaction.sample
   end
 
   def find_by_id(id)
-    find_by_parameter(transactions, :id, id)
+    find_by_parameter(transaction, :id, id)
   end
 
   def find_by_invoice_id(invoice_id)
-    find_by_parameter(transactions, :invoice_id , invoice_id)
+    find_by_parameter(transaction, :invoice_id , invoice_id)
   end
 
   def find_by_credit_card_number(credit_card_number)
-    find_by_parameter(transactions, :credit_card_number, credit_card_number)
+    find_by_parameter(transaction, :credit_card_number, credit_card_number)
   end
 
   # --> Do we need these method since we dont have cc expiration dates in data?
 
   # def find_by_credit_card_expiration_date(credit_card_expiration_date)
-  #   find_by_parameter(transactions, :credit_card_expiration_date, credit_card_expiration_date)
+  #   find_by_parameter(transaction, :credit_card_expiration_date, credit_card_expiration_date)
   # end
 
   # def find_all_by_credit_card_expiration_date(credit_card_expiration_date)
-  #   find_all_by_parameter(transactions, :credit_card_expiration_date, credit_card_expiration_date)
+  #   find_all_by_parameter(transaction, :credit_card_expiration_date, credit_card_expiration_date)
   # end
 
   def find_by_result(result)
-    find_by_string_parameter(transactions, :result, result)
+    find_by_string_parameter(transaction, :result, result)
   end
 
   def find_by_created_at(created_at)
-    find_by_parameter(transactions, :created_at, created_at)
+    find_by_parameter(transaction, :created_at, created_at)
   end
 
   def find_by_updated_at(updated_at)
-    find_by_parameter(transactions, :updated_at, updated_at)
+    find_by_parameter(transaction, :updated_at, updated_at)
   end
 
   def find_all_by_invoice_id(invoice_id)
-    find_all_by_parameter(transactions, :invoice_id, invoice_id)
+    find_all_by_parameter(transaction, :invoice_id, invoice_id)
   end
 
   def find_all_by_credit_card_number(credit_card_number)
-    find_all_by_parameter(transactions, :credit_card_number, credit_card_number)
+    find_all_by_parameter(transaction, :credit_card_number, credit_card_number)
   end
 
   def find_all_by_result(result)
-    find_all_by_string_parameter(transactions, :result, result)
+    find_all_by_string_parameter(transaction, :result, result)
   end
 
   def find_all_by_created_at(created_at)
-    find_all_by_parameter(transactions, :created_at, created_at)
+    find_all_by_parameter(transaction, :created_at, created_at)
   end
 
   def find_all_by_updated_at(updated_at)
-    find_all_by_parameter(transactions, :updated_at, updated_at)
+    find_all_by_parameter(transaction, :updated_at, updated_at)
   end
 
   def find_an_invoice(invoice_id)
