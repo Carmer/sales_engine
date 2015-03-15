@@ -13,7 +13,7 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_it_creates_an_array_of_invoice_objects
-    assert_equal 19, @transaction_objects.transactions.size
+    assert_equal 999, @transaction_objects.transactions.size
     assert_equal Array, @transaction_objects.transactions.class
   end
 
@@ -51,7 +51,7 @@ class TransactionRepositoryTest < Minitest::Test
 
   def test_it_can_find_all_items_by_id_and_if_none_returns_an_empty_array
     assert_equal "4436110257010678", @transaction_objects.find_all_by_id("19")[0].credit_card_number
-    assert_equal [], @transaction_objects.find_all_by_id("29")
+    assert_equal [], @transaction_objects.find_all_by_id("1000004")
   end
 
   def test_it_can_find_all_items_by_credit_card_number
@@ -60,12 +60,12 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_all_items_by_result
-    assert_equal 4, @transaction_objects.find_all_by_result("failed").length
-    assert_equal 15, @transaction_objects.find_all_by_result("success").length
+    assert_equal 177, @transaction_objects.find_all_by_result("failed").length
+    assert_equal 822, @transaction_objects.find_all_by_result("success").length
   end
 
   def test_it_can_find_all_items_by_created_at
-    assert_equal 17, @transaction_objects.find_all_by_created_at("2012-03-27 14:54:10 UTC").length
+    assert_equal 20, @transaction_objects.find_all_by_created_at("2012-03-27 14:54:10 UTC").length
   end
 
   def test_it_can_find_all_items_by_updated_at

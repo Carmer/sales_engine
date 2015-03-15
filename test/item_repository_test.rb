@@ -18,7 +18,7 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_it_has_an_all_method
-    assert_equal 10, @item_objects.all.size
+    assert_equal 595, @item_objects.all.size
     assert_equal Array, @item_objects.all.class
   end
 
@@ -30,7 +30,7 @@ class ItemRepositoryTest < Minitest::Test
 
 
   def test_it_creates_an_array_of_item_objects
-    assert_equal 10, @item_objects.items.size
+    assert_equal 595, @item_objects.items.size
     assert_equal Array, @item_objects.items.class
   end
 
@@ -76,7 +76,7 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_all_items_by_merchant_id
-    assert_equal 10, @item_objects.find_all_by_merchant_id("1").length
+    assert_equal 15, @item_objects.find_all_by_merchant_id("1").length
   end
 
   def test_it_can_find_all_items_by_merchant_id_and_access_it
@@ -84,11 +84,11 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_all_items_by_created_at
-    assert_equal 10, @item_objects.find_all_by_created_at("2012-03-27 14:53:59 UTC").length
+    assert_equal 170, @item_objects.find_all_by_created_at("2012-03-27 14:53:59 UTC").length
   end
 
   def test_it_can_find_all_items_by_updated_at
-    assert_equal 10, @item_objects.find_all_by_updated_at("2012-03-27 14:53:59 UTC").length
+    assert_equal 170, @item_objects.find_all_by_updated_at("2012-03-27 14:53:59 UTC").length
   end
 
 end

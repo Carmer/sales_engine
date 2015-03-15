@@ -13,7 +13,7 @@ class InvoiceItemsRepositortyTest < Minitest::Test
   end
 
   def test_it_creates_an_array_of_invoice_items_objects
-    assert_equal 19, @invoice_item_objects.invoice_items.size
+    assert_equal 101, @invoice_item_objects.invoice_items.size
     assert_equal Array, @invoice_item_objects.invoice_items.class
   end
 
@@ -24,11 +24,11 @@ class InvoiceItemsRepositortyTest < Minitest::Test
   end
 
   def test_it_can_find_all
-    assert_equal 19, @invoice_item_objects.all.size
+    assert_equal 101, @invoice_item_objects.all.size
   end
 
   def test_it_can_inspec_itself
-    assert_equal "#<InvoiceItemsRepository 19 rows>", @invoice_item_objects.inspect
+    assert_equal "#<InvoiceItemsRepository 101 rows>", @invoice_item_objects.inspect
 
   end
 
@@ -77,7 +77,7 @@ class InvoiceItemsRepositortyTest < Minitest::Test
   end
 
   def test_it_can_find_all_by_quantity
-    assert_equal 2, @invoice_item_objects.find_all_by_quantity("3").size
+    assert_equal 11, @invoice_item_objects.find_all_by_quantity("3").size
   end
 
   def test_it_can_find_all_by_unit_price

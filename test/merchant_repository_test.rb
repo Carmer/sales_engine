@@ -13,17 +13,17 @@ class TestMerchantRepository < Minitest::Test
   end
 
   def test_it_creates_an_array_of_merchants
-    assert_equal 19, @merchant_objects.merchant.size
+    assert_equal 100, @merchant_objects.merchant.size
     assert_equal Array, @merchant_objects.merchant.class
   end
 
   def test_it_can_inspec_a_merchant_repostiory_can_inspec_itself
-    assert_equal "#<MerchantRepository 19 rows>", @merchant_objects.inspect
+    assert_equal "#<MerchantRepository 100 rows>", @merchant_objects.inspect
   end
 
   def test_it_can_find_all_merchants
     result = @merchant_objects.all
-    assert_equal 19, result.size
+    assert_equal 100, result.size
   end
 
   def test_it_can_find_a_random_merchant
@@ -91,7 +91,7 @@ class TestMerchantRepository < Minitest::Test
   end
 
   def test_it_can_find_all_merchants_by_updated_at
-    assert_equal 10, @merchant_objects.find_all_by_updated_at("2012-03-27 14:54:00 UTC").length
+    assert_equal 12, @merchant_objects.find_all_by_updated_at("2012-03-27 14:54:00 UTC").length
   end
 
   def test_it_can_find_a_merchant_by_created_at
