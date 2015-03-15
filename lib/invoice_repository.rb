@@ -70,7 +70,7 @@ class InvoiceRepository
   end
 
   def all_invoice_items(invoice_id)
-    sales_engine.find_all_invoice_items_for_invoice(invoice_id)
+    sales_engine.all_invoice_items(invoice_id)
   end
 
   def customer_instance(customer_id)
@@ -79,10 +79,6 @@ class InvoiceRepository
 
   def merchant_instance(merchant_id)
     sales_engine.find_merchant(merchant_id)
-  end
-
-  def all_invoice_items(invoice_id)
-    sales_engine.all_invoice_items(invoice_id)
   end
 
   def find_item(item_id)
