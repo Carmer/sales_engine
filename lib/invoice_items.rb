@@ -25,4 +25,8 @@ class InvoiceItems
   def invoice
     repository.invoice_instance(invoice_id)
   end
+
+  def item
+    repository.find_item(item_id)
+  end
 end

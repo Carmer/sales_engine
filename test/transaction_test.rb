@@ -24,7 +24,7 @@ class TestTransactions < Minitest::Test
   end
 
   def test_it_returns_an_invoice
-    skip
-    assert_equal "3", @transaction.invoice.id
+    assert_equal "8", @transaction.invoice.id
   end
+
 end
