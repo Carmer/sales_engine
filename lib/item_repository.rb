@@ -1,4 +1,4 @@
-require_relative "parser"
+require_relative "finder"
 require_relative "item"
 
 class ItemRepository
@@ -8,7 +8,7 @@ class ItemRepository
   attr_reader :items
 
   def initialize(data, sales_engine)
-    @items = data.map {|row| Item.new(row)}
+    @items = data.map {|row| Item.new(row, self)}
     @sales_engine = sales_engine
   end
 

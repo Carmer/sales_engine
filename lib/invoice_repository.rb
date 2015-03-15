@@ -8,16 +8,16 @@ class InvoiceRepository
   attr_reader :invoices
 
   def initialize(data, sales_engine)
-    @invoices      = data.map {|row| Invoice.new(row)}
+    @invoices   ||= data.map {|row| Invoice.new(row, self)}
     @sales_engine = sales_engine
   end
 
   def inspect
-    "#<#{self.class} #{@items.size} rows>"
+    "#<#{self.class} #{@invoices.size} rows>"
   end
 
   def random
-    @invoices.random
+    @invoices.sample
   end
 
   def find_by_id(id)
@@ -28,7 +28,7 @@ class InvoiceRepository
     find_by_string_parameter(invoices, :status, status)
   end
 
-  def find_all_by_status
+  def find_all_by_status(status)
     find_all_by_string_parameter(invoices, :status, status)
   end
 
@@ -49,7 +49,7 @@ class InvoiceRepository
   end
 
   def find_by_created_at(created_at)
-    find_all_by_parameter(invoices, :created_at, created_at)
+    find_by_parameter(invoices, :created_at, created_at)
   end
 
   def find_all_by_created_at(created_at)
@@ -57,7 +57,7 @@ class InvoiceRepository
   end
 
   def find_by_updated_at(updated_at)
-    find_all_by_parameter(invoices, :updated_at, updated_at)
+    find_by_parameter(invoices, :updated_at, updated_at)
   end
 
   def find_all_by_updated_at(updated_at)

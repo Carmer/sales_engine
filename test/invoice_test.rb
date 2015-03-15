@@ -1,5 +1,6 @@
 require "./test/test_helper"
 require "./lib/invoice"
+require "./lib/sales_engine"
 
 class InvoiceTest < Minitest::Test
 
@@ -8,54 +9,17 @@ class InvoiceTest < Minitest::Test
   end
 
   def setup
-    @invoice = Parser.new.parse("./data/", "sample_invoices.csv")
+    sales_engine = SalesEngine.new
+    @invoice = sales_engine.invoice_repository.find_by_id("3")
   end
 
-  def test_it_can_instantiate_an_invoice_object
-    data = @invoice[0]
-    inv = Invoice.new(data)
-    assert inv
-  end
 
-  def test_it_has_an_invoice_id
-    data = @invoice[0]
-    inv = Invoice.new(data)
-    assert_equal "1", inv.id
-  end
-
-  def test_there_is_a_invoice_id_for_the_invoice
-    data = @invoice[0]
-    inv = Invoice.new(data)
-    assert_equal "1", inv.customer_id
-  end
-
-  def test_there_is_a_last_name_for_invoice
-    data = @invoice[0]
-    inv = Invoice.new(data)
-    assert_equal "26", inv.merchant_id
-  end
-
-  def test_there_is_a_status_for_an_invoice
-    data = @invoice[0]
-    inv = Invoice.new(data)
-    assert_equal "shipped", inv.status
-  end
-
-  def test_there_is_a_created_at_date
-    data = @invoice[0]
-    inv = Invoice.new(data)
-    assert_equal "2012-03-25 09:54:09 UTC", inv.created_at
-  end
-
-  def test_there_is_an_updated_date
-    data = @invoice[0]
-    inv = Invoice.new(data)
-    assert_equal "2012-03-25 09:54:09 UTC", inv.updated_at
-  end
-
-  def test_it_can_check_another_invoice_id
-    data = @invoice[5]
-    inv = Invoice.new(data)
-    assert_equal "6", inv.id
+  def test_it_has_attributes
+    assert_equal "3", @invoice.id
+    assert_equal "1", @invoice.customer_id
+    assert_equal "78", @invoice.merchant_id
+    assert_equal "shipped", @invoice.status
+    assert_equal "2012-03-10 00:54:09 UTC", @invoice.created_at
+    assert_equal "2012-03-10 00:54:09 UTC", @invoice.updated_at
   end
 end
