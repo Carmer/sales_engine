@@ -21,4 +21,8 @@ class TestItem < Minitest::Test
     assert_equal "2012-03-27 14:53:59 UTC", @item.created_at
     assert_equal "2012-03-27 14:53:59 UTC", @item.updated_at
   end
+
+  def test_it_returns_a_collection_of_invoice_items
+    assert_equal 10, @item.invoice_items.size
+  end
 end

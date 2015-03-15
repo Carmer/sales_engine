@@ -22,4 +22,8 @@ class Item
     @repository = repository
   end
 
+  def invoice_items
+    repository.find_all_invoice_items(id)
+  end
+
 end
