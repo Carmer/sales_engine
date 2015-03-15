@@ -8,7 +8,7 @@ class TransactionRepository
   attr_reader :transactions
 
   def initialize(data, sales_engine)
-    @transactions = data.map {|row| Transaction.new(row)}
+    @transactions = data.map {|row| Transaction.new(row, self)}
     @sales_engine = sales_engine
   end
 

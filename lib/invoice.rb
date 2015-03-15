@@ -7,7 +7,8 @@ class Invoice
               :merchant_id,
               :status,
               :created_at,
-              :updated_at
+              :updated_at,
+              :repository
 
   def initialize(data, repository)
     @id           = data[:id]
