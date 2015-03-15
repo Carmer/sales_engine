@@ -1,5 +1,3 @@
-require_relative 'parser'
-
 class Item
 
   attr_reader :id,

@@ -9,7 +9,7 @@ class InvoiceRepository
               :sales_engine
 
   def initialize(data, sales_engine)
-    @invoices   ||= data.map {|row| Invoice.new(row, self)}
+    @invoices     = data.map {|row| Invoice.new(row, self)}
     @sales_engine = sales_engine
   end
 

@@ -1,5 +1,3 @@
-require_relative "parser"
-
 class Customer
 
   attr_reader :id,

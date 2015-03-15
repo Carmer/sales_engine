@@ -1,4 +1,3 @@
-# require 'csv'
 require_relative "parser"
 require_relative "customer_repository"
 require_relative "merchant_repository"

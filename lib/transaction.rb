@@ -1,5 +1,3 @@
-require_relative "parser"
-
 class Transaction
 
   attr_reader :id,

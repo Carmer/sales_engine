@@ -1,5 +1,3 @@
-require_relative "parser"
-
 class Invoice
 
   attr_reader :id,
@@ -37,7 +35,6 @@ class Invoice
   end
 
   def items
-    # require 'pry'; binding.pry
     invoice_items = repository.all_invoice_items(id)
     item_ids = invoice_items.map { |invoice_items| invoice_items.item_id }.uniq
     items = item_ids.each { |item_id| repository.find_item(item_id) }

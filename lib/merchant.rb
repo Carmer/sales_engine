@@ -1,5 +1,3 @@
-require_relative "parser"
-
 class Merchant
 
   attr_accessor :id,

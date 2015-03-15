@@ -1,6 +1,5 @@
 require_relative "invoice_items"
 require_relative "finder"
-require_relative "sales_engine"
 
 class InvoiceItemsRepository
 

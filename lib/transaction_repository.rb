@@ -1,6 +1,5 @@
 require_relative "finder"
 require_relative "transaction"
-require_relative "sales_engine"
 
 class TransactionRepository
 

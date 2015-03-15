@@ -10,7 +10,7 @@ class CustomerRepository
 
 
   def initialize(data, sales_engine)
-    @customers  ||= data.map {|row| Customer.new(row, self)}
+    @customers    = data.map {|row| Customer.new(row, self)}
     @sales_engine = sales_engine
   end
 
