@@ -81,4 +81,28 @@ class SalesEngine
   def find_invoices_for_merchant(merchant_id)
     invoice_repository.find_all_by_merchant_id(merchant_id)
   end
+
+  def find_all_transactions_for_invoice(invoice_id)
+    transaction_repository.find_all_by_invoice_id(invoice_id)
+  end
+
+  def find_all_invoice_items_for_invoice(invoice_id)
+    invoice_items_repository.find_all_by_invoice_id(invoice_id)
+  end
+
+  def find_customer(customer_id)
+    customer_repository.find_by_id(customer_id)
+  end
+
+  def find_merchant(merchant_id)
+    merchant_repository.find_by_id(merchant_id)
+  end
+
+  # def find_all_items_on_invoice(invoice_id)
+  #   find_all_invoice_items(invoice_id).map {|item| item_repository.find_by_id(item.item_id)}
+  # end
+  #
+  # def find_all_invoice_items(invoice_id)
+  #   invoice_items_repository.find_by_invoice_id(invoice_id)
+  # end
 end

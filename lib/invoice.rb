@@ -19,4 +19,23 @@ class Invoice
     @updated_at   = data[:updated_at]
     @repository   = repository
   end
+
+  def transactions
+    repository.all_transactions(id)
+  end
+
+  def invoice_items
+    repository.all_invoice_items(id)
+  end
+
+  def customer
+    repository.customer_instance(customer_id)
+  end
+
+  def merchant
+    repository.merchant_instance(merchant_id)    
+  end
+  # def items
+  #   repository.all_items(id)
+  # end
 end
