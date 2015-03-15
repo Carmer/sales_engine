@@ -9,103 +9,103 @@ class CustomerRepositortyTest < Minitest::Test
   end
 
   def setup
-    @customers = SalesEngine.new.customer_repository
+    @customer = SalesEngine.new.customer_repository
   end
 
   def test_it_creates_an_array_of_customer_objects
-    assert_equal 99, @customers.customers.size
-    assert_equal Array, @customers.customers.class
+    assert_equal 99, @customer.customer.size
+    assert_equal Array, @customer.customer.class
   end
 
   def test_it_can_pull_a_random_sample_customer
     sample = []
-    10.times {sample << @customers.random}
+    10.times {sample << @customer.random}
     assert sample.uniq
   end
 
   def test_it_can_find_all_customers
-    assert_equal 99, @customers.all.size
+    assert_equal 99, @customer.all.size
   end
 
   def test_it_can_inspect_itself
-    assert_equal "#<CustomerRepository 99 rows>", @customers.inspect
+    assert_equal "#<CustomerRepository 99 rows>", @customer.inspect
   end
 
   def test_it_can_find_by_id
-    result = @customers.find_by_id("3")
+    result = @customer.find_by_id("3")
     assert_equal "3", result.id
   end
 
   def test_it_can_search_for_a_customer_by_first_name
-    result = @customers.find_by_first_name("Joey")
+    result = @customer.find_by_first_name("Joey")
     assert_equal "Joey", result.first_name
   end
 
   def test_it_can_search_for_a_customer_by_first_name_in_all_capital_letters
-    result = @customers.find_by_first_name("JOEY")
+    result = @customer.find_by_first_name("JOEY")
     assert_equal "Joey", result.first_name
   end
 
   def test_it_can_search_for_a_customer_by_first_name_in_all_lowercaed_letters
-    result = @customers.find_by_first_name("joey")
+    result = @customer.find_by_first_name("joey")
     assert_equal "Joey", result.first_name
   end
 
   def test_it_can_search_for_a_customer_by_first_name_in_mixedcased_letters
-    result = @customers.find_by_first_name("jOeY")
+    result = @customer.find_by_first_name("jOeY")
     assert_equal "Joey", result.first_name
   end
 
   def test_it_can_search_for_all_customers_by_first_name
-    result = @customers.find_all_by_first_name("Joey")
+    result = @customer.find_all_by_first_name("Joey")
     assert_equal 1, result.size
   end
 
   def test_it_can_search_for_a_customer_by_first_name_in_mixed_case_letters
-    result = @customers.find_all_by_first_name("JoEy")
+    result = @customer.find_all_by_first_name("JoEy")
     assert_equal 1, result.size
     assert_equal "Joey", result[0].first_name
   end
 
   def test_it_can_search_for_all_customers_by_last_name
-    result = @customers.find_all_by_last_name("Hettinger")
+    result = @customer.find_all_by_last_name("Hettinger")
     assert_equal "Hettinger", result[0].last_name
     assert_equal 2, result.size
   end
 
   def test_it_can_search_for_customer_by_last_name
-    result = @customers.find_by_last_name("Hettinger")
+    result = @customer.find_by_last_name("Hettinger")
     assert_equal "Hettinger", result.last_name
   end
 
   def test_it_can_search_for_customer_by_last_name_in_all_capital_letters
-    result = @customers.find_by_last_name("HETTINGER")
+    result = @customer.find_by_last_name("HETTINGER")
     assert_equal "Hettinger", result.last_name
   end
 
   def test_it_can_search_for_customer_by_last_name_in_all_lowercase_letters
-    result = @customers.find_by_last_name("hettinger")
+    result = @customer.find_by_last_name("hettinger")
     assert_equal "Hettinger", result.last_name
   end
 
   def test_it_can_search_for_customer_by_last_name_in_mixedcase_letters
-    result = @customers.find_by_last_name("heTTingEr")
+    result = @customer.find_by_last_name("heTTingEr")
     assert_equal "Hettinger", result.last_name
   end
 
   def test_it_can_find_all_customers_by_created_at
-    assert_equal 6, @customers.find_all_by_created_at("2012-03-27 14:54:10 UTC").length
+    assert_equal 6, @customer.find_all_by_created_at("2012-03-27 14:54:10 UTC").length
   end
 
   def test_it_can_find_all_customers_by_updated_at
-    assert_equal 6, @customers.find_all_by_updated_at("2012-03-27 14:54:10 UTC").length
+    assert_equal 6, @customer.find_all_by_updated_at("2012-03-27 14:54:10 UTC").length
   end
 
   def test_it_can_find_a_customer_by_created_at
-    assert_equal "2", @customers.find_by_created_at("2012-03-27 14:54:10 UTC").id
+    assert_equal "2", @customer.find_by_created_at("2012-03-27 14:54:10 UTC").id
   end
 
   def test_it_can_find_a_customer_by_updated_at
-    assert_equal "2", @customers.find_by_updated_at("2012-03-27 14:54:10 UTC").id
+    assert_equal "2", @customer.find_by_updated_at("2012-03-27 14:54:10 UTC").id
   end
 end
