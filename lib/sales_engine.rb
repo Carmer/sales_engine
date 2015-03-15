@@ -5,20 +5,8 @@ require_relative "item_repository"
 require_relative "invoice_items_repository"
 require_relative "invoice_repository"
 require_relative "transaction_repository"
-require_relative "finder"
 
 class SalesEngine
-
-  # include Finder
-
-
-
-  attr_accessor :merchant_repository,
-                :customer_repository,
-                :item_repository,
-                :invoice_items_repository,
-                :invoice_repository,
-                :transaction_repository
 
   def initialize(filepath = './data/fixtures')
     @filepath = filepath
