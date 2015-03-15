@@ -66,6 +66,6 @@ class MerchantRepository
   def most_revenue(number)
     sorted = merchant.sort_by do |merchant|
       merchant.total_revenue
-    end.reverse.take(3)
+    end.reverse.take(number)
   end
 end
