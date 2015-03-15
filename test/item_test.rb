@@ -16,7 +16,7 @@ class TestItem < Minitest::Test
     assert_equal "Item Dicta Autem", @item.name
     assert_equal "227", @item.id
     assert_equal "Fugiat est ut eum impedit vel et. Deleniti quia debitis similique. Sint atque explicabo similique est. Iste fugit quis voluptas. Rerum ut harum sed fugiat eveniet ullam ut.", @item.description
-    assert_equal "85319", @item.unit_price
+    assert_equal "853.19", @item.unit_price.to_f.to_s
     assert_equal "14", @item.merchant_id
     assert_equal "2012-03-27 14:54:00 UTC", @item.created_at
     assert_equal "2012-03-27 14:54:00 UTC", @item.updated_at

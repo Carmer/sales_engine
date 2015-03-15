@@ -53,7 +53,7 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_an_item_by_unit_price
-    assert_equal "Item Provident At", @item_objects.find_by_unit_price("15925").name
+    assert_equal "Item Provident At", @item_objects.find_by_unit_price(BigDecimal.new("15925") / 100 ).name
   end
 
   def test_it_can_find_an_item_by_merchant_id
@@ -94,6 +94,6 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_all_by_unit_price
-    assert_equal 1, @item_objects.find_all_by_unit_price("59454").size
+    assert_equal 1, @item_objects.find_all_by_unit_price(BigDecimal.new("59454") / 100 ).size
   end
 end
