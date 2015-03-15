@@ -1,11 +1,13 @@
 require_relative "finder"
 require_relative "transaction"
+require_relative "sales_engine"
 
 class TransactionRepository
 
   include Finder
 
-  attr_reader :transactions
+  attr_reader :transactions,
+              :sales_engine
 
   def initialize(data, sales_engine)
     @transactions = data.map {|row| Transaction.new(row, self)}
@@ -82,5 +84,9 @@ class TransactionRepository
 
   def find_all_by_updated_at(updated_at)
     find_all_by_parameter(transactions, :updated_at, updated_at)
+  end
+
+  def find_an_invoice(invoice_id)
+    sales_engine.find_an_invoice_instance(invoice_id)
   end
 end

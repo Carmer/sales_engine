@@ -18,6 +18,11 @@ class InvoiceItemsTest < Minitest::Test
   end
 
   def test_it_can_return_an_associated_invoice
-    assert_equal "", @invoice_item.invoice.id
+    assert_equal "1", @invoice_item.invoice.id
   end
+
+  def test_it_returns_an_item_instance
+    assert_equal "Item Quae Dolore", @invoice_item.item.name
+  end
+
 end
