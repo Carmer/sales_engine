@@ -8,6 +8,8 @@ require_relative "transaction_repository"
 
 class SalesEngine
 
+  include Parser
+
   def initialize(filepath = './data/fixtures')
     @filepath = filepath
     startup
@@ -23,33 +25,33 @@ class SalesEngine
   end
 
   def customer_repository
-    data = Parser.new.parse(@filepath, "customers.csv")
-    @customer_repository = CustomerRepository.new(data, self)
+    data = parse(@filepath, "customers.csv")
+    CustomerRepository.new(data, self)
   end
 
   def merchant_repository
-    data = Parser.new.parse(@filepath, "merchants.csv")
-    @merhcant_repository = MerchantRepository.new(data, self)
+    data = parse(@filepath, "merchants.csv")
+    MerchantRepository.new(data, self)
   end
 
   def item_repository
-    data = Parser.new.parse(@filepath, "items.csv")
-    @item_repository = ItemRepository.new(data, self)
+    data = parse(@filepath, "items.csv")
+    ItemRepository.new(data, self)
   end
 
   def invoice_items_repository
-    data = Parser.new.parse(@filepath, "invoice_items.csv")
-    @invoice_items_repository = InvoiceItemsRepository.new(data, self)
+    data = parse(@filepath, "invoice_items.csv")
+    InvoiceItemsRepository.new(data, self)
   end
 
   def invoice_repository
-    data = Parser.new.parse(@filepath, "invoices.csv")
-    @invoice_repository = InvoiceRepository.new(data, self)
+    data = parse(@filepath, "invoices.csv")
+    InvoiceRepository.new(data, self)
   end
 
   def transaction_repository
-    data = Parser.new.parse(@filepath, "transactions.csv")
-    @transaction_repository = TransactionRepository.new(data, self)
+    data = parse(@filepath, "transactions.csv")
+    TransactionRepository.new(data, self)
   end
 
   def all_customer_invoices(customer_id)
