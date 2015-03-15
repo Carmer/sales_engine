@@ -33,9 +33,14 @@ class Invoice
   end
 
   def merchant
-    repository.merchant_instance(merchant_id)    
+    repository.merchant_instance(merchant_id)
   end
-  # def items
-  #   repository.all_items(id)
-  # end
+
+  def items
+    # require 'pry'; binding.pry
+    invoice_items = repository.all_invoice_items(id)
+    item_ids = invoice_items.map { |invoice_items| invoice_items.item_id }.uniq
+    items = item_ids.each { |item_id| repository.find_item(item_id) }
+    items
+  end
 end

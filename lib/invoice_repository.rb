@@ -81,7 +81,11 @@ class InvoiceRepository
     sales_engine.find_merchant(merchant_id)
   end
 
-  # def all_items(invoice_id)
-  #   sales_engine.find_all_items_on_invoice(invoice_id)
-  # end
+  def all_invoice_items(invoice_id)
+    sales_engine.all_invoice_items(invoice_id)
+  end
+
+  def find_item(item_id)
+    sales_engine.find_item(item_id)
+  end
 end

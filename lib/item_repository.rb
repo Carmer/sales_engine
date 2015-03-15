@@ -53,10 +53,6 @@ class ItemRepository
     find_by_parameter(items, :updated_at, updated_at)
   end
 
-  def find_all_by_id(id)
-    find_all_by_parameter(items, :id, id)
-  end
-
   def find_all_by_name(name)
     find_all_by_string_parameter(items, :name, name)
   end

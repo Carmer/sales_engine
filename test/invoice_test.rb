@@ -32,8 +32,7 @@ class InvoiceTest < Minitest::Test
   end
 
   def test_it_can_return_all_items
-    skip
-    assert_equal 2, @invoice.items.size
+    assert_equal 5, @invoice.items.size
   end
 
   def test_it_can_return_associated_customer

@@ -6,14 +6,18 @@ class InvoiceItemsTest < Minitest::Test
 
   def setup
     sales_engine = SalesEngine.new
-    @invoice = sales_engine.invoice_items_repository.find_by_id("2")
+    @invoice_item = sales_engine.invoice_items_repository.find_by_id("2")
   end
 
   def test_it_has_attributes
-    assert_equal "2", @invoice.id
-    assert_equal "9", @invoice.quantity
-    assert_equal "23324", @invoice.unit_price
-    assert_equal "2012-03-27 14:54:09 UTC", @invoice.created_at
-    assert_equal "2012-03-27 14:54:09 UTC", @invoice.updated_at
+    assert_equal "2", @invoice_item.id
+    assert_equal "9", @invoice_item.quantity
+    assert_equal "23324", @invoice_item.unit_price
+    assert_equal "2012-03-27 14:54:09 UTC", @invoice_item.created_at
+    assert_equal "2012-03-27 14:54:09 UTC", @invoice_item.updated_at
+  end
+
+  def test_it_can_return_an_associated_invoice
+    assert_equal "", @invoice_item.invoice.id
   end
 end

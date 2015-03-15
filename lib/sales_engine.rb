@@ -6,8 +6,11 @@ require_relative "item_repository"
 require_relative "invoice_items_repository"
 require_relative "invoice_repository"
 require_relative "transaction_repository"
+require_relative "finder"
 
 class SalesEngine
+
+  include Finder
 
 
 
@@ -96,6 +99,18 @@ class SalesEngine
 
   def find_merchant(merchant_id)
     merchant_repository.find_by_id(merchant_id)
+  end
+
+  def find_invoice_for_invoice_item(invoice_id)
+    invoice_repository.find_by_id(invoice_id)
+  end
+
+  def all_invoice_items(invoice_id)
+    invoice_items_repository.find_all_by_invoice_id(invoice_id)
+  end
+
+  def find_item(item_id)
+    item_repository.find_by_id(item_id)
   end
 
   # def find_all_items_on_invoice(invoice_id)
