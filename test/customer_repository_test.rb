@@ -13,7 +13,7 @@ class CustomerRepositortyTest < Minitest::Test
   end
 
   def test_it_creates_an_array_of_customer_objects
-    assert_equal 19, @customers.customers.size
+    assert_equal 99, @customers.customers.size
     assert_equal Array, @customers.customers.class
   end
 
@@ -24,11 +24,11 @@ class CustomerRepositortyTest < Minitest::Test
   end
 
   def test_it_can_find_all_customers
-    assert_equal 19, @customers.all.size
+    assert_equal 99, @customers.all.size
   end
 
   def test_it_can_inspect_itself
-    assert_equal "#<CustomerRepository 19 rows>", @customers.inspect
+    assert_equal "#<CustomerRepository 99 rows>", @customers.inspect
   end
 
   def test_it_can_find_by_id
@@ -70,7 +70,7 @@ class CustomerRepositortyTest < Minitest::Test
   def test_it_can_search_for_all_customers_by_last_name
     result = @customers.find_all_by_last_name("Hettinger")
     assert_equal "Hettinger", result[0].last_name
-    assert_equal 1, result.size
+    assert_equal 2, result.size
   end
 
   def test_it_can_search_for_customer_by_last_name

@@ -13,7 +13,7 @@ class InvoiceRepositortyTest < Minitest::Test
   end
 
   def test_it_creates_an_array_of_invoice_objects
-    assert_equal 19, @invoice_objects.invoices.size
+    assert_equal 101, @invoice_objects.invoices.size
     assert_equal Array, @invoice_objects.invoices.class
   end
 
@@ -24,7 +24,7 @@ class InvoiceRepositortyTest < Minitest::Test
   end
 
   def test_it_can_inspect_itself
-    assert_equal "#<InvoiceRepository 19 rows>", @invoice_objects.inspect
+    assert_equal "#<InvoiceRepository 101 rows>", @invoice_objects.inspect
   end
 
   def test_it_can_find_by_invoice_status
@@ -44,7 +44,7 @@ class InvoiceRepositortyTest < Minitest::Test
 
   def test_it_can_find_all_by_invoice_status_input_as_mixed_case_letters
     result = @invoice_objects.find_all_by_status("SHIppED")
-    assert_equal 19, result.size
+    assert_equal 101, result.size
     assert_equal "shipped", result[3].status
   end
 
@@ -74,7 +74,7 @@ class InvoiceRepositortyTest < Minitest::Test
 
   def test_it_can_find_all_by_merchants_id
     result = @invoice_objects.find_all_by_merchant_id("27")
-    assert_equal 2, result.size
+    assert_equal 3, result.size
     assert_equal "27", result[0].merchant_id
     assert_equal "9", result[0].id
     assert_equal "2", result[0].customer_id
