@@ -49,40 +49,40 @@ class InvoiceRepositortyTest < Minitest::Test
   end
 
   def test_it_can_find_by_id
-    result1 = @invoice_objects.find_by_id("2")
-    assert_equal "2", result1.id
-    result2 = @invoice_objects.find_by_id("4")
-    assert_equal "4", result2.id
+    result1 = @invoice_objects.find_by_id(2)
+    assert_equal 2, result1.id
+    result2 = @invoice_objects.find_by_id(4)
+    assert_equal 4, result2.id
   end
 
   def test_it_can_find_by_customer_id
-    result = @invoice_objects.find_by_customer_id("4")
-    assert_equal "4", result.customer_id
+    result = @invoice_objects.find_by_customer_id(4)
+    assert_equal 4, result.customer_id
   end
 
   def test_it_can_find_all_by_customer_id
-    result = @invoice_objects.find_all_by_customer_id("3")
+    result = @invoice_objects.find_all_by_customer_id(3)
     assert_equal 4, result.size
-    assert_equal "3", result[2].customer_id
-    assert_equal "8", result[2].merchant_id
+    assert_equal 3, result[2].customer_id
+    assert_equal 8, result[2].merchant_id
   end
 
   def test_it_can_find_by_merchant_id
-    result = @invoice_objects.find_by_merchant_id("26")
-    assert_equal "26", result.merchant_id
+    result = @invoice_objects.find_by_merchant_id(26)
+    assert_equal 26, result.merchant_id
   end
 
   def test_it_can_find_all_by_merchants_id
-    result = @invoice_objects.find_all_by_merchant_id("27")
+    result = @invoice_objects.find_all_by_merchant_id(27)
     assert_equal 3, result.size
-    assert_equal "27", result[0].merchant_id
-    assert_equal "9", result[0].id
-    assert_equal "2", result[0].customer_id
+    assert_equal 27, result[0].merchant_id
+    assert_equal 9, result[0].id
+    assert_equal 2, result[0].customer_id
   end
 
   def test_it_can_find_all_by_merchant_id
-    result = @invoice_objects.find_by_merchant_id("76")
-    assert_equal "76", result.merchant_id
+    result = @invoice_objects.find_by_merchant_id(76)
+    assert_equal 8, result.merchant_id.size
   end
 
   def test_it_can_find_all_invoices_by_created_at
@@ -94,10 +94,10 @@ class InvoiceRepositortyTest < Minitest::Test
   end
 
   def test_it_can_find_a_invoice_by_created_at
-    assert_equal "4", @invoice_objects.find_by_created_at("2012-03-24 15:54:10 UTC").id
+    assert_equal 4, @invoice_objects.find_by_created_at("2012-03-24 15:54:10 UTC").id
   end
 
   def test_it_can_find_a_invoice_by_updated_at
-    assert_equal "6", @invoice_objects.find_by_updated_at("2012-03-09 01:54:10 UTC").id
+    assert_equal 6, @invoice_objects.find_by_updated_at("2012-03-09 01:54:10 UTC").id
   end
 end

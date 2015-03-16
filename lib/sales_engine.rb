@@ -2,7 +2,7 @@ require_relative "parser"
 require_relative "customer_repository"
 require_relative "merchant_repository"
 require_relative "item_repository"
-require_relative "invoice_items_repository"
+require_relative "invoice_item_repository"
 require_relative "invoice_repository"
 require_relative "transaction_repository"
 
@@ -19,7 +19,7 @@ class SalesEngine
     merchant_repository
     customer_repository
     item_repository
-    invoice_items_repository
+    invoice_item_repository
     invoice_repository
     transaction_repository
   end
@@ -39,9 +39,9 @@ class SalesEngine
     ItemRepository.new(data, self)
   end
 
-  def invoice_items_repository
+  def invoice_item_repository
     data = parse(@filepath, "invoice_items.csv")
-    InvoiceItemsRepository.new(data, self)
+    InvoiceItemRepository.new(data, self)
   end
 
   def invoice_repository
@@ -58,8 +58,8 @@ class SalesEngine
     invoice_repository.find_all_by_customer_id(customer_id)
   end
 
-  def all_invoice_item_instances(item_id)
-    invoice_items_repository.find_all_by_item_id(item_id)
+  def all_invoice_items(item_id)
+    invoice_item_repository.find_all_by_item_id(item_id)
   end
 
   def merchant_information(id)
@@ -91,7 +91,7 @@ class SalesEngine
   end
 
   def all_invoice_items(invoice_id)
-    invoice_items_repository.find_all_by_invoice_id(invoice_id)
+    invoice_item_repository.find_all_by_invoice_id(invoice_id)
   end
 
   def find_item(item_id)

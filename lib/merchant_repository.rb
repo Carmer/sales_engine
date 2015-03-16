@@ -75,7 +75,4 @@ class MerchantRepository
       merchant.total_items_sold
     end
   end
-
-  
-
 end

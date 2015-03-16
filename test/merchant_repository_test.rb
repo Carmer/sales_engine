@@ -28,8 +28,8 @@ class TestMerchantRepository < Minitest::Test
   end
 
   def test_it_can_find_a_merchant_by_id
-    result = @merchant_objects.find_by_id("5")
-    assert_equal "5", result.id
+    result = @merchant_objects.find_by_id(5)
+    assert_equal 5, result.id
     assert_equal "Williamson Group", result.name
   end
 
