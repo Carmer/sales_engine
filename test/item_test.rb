@@ -9,15 +9,15 @@ class TestItem < Minitest::Test
 
   def setup
     sales_engine = SalesEngine.new
-    @item = sales_engine.item_repository.find_by_id("227")
+    @item = sales_engine.item_repository.find_by_id(227)
   end
 
   def test_an_item_attributes
     assert_equal "Item Dicta Autem", @item.name
-    assert_equal "227", @item.id
+    assert_equal 227, @item.id
     assert_equal "Fugiat est ut eum impedit vel et. Deleniti quia debitis similique. Sint atque explicabo similique est. Iste fugit quis voluptas. Rerum ut harum sed fugiat eveniet ullam ut.", @item.description
     assert_equal "853.19", @item.unit_price.to_f.to_s
-    assert_equal "14", @item.merchant_id
+    assert_equal 14, @item.merchant_id
     assert_equal "2012-03-27 14:54:00 UTC", @item.created_at
     assert_equal "2012-03-27 14:54:00 UTC", @item.updated_at
   end
@@ -27,7 +27,7 @@ class TestItem < Minitest::Test
   end
 
   def test_it_returns_an_instance_of_merchant_associated_with_the_item
-    assert_equal "14", @item.merchant.id
+    assert_equal 14, @item.merchant.id
     assert_equal "Dicki-Bednar", @item.merchant.name
   end
 

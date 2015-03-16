@@ -1,6 +1,6 @@
 require "bigdecimal"
 
-class InvoiceItems
+class InvoiceItem
 
   attr_reader :id,
               :item_id,
@@ -12,10 +12,10 @@ class InvoiceItems
               :repository
 
   def initialize(data, repository)
-    @id          = data[:id]
-    @item_id     = data[:item_id]
-    @invoice_id  = data[:invoice_id]
-    @quantity    = data[:quantity]
+    @id          = data[:id].to_i
+    @item_id     = data[:item_id].to_i
+    @invoice_id  = data[:invoice_id].to_i
+    @quantity    = data[:quantity].to_i
     @unit_price  = BigDecimal.new(data[:unit_price])/100
     @created_at  = data[:created_at]
     @updated_at  = data[:updated_at]
@@ -27,6 +27,6 @@ class InvoiceItems
   end
 
   def item
-    repository.find_item(item_id)
+    repository.item(item_id)
   end
 end

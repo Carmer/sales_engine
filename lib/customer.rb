@@ -8,7 +8,7 @@ class Customer
               :repository
 
   def initialize(data, repository)
-    @id         = data[:id]
+    @id         = data[:id].to_i
     @first_name = data[:first_name]
     @last_name  = data[:last_name]
     @created_at = data[:created_at]
@@ -25,6 +25,10 @@ class Customer
   end
 
   def favorite_merchant
-    
+    #find all merchant ids on invoices
+    #find most frequent merchant id
+    #get merchant instance for that id
+    favorite_merchant = invoices.max_by { |invoice| invoice.merchant_id }
+    repository.find_merchant(favorite_merchant.merchant_id)
   end
 end

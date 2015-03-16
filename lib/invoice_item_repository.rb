@@ -1,7 +1,8 @@
 require_relative "invoice_item"
 require_relative "finder"
+require_relative "sales_engine"
 
-class InvoiceItemsRepository
+class InvoiceItemRepository
 
   include Finder
 
@@ -9,7 +10,7 @@ class InvoiceItemsRepository
               :sales_engine
 
   def initialize(data, sales_engine)
-    @invoice_item = data.map {|row| InvoiceItems.new(row, self)}
+    @invoice_item  = data.map {|row| InvoiceItem.new(row, self)}
     @sales_engine  = sales_engine
   end
 
@@ -85,7 +86,7 @@ class InvoiceItemsRepository
     sales_engine.find_invoice_for_invoice_item(invoice_id)
   end
 
-  def find_item(item_id)
+  def item(item_id)
     sales_engine.find_item(item_id)
   end
 end

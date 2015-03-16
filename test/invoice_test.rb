@@ -10,14 +10,14 @@ class InvoiceTest < Minitest::Test
 
   def setup
     sales_engine = SalesEngine.new
-    @invoice = sales_engine.invoice_repository.find_by_id("12")
+    @invoice = sales_engine.invoice_repository.find_by_id(12)
   end
 
 
   def test_it_has_attributes
-    assert_equal "12", @invoice.id
-    assert_equal "3", @invoice.customer_id
-    assert_equal "8", @invoice.merchant_id
+    assert_equal 12, @invoice.id
+    assert_equal 3, @invoice.customer_id
+    assert_equal 8, @invoice.merchant_id
     assert_equal "shipped", @invoice.status
     assert_equal "2012-03-21 13:54:10 UTC", @invoice.created_at
     assert_equal "2012-03-21 13:54:10 UTC", @invoice.updated_at
