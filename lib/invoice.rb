@@ -19,25 +19,33 @@ class Invoice
   end
 
   def transactions
-    repository.all_transactions(id)
+    @transactions ||= repository.all_transactions(id)
   end
 
   def invoice_items
-    repository.all_invoice_items(id)
+    @invoice_items ||= repository.all_invoice_items(id)
   end
 
   def customer
-    repository.customer_instance(customer_id)
+    @customer ||= repository.customer_instance(customer_id)
   end
 
   def merchant
-    repository.merchant_instance(merchant_id)
+    @merchant ||= repository.merchant_instance(merchant_id)
   end
 
   def items
-    invoice_items = repository.all_invoice_items(id)
-    item_ids = invoice_items.map { |invoice_items| invoice_items.item_id }.uniq
-    items = item_ids.each { |item_id| repository.find_item(item_id) }
-    items
+    @items ||= begin
+      invoice_items = repository.all_invoice_items(id)
+      item_ids = invoice_items.map { |invoice_items| invoice_items.item_id }.uniq
+      items = item_ids.each { |item_id| repository.find_item(item_id) }
+      items
+    end
+  end
+
+  def successful?
+    @successful ||= transactions.all? do |transaction|
+      transaction.result == "success"
+    end
   end
 end
