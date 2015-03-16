@@ -13,8 +13,8 @@ class InvoiceItemsRepositortyTest < Minitest::Test
   end
 
   def test_it_creates_an_array_of_invoice_items_objects
-    assert_equal 101, @invoice_item_objects.invoice_items.size
-    assert_equal Array, @invoice_item_objects.invoice_items.class
+    assert_equal 101, @invoice_item_objects.invoice_item.size
+    assert_equal Array, @invoice_item_objects.invoice_item.class
   end
 
   def test_it_can_select_at_random
@@ -47,7 +47,7 @@ class InvoiceItemsRepositortyTest < Minitest::Test
   end
 
   def test_it_can_find_by_unit_price
-    assert_equal "529", @invoice_item_objects.find_by_unit_price("79140").item_id
+    assert_equal "529", @invoice_item_objects.find_by_unit_price(BigDecimal.new("79140") / 100).item_id
   end
 
   def test_it_can_find_by_created_at
@@ -81,7 +81,7 @@ class InvoiceItemsRepositortyTest < Minitest::Test
   end
 
   def test_it_can_find_all_by_unit_price
-    assert_equal 1, @invoice_item_objects.find_all_by_unit_price("79140").size
+    assert_equal 1, @invoice_item_objects.find_all_by_unit_price(BigDecimal.new("79140") / 100).size
   end
 
   def test_it_can_find_all_by_created_at

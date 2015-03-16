@@ -1,4 +1,4 @@
-require_relative 'parser'
+require "bigdecimal"
 
 class Item
 
@@ -12,14 +12,14 @@ class Item
               :repository
 
   def initialize(data, repository)
-    @id = data[:id]
-    @name = data[:name]
+    @id          = data[:id]
+    @name        = data[:name]
     @description = data[:description]
-    @unit_price = data[:unit_price]
+    @unit_price  = BigDecimal.new(data[:unit_price]) / 100
     @merchant_id = data[:merchant_id]
-    @created_at = data[:created_at]
-    @updated_at = data[:updated_at]
-    @repository = repository
+    @created_at  = data[:created_at]
+    @updated_at  = data[:updated_at]
+    @repository  = repository
   end
 
   def invoice_items
@@ -28,5 +28,10 @@ class Item
 
   def merchant
     @merchant ||= repository.find_merchant(merchant_id)
+  end
+
+  def best_day
+    dates = invoice_items.map { |invoice_items| invoice_items.created_at }
+    dates.max_by { |date| dates.include?(date) }  
   end
 end

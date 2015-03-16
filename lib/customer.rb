@@ -1,5 +1,3 @@
-require_relative "parser"
-
 class Customer
 
   attr_reader :id,
@@ -20,5 +18,13 @@ class Customer
 
   def invoices
     repository.all_invoices(id)
+  end
+
+  def transactions
+    invoices.map { |invoice| invoice.transactions }
+  end
+
+  def favorite_merchant
+    
   end
 end

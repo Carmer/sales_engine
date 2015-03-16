@@ -11,7 +11,7 @@ class MerchantRepository
               :sales_engine
 
   def initialize(data, sales_engine)
-    @merchant   ||= data.map {|row| Merchant.new(row, self)}
+    @merchant     = data.map {|row| Merchant.new(row, self)}
     @sales_engine = sales_engine
   end
 

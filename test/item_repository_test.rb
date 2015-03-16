@@ -12,11 +12,6 @@ class ItemRepositoryTest < Minitest::Test
     assert ItemRepository
   end
 
-  def test_it_creates_an_array_of_item_objects
-    assert_equal 10, @item_objects.size
-    assert_equal Array, @item_objects.class
-  end
-
   def test_it_has_an_all_method
     assert_equal 595, @item_objects.all.size
     assert_equal Array, @item_objects.all.class
@@ -28,6 +23,9 @@ class ItemRepositoryTest < Minitest::Test
     assert sample.uniq
   end
 
+  def test_it_can_inpsect_itself
+    assert_equal "#<ItemRepository 595 rows>", @item_objects.inspect
+  end
 
   def test_it_creates_an_array_of_item_objects
     assert_equal 595, @item_objects.items.size
@@ -55,7 +53,7 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_an_item_by_unit_price
-    assert_equal "Item Provident At", @item_objects.find_by_unit_price("15925").name
+    assert_equal "Item Provident At", @item_objects.find_by_unit_price(BigDecimal.new("15925") / 100 ).name
   end
 
   def test_it_can_find_an_item_by_merchant_id
@@ -71,16 +69,16 @@ class ItemRepositoryTest < Minitest::Test
     assert_equal "Item Qui Esse", @item_objects.find_by_updated_at("2012-03-27 14:53:59 UTC").name
   end
 
+  def test_it_can_find_an_item_by_name
+    assert_equal "3", @item_objects.find_by_name("Item Ea Voluptatum").id
+  end
+
   def test_it_can_find_all_items_by_name
-    assert_equal [], @item_objects.find_all_by_name("Item Quidem Nothing")
+    assert_equal 1, @item_objects.find_all_by_name("Item Ea Voluptatum").size
   end
 
   def test_it_can_find_all_items_by_merchant_id
-    assert_equal 15, @item_objects.find_all_by_merchant_id("1").length
-  end
-
-  def test_it_can_find_all_items_by_merchant_id_and_access_it
-    assert_equal "Item Qui Esse", @item_objects.find_all_by_merchant_id("1")[0].name
+    assert_equal 15, @item_objects.find_all_by_merchant_id("1").size
   end
 
   def test_it_can_find_all_items_by_created_at
@@ -91,4 +89,11 @@ class ItemRepositoryTest < Minitest::Test
     assert_equal 170, @item_objects.find_all_by_updated_at("2012-03-27 14:53:59 UTC").length
   end
 
+  def test_it_can_find_all_by_description
+    assert_equal 1, @item_objects.find_all_by_description("Nostrum doloribus quia. Expedita vitae beatae cumque. Aut ut illo aut eum.").size
+  end
+
+  def test_it_can_find_all_by_unit_price
+    assert_equal 1, @item_objects.find_all_by_unit_price(BigDecimal.new("59454") / 100 ).size
+  end
 end

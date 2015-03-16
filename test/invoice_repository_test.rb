@@ -13,8 +13,8 @@ class InvoiceRepositortyTest < Minitest::Test
   end
 
   def test_it_creates_an_array_of_invoice_objects
-    assert_equal 101, @invoice_objects.invoices.size
-    assert_equal Array, @invoice_objects.invoices.class
+    assert_equal 101, @invoice_objects.invoice.size
+    assert_equal Array, @invoice_objects.invoice.class
   end
 
   def test_it_can_find_a_random_invoice

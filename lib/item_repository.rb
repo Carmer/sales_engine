@@ -9,7 +9,7 @@ class ItemRepository
               :sales_engine
 
   def initialize(data, sales_engine)
-    @items = data.map {|row| Item.new(row, self)}
+    @items        = data.map {|row| Item.new(row, self)}
     @sales_engine = sales_engine
   end
 
@@ -38,7 +38,7 @@ class ItemRepository
   end
 
   def find_by_unit_price(unit_price)
-    find_by_string_parameter(items, :unit_price, unit_price)
+    find_by_parameter(items, :unit_price, unit_price)
   end
 
   def find_by_merchant_id(merchant_id)

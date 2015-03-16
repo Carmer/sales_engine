@@ -22,6 +22,14 @@ class CustomerTest < Minitest::Test
   end
 
   def test_it_find_all_invoices
-    assert_equal 8, @customer.invoices.count
+    assert_equal 8, @customer.invoices.size
+  end
+
+  def test_it_can_return_transactions
+    assert_equal 8, @customer.transactions.size
+  end
+
+  def test_it_can_find_favorite_merchant
+    assert_equal "", @customer.favorite_merchant
   end
 end

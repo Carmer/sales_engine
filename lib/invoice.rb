@@ -1,5 +1,3 @@
-require_relative "parser"
-
 class Invoice
 
   attr_reader :id,
