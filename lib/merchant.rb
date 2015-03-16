@@ -49,4 +49,12 @@ class Merchant
       sum + invoice_item.quantity.to_i
     end
   end
+
+  def revenue
+    # require 'pry' ; binding.pry
+    @successful_invoices ||= invoices.find_all {|invoice| invoice.successful? }
+    invoice_items = @successful_invoices.map { |invoice| invoice.invoice_items }.flatten
+    invoice_items_revenue = invoice_items.map {|invoice_item| invoice_item.quantity * invoice_item.unit_price }
+    invoice_items_revenue.reduce(:+).to_f
+  end
 end
