@@ -28,7 +28,7 @@ class Item
 
   def merchant
     @merchant ||= repository.find_merchant(merchant_id)
-  end
+  end 
 
   def best_day
     dates = invoice_items.map { |invoice_items| invoice_items.created_at }
