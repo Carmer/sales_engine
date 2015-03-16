@@ -1,5 +1,6 @@
 require_relative "merchant"
 require_relative "finder"
+require "bigdecimal"
 
 class MerchantRepository
 
@@ -62,4 +63,19 @@ class MerchantRepository
   def all_invoices(merchant_id)
     sales_engine.find_invoices_for_merchant(merchant_id)
   end
+
+  def most_revenue(number)
+    sorted = merchant.max_by(number) do |merchant|
+      merchant.total_revenue
+    end
+  end
+
+  def most_items(number)
+    merchant.max_by(number) do |merchant|
+      merchant.total_items_sold
+    end
+  end
+
+  
+
 end

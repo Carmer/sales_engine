@@ -23,10 +23,10 @@ class Item
   end
 
   def invoice_items
-    repository.find_all_invoice_items(id)
+    @invoice_items ||= repository.find_all_invoice_items(id)
   end
 
   def merchant
-    repository.find_merchant(merchant_id)
+    @merchant ||= repository.find_merchant(merchant_id)
   end
 end
