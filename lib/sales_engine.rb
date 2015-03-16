@@ -101,4 +101,8 @@ class SalesEngine
   def find_an_invoice_instance(invoice_id)
     invoice_repository.find_by_id(invoice_id)
   end
+
+  def find_merchant(merchant_id)
+    merchant_repository.find_by_id(merchant_id)
+  end
 end

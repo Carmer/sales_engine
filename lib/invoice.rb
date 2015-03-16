@@ -38,7 +38,7 @@ class Invoice
     @items ||= begin
       invoice_items = repository.all_invoice_items(id)
       item_ids = invoice_items.map { |invoice_items| invoice_items.item_id }.uniq
-      items = item_ids.each { |item_id| repository.find_item(item_id) }
+      items = item_ids.map { |item_id| repository.find_item(item_id) }
       items
     end
   end
