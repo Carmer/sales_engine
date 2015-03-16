@@ -70,7 +70,7 @@ class InvoiceRepository
   end
 
   def all_invoice_items(invoice_id)
-    sales_engine.all_invoice_items(invoice_id)
+    sales_engine.find_all_invoice_items(invoice_id)
   end
 
   def customer_instance(customer_id)

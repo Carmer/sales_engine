@@ -44,7 +44,8 @@ class Invoice
   end
 
   def successful?
-    @successful ||= transactions.all? do |transaction|
+    require 'pry' ; binding.pry
+    @successful = transactions.find_all do |transaction|
       transaction.result == "success"
     end
   end
