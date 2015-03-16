@@ -23,4 +23,8 @@ class Customer
   def transactions
     invoices.map { |invoice| invoice.transactions }
   end
+
+  def favorite_merchant
+    
+  end
 end

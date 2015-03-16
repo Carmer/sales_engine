@@ -28,4 +28,8 @@ class CustomerTest < Minitest::Test
   def test_it_can_return_transactions
     assert_equal 8, @customer.transactions.size
   end
+
+  def test_it_can_find_favorite_merchant
+    assert_equal "", @customer.favorite_merchant
+  end
 end
