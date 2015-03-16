@@ -17,32 +17,38 @@ class Merchant
   end
 
   def items
-    repository.all_items(id)
+    @items ||= repository.all_items(id)
   end
 
   def invoices
-    repository.all_invoices(id)
+    @invoices ||= repository.all_invoices(id)
   end
 
   def total_revenue
-    invoices = self.invoices
-
-    successful_invoices = invoices.select do |invoice|
+    @successful_invoices ||= invoices.find_all do |invoice|
       invoice.successful?
     end
 
-    invoice_items = successful_invoices.map do |successful|
+    @invoice_items ||= @successful_invoices.map do |successful|
       successful.invoice_items
     end.flatten
 
-    invoice_items.reduce(1) do |product, invoice_item|
+    @invoice_items.reduce(1) do |product, invoice_item|
       product * invoice_item.quantity.to_i * invoice_item.unit_price.to_i
     end
-    # invoice_items = self.invoices.map do |invoice|
-    #   invoice.invoice_items
-    # end.flatten
-    # invoice_items.reduce(1) do |product, invoice_item|
-    #   product * invoice_item.quantity.to_i * invoice_item.unit_price.to_i
-    # end
+  end
+
+  def total_items_sold
+    @successful_invoices ||= invoices.find_all do |invoice|
+      invoice.successful?
+    end
+
+    @invoice_items ||= @successful_invoices.map do |successful|
+      successful.invoice_items
+    end.flatten
+
+    @invoice_items.reduce(0) do |sum, invoice_item|
+      sum + invoice_item.quantity.to_i
+    end
   end
 end

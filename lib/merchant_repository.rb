@@ -1,5 +1,6 @@
 require_relative "merchant"
 require_relative "finder"
+require "bigdecimal"
 
 class MerchantRepository
 
@@ -64,8 +65,17 @@ class MerchantRepository
   end
 
   def most_revenue(number)
-    sorted = merchant.sort_by do |merchant|
+    sorted = merchant.max_by(number) do |merchant|
       merchant.total_revenue
-    end.reverse.take(number)
+    end
   end
+
+  def most_items(number)
+    merchant.max_by(number) do |merchant|
+      merchant.total_items_sold
+    end
+  end
+
+  
+
 end

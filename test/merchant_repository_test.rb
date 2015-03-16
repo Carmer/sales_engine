@@ -4,17 +4,12 @@ require "./lib/sales_engine"
 
 class TestMerchantRepository < Minitest::Test
 
-  def test_it_exists
-    assert MerchantRepository
-  end
-
   def setup
     @merchant_objects = SalesEngine.new.merchant_repository
   end
 
   def test_it_creates_an_array_of_merchants
     assert_equal 100, @merchant_objects.merchant.size
-    assert_equal Array, @merchant_objects.merchant.class
   end
 
   def test_it_can_inspec_a_merchant_repostiory_can_inspec_itself
@@ -103,8 +98,19 @@ class TestMerchantRepository < Minitest::Test
   end
 
   def test_it_returns_top_n_revenue_earners
-    assert_equal 1, @merchant_objects.most_revenue(1).length
-    assert_equal Array, @merchant_objects.most_revenue(3).class
+    merchants = @merchant_objects.most_revenue(3)
+    assert_equal 3, merchants.length
+    assert_equal "Gibson Group", merchants.first.name
+  end
+
+  def test_it_returns_top_n_item_sellers
+    assert_equal 1, @merchant_objects.most_items(1).length
+    assert_equal Array, @merchant_objects.most_items(3).class
     assert_equal ["Gibson Group"], @merchant_objects.most_revenue(1).map {|merchant| merchant.name }
+  end
+
+  def test_it_returns_the_total_revenue_for_a_particular_date_across_all_merchants
+    skip
+    assert_equal "13345.99", @merchant_objects.revenue("")
   end
 end
