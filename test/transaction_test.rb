@@ -17,7 +17,7 @@ class TestTransactions < Minitest::Test
     assert_equal 7, @transaction.id
     assert_equal 8, @transaction.invoice_id
     assert_equal nil, @transaction.credit_card_expiration_date
-    assert_equal 4801647818676136, @transaction.credit_card_number
+    assert_equal "4801647818676136", @transaction.credit_card_number
     assert_equal "success", @transaction.result
     assert_equal "2012-03-27 14:54:10 UTC", @transaction.updated_at
     assert_equal "2012-03-27 14:54:10 UTC", @transaction.created_at

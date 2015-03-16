@@ -18,7 +18,7 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_an_item_by_id
-    assert_equal 4654405418249632, @transaction_objects.find_by_id(1).credit_card_number
+    assert_equal "4654405418249632", @transaction_objects.find_by_id(1).credit_card_number
   end
 
   def test_it_can_find_all
@@ -33,7 +33,7 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_another_item_by_id
-    assert_equal 4580251236515201, @transaction_objects.find_by_id(2).credit_card_number
+    assert_equal "4580251236515201", @transaction_objects.find_by_id(2).credit_card_number
   end
 
   def test_it_can_find_an_item_by_invoice_id
@@ -41,7 +41,7 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_an_item_by_credit_card_number
-    assert_equal 5, @transaction_objects.find_by_credit_card_number(4844518708741275).id
+    assert_equal 5, @transaction_objects.find_by_credit_card_number("4844518708741275").id
   end
 
   def test_it_can_find_an_item_by_result
@@ -61,8 +61,8 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_all_items_by_credit_card_number
-    assert_equal 4436110257010678, @transaction_objects.find_all_by_credit_card_number(4436110257010678)[0].credit_card_number
-    assert_equal 1, @transaction_objects.find_all_by_credit_card_number(4436110257010678)[0..1].length
+    assert_equal "4436110257010678", @transaction_objects.find_all_by_credit_card_number("4436110257010678")[0].credit_card_number
+    assert_equal 1, @transaction_objects.find_all_by_credit_card_number("4436110257010678")[0..1].length
   end
 
   def test_it_can_find_all_items_by_result
