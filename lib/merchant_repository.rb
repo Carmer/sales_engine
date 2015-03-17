@@ -55,6 +55,10 @@ class MerchantRepository
     find_all_by_string_parameter(merchant, :updated_at, updated_at)
   end
 
+  def find_customer(customer_id)
+    sales_engine.find_customer(customer_id)
+  end
+
   def all_items(merchant_id)
     sales_engine.find_items_sold_by_merchant(merchant_id)
   end
