@@ -45,7 +45,6 @@ class MerchantRepository
 
   def find_all_by_created_at(created_at)
     find_all_by_parameter(merchant, :created_at, created_at )
-
   end
 
   def find_by_updated_at(updated_at)
@@ -64,11 +63,11 @@ class MerchantRepository
     sales_engine.find_invoices_for_merchant(merchant_id)
   end
 
-  # def most_revenue(number)
-  #   merchant.sort_by do |merchant|
-  #     merchant.revenue
-  #   end.reverse.take(number)
-  # end
+  def most_revenue(number)
+    merchant.sort_by do |merchant|
+      merchant.revenue
+    end.reverse.take(number)
+  end
 
   def most_items(number)
     merchant.max_by(number) do |merchant|
@@ -76,20 +75,23 @@ class MerchantRepository
     end
   end
 
-  # def revenue(date)
-  #   all_successful_invoices = invoices_across_all_merchants.find_all do |invoice|
-  #     invoice.successful?
-  #   end
-  #   invoices_by_date = all_successful_invoices.find_all do |invoice|
-  #     Date.parse(invoice.created_at.to_s) == Date.parse(date.to_s)
-  #   end
-  #   invoice_items = invoices_by_date.flat_map {|invoice| invoice.invoice_items }
-  #   invoice_items_revenue = invoice_items.map {|invoice_item| invoice_item.quantity * invoice_item.unit_price }
-  #   invoice_items_revenue.reduce(:+) / 100.00
-  # end
-  #
+  def revenue(date)
+    successful_invoices = sales_engine.invoice_repository.all_successful_invoices
+    invoices_by_date = successful_invoices.find_all do |invoice|
+      Date.parse(invoice.created_at.to_s) == Date.parse(date.to_s)
+    end
+
+    invoice_items = invoices_by_date.flat_map do |invoice|
+      invoice.invoice_items
+    end
+
+    invoice_items.reduce(0) do |sum, ii|
+      sum + (ii.quantity * ii.unit_price) / 100.00
+    end
+  end
+
   # private
-  #
+
   # def all_invoices_across_all_merchants
   #   @all_invoices_across_all_merchants ||= merchant.flat_map {|merchant| all_invoices(merchant.id) }
   # end

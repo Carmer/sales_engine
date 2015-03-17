@@ -22,19 +22,21 @@ class Merchant
     @invoices ||= repository.all_invoices(id)
   end
 
-  # def total_revenue
-  #   @successful_invoices = invoices.find_all do |invoice|
-  #     invoice.successful?
-  #   end
-  #
-  #   @invoice_items = @successful_invoices.map do |successful|
-  #     successful.invoice_items
-  #   end.flatten
-  #
-  #   @invoice_items.reduce(1) do |product, invoice_item|
-  #     product * invoice_item.quantity.to_i * invoice_item.unit_price.to_i
-  #   end
-  # end
+  def find_successful_invoices
+    @successful_invoices ||= repository.sales_engine.invoice_repository.all_successful_invoices
+    @all_successful_invoices_for_merchant ||= @successful_invoices.select do |invoice|
+      invoice.merchant_id == id
+    end
+  end
+
+  def find_successful_invoice_items
+    @successful_invoice_items ||= repository.sales_engine.invoice_item_repository.all_successful_invoice_items
+    @all_successful_invoice_items ||= @successful_invoice_items.select do |ii|
+      find_successful_invoices.any? do |invoice|
+        invoice.id == ii.invoice_id
+      end
+    end
+  end
 
   def total_items_sold
     @successful_invoices ||= invoices.find_all do |invoice|
@@ -62,7 +64,7 @@ class Merchant
 
     def revenue_by_date(date)
 
-      invoices_by_date = successful_invoices.find_all do |invoice|
+      invoices_by_date = find_successful_invoices.find_all do |invoice|
       Date.parse(invoice.created_at.to_s) == Date.parse(date.to_s)
       end
 
@@ -70,24 +72,14 @@ class Merchant
         invoice.invoice_items
       end
 
-      invoice_items_revenue = invoice_items.map  do |invoice_item|
-        invoice_item.quantity * invoice_item.unit_price
-      end.reduce(:+) / 100.00
+      invoice_items.reduce(0)  do |sum , ii|
+        sum + (ii.quantity * ii.unit_price) / 100.00
+      end
     end
 
     def total_merchant_revenue
-      invoice_items = successful_invoices.flat_map do |invoice|
-        invoice.invoice_items
-      end
-
-      invoice_items.map do |invoice_item|
-      invoice_item.quantity * invoice_item.unit_price
-      end.reduce(:+) / 100
-    end
-
-    def successful_invoices
-      @successful_invoices ||= invoices.find_all do |invoice|
-        invoice.successful?
+      find_successful_invoice_items.reduce(0) do |sum, ii|
+        sum + (ii.quantity * ii.unit_price) / 100.00
       end
     end
 end
