@@ -39,16 +39,8 @@ class Merchant
   end
 
   def total_items_sold
-    @successful_invoices ||= invoices.find_all do |invoice|
-      invoice.successful?
-    end
-
-    @invoice_items ||= @successful_invoices.map do |successful|
-      successful.invoice_items
-    end.flatten
-
-    @invoice_items.reduce(0) do |sum, invoice_item|
-      sum + invoice_item.quantity.to_i
+    @item_total ||= find_successful_invoice_items.reduce(0) do |sum, ii|
+      sum + ii.quantity
     end
   end
 
@@ -58,6 +50,21 @@ class Merchant
     else
       revenue_by_date(date)
     end
+  end
+
+  def favorite_customer
+    #returns customer who has made the most successful transactions
+    #find successful invoices, of those, find the transactions (invoice.transactions)
+    #transaction.successful?
+    @transactions ||= find_successful_invoices.map do |invoice|
+      invoice.transactions
+    end
+
+    @successful_transactions ||= @transactions.select do |transaction|
+      transaction.result == "success"
+    end
+    
+
   end
 
   private
