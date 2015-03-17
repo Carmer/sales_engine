@@ -17,17 +17,14 @@ class Customer
   end
 
   def invoices
-    repository.all_invoices(id)
+    @invoices_result ||= repository.all_invoices(id)
   end
 
   def transactions
-    invoices.map { |invoice| invoice.transactions }
+    @all_transactions ||= invoices.map { |invoice| invoice.transactions }
   end
 
   def favorite_merchant
-    #find all merchant ids on invoices
-    #find most frequent merchant id
-    #get merchant instance for that id
     favorite_merchant = invoices.max_by { |invoice| invoice.merchant_id }
     repository.find_merchant(favorite_merchant.merchant_id)
   end

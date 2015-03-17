@@ -20,7 +20,7 @@ class MerchantRepository
   end
 
   def all
-    merchant
+    @all_merchants ||= merchant
   end
 
   def random

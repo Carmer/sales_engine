@@ -15,7 +15,7 @@ class InvoiceItemRepository
   end
 
   def all
-    invoice_item
+    @invoices ||= invoice_item
   end
 
   def random

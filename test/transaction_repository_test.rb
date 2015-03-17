@@ -81,4 +81,9 @@ class TransactionRepositoryTest < Minitest::Test
   def test_it_can_inspec_itself
     assert_equal "#<TransactionRepository 999 rows>", @transaction_objects.inspect
   end
+
+  def test_it_returns_all_successful_transactions
+    assert_equal Transaction, @transaction_objects.find_all_successful_transactions[0].class
+    assert @transaction_objects.find_all_successful_transactions.length < @transaction_objects.transaction.length
+  end
 end

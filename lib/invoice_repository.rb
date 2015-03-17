@@ -84,4 +84,9 @@ class InvoiceRepository
   def find_item(item_id)
     sales_engine.find_item(item_id)
   end
+
+  def find_all_successful_invoices
+    @successful_transactions ||= sales_engine.transaction_repository.find_all_successful_transactions
+    @successful_invoices
+  end
 end

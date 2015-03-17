@@ -19,7 +19,7 @@ class CustomerRepository
   end
 
   def all
-    customer
+    @customers ||= customer
   end
 
   def random

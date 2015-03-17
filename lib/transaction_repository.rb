@@ -72,4 +72,8 @@ class TransactionRepository
   def find_an_invoice(invoice_id)
     sales_engine.find_an_invoice_instance(invoice_id)
   end
+
+  def find_all_successful_transactions
+    @successful_transactions ||= transaction.select {|transaction| transaction.successful? }
+  end
 end

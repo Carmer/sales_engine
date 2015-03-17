@@ -15,11 +15,11 @@ class Merchant
   end
 
   def items
-    @items = repository.all_items(id)
+    @items ||= repository.all_items(id)
   end
 
   def invoices
-    @invoices = repository.all_invoices(id)
+    @invoices ||= repository.all_invoices(id)
   end
 
   # def total_revenue
@@ -37,11 +37,11 @@ class Merchant
   # end
 
   def total_items_sold
-    @successful_invoices = invoices.find_all do |invoice|
+    @successful_invoices ||= invoices.find_all do |invoice|
       invoice.successful?
     end
 
-    @invoice_items = @successful_invoices.map do |successful|
+    @invoice_items ||= @successful_invoices.map do |successful|
       successful.invoice_items
     end.flatten
 
