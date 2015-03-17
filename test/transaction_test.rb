@@ -27,4 +27,8 @@ class TestTransactions < Minitest::Test
     assert_equal 8, @transaction.invoice.id
   end
 
+  def test_it_has_a_successful_status
+    assert @transaction.successful?
+  end
+
 end

@@ -23,4 +23,9 @@ class Transaction
   def invoice
     repository.find_an_invoice(invoice_id)
   end
+
+#added
+  def successful?
+    @result == "success" 
+  end
 end

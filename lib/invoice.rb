@@ -19,11 +19,11 @@ class Invoice
   end
 
   def transactions
-    @transactions = repository.all_transactions(id)
+    @transactions ||= repository.all_transactions(id)
   end
 
   def invoice_items
-    @invoice_items = repository.all_invoice_items(id)
+    @invoice_items ||= repository.all_invoice_items(id)
   end
 
   def customer
@@ -35,7 +35,7 @@ class Invoice
   end
 
   def items
-    @items = begin
+    @items ||= begin
 
       invoice_items = repository.all_invoice_items(id)
 
@@ -50,7 +50,7 @@ class Invoice
   end
 
   def successful?
-    transactions.any? do |transaction|
+    @is_it_success ||= transactions.any? do |transaction|
       transaction.result == "success"
     end
   end
