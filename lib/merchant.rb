@@ -22,19 +22,19 @@ class Merchant
     @invoices = repository.all_invoices(id)
   end
 
-  def total_revenue
-    @successful_invoices = invoices.find_all do |invoice|
-      invoice.successful?
-    end
-
-    @invoice_items = @successful_invoices.map do |successful|
-      successful.invoice_items
-    end.flatten
-
-    @invoice_items.reduce(1) do |product, invoice_item|
-      product * invoice_item.quantity.to_i * invoice_item.unit_price.to_i
-    end
-  end
+  # def total_revenue
+  #   @successful_invoices = invoices.find_all do |invoice|
+  #     invoice.successful?
+  #   end
+  #
+  #   @invoice_items = @successful_invoices.map do |successful|
+  #     successful.invoice_items
+  #   end.flatten
+  #
+  #   @invoice_items.reduce(1) do |product, invoice_item|
+  #     product * invoice_item.quantity.to_i * invoice_item.unit_price.to_i
+  #   end
+  # end
 
   def total_items_sold
     @successful_invoices = invoices.find_all do |invoice|
@@ -58,27 +58,36 @@ class Merchant
     end
   end
 
-  def successfuL_invoices
-    @successful_invoices ||= invoices.find_all {|invoice| invoice.successful? }
-  end
-
   private
 
     def revenue_by_date(date)
-      @successful_invoices = invoices.find_all {|invoice| invoice.successful? }
-      invoices_by_date = @successful_invoices.find_all do |invoice|
-        Date.parse(invoice.created_at.to_s) == Date.parse(date.to_s)
+
+      invoices_by_date = successful_invoices.find_all do |invoice|
+      Date.parse(invoice.created_at.to_s) == Date.parse(date.to_s)
       end
-      invoice_items = invoices_by_date.map { |invoice| invoice.invoice_items }.flatten
-      invoice_items_revenue = invoice_items.map { |invoice_item| invoice_item.quantity * invoice_item.unit_price }
-      invoice_items_revenue.reduce(:+) / 100.0
+
+      invoice_items = invoices_by_date.flat_map do |invoice|
+        invoice.invoice_items
+      end
+
+      invoice_items_revenue = invoice_items.map  do |invoice_item|
+        invoice_item.quantity * invoice_item.unit_price
+      end.reduce(:+) / 100.00
     end
 
     def total_merchant_revenue
-      @successful_invoices = invoices.find_all {|invoice| invoice.successful? }
-      invoice_items = @successful_invoices.map { |invoice| invoice.invoice_items }.flatten
-      invoice_items_revenue = invoice_items.map { |invoice_item| invoice_item.quantity * invoice_item.unit_price }
-      invoice_items_revenue.reduce(:+) / 100.0
+      invoice_items = successful_invoices.flat_map do |invoice|
+        invoice.invoice_items
+      end
+
+      invoice_items.map do |invoice_item|
+      invoice_item.quantity * invoice_item.unit_price
+      end.reduce(:+) / 100
     end
 
+    def successful_invoices
+      @successful_invoices ||= invoices.find_all do |invoice|
+        invoice.successful?
+      end
+    end
 end

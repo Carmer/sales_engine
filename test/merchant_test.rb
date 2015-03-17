@@ -32,7 +32,6 @@ class TestMerchant < Minitest::Test
   end
 
   def test_it_can_find_revenue_by_date
-    skip  
-    assert_equal "", @merchant.revenue("2012-03-13 07:54:10 UTC")
+    assert_equal 24742.51, @merchant.revenue("2012-03-13 07:54:10 UTC")
   end
 end

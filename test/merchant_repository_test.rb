@@ -113,6 +113,6 @@ class TestMerchantRepository < Minitest::Test
 
   def test_it_returns_the_total_revenue_for_a_particular_date_across_all_merchants
     skip
-    assert_equal "13345.99", @merchant_objects.revenue("")
+    assert_equal 61042.10, @merchant_objects.revenue("2012-03-07 12:54:10 UTC")
   end
 end
