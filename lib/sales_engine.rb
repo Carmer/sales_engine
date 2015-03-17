@@ -25,33 +25,45 @@ class SalesEngine
   end
 
   def customer_repository
-    data = parse(@filepath, "customers.csv")
-    CustomerRepository.new(data, self)
+    @customer_repository ||= begin
+      data = parse(@filepath, "customers.csv")
+      CustomerRepository.new(data, self)
+    end
   end
 
   def merchant_repository
-    data = parse(@filepath, "merchants.csv")
-    MerchantRepository.new(data, self)
+    @merchant_repository ||= begin
+      data = parse(@filepath, "merchants.csv")
+      MerchantRepository.new(data, self)
+    end
   end
 
   def item_repository
-    data = parse(@filepath, "items.csv")
-    ItemRepository.new(data, self)
+    @item_repository ||= begin
+      data = parse(@filepath, "items.csv")
+      ItemRepository.new(data, self)
+    end
   end
 
   def invoice_item_repository
-    data = parse(@filepath, "invoice_items.csv")
-    InvoiceItemRepository.new(data, self)
+    @invoice_item_repository ||= begin
+      data = parse(@filepath, "invoice_items.csv")
+      InvoiceItemRepository.new(data, self)
+    end
   end
 
   def invoice_repository
-    data = parse(@filepath, "invoices.csv")
-    InvoiceRepository.new(data, self)
+    @invoice_repository ||= begin
+      data = parse(@filepath, "invoices.csv")
+      InvoiceRepository.new(data, self)
+    end
   end
 
   def transaction_repository
-    data = parse(@filepath, "transactions.csv")
-    TransactionRepository.new(data, self)
+    @transaction_repository ||= begin
+      data = parse(@filepath, "transactions.csv")
+      TransactionRepository.new(data, self)
+    end
   end
 
   def all_customer_invoices(customer_id)
