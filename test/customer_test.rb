@@ -30,6 +30,6 @@ class CustomerTest < Minitest::Test
   end
 
   def test_it_can_find_favorite_merchant
-    assert_equal "Heathcote-Hettinger", @customer.favorite_merchant.name
+    assert_equal "Balistreri, Schaefer and Kshlerin", @customer.favorite_merchant.name
   end
 end

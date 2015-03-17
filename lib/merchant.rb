@@ -22,21 +22,6 @@ class Merchant
     @invoices ||= repository.all_invoices(id)
   end
 
-  def find_successful_invoices
-    @successful_invoices ||= repository.sales_engine.invoice_repository.all_successful_invoices
-    @all_successful_invoices_for_merchant ||= @successful_invoices.select do |invoice|
-      invoice.merchant_id == id
-    end
-  end
-
-  def find_successful_invoice_items
-    @successful_invoice_items ||= repository.sales_engine.invoice_item_repository.all_successful_invoice_items
-    @all_successful_invoice_items ||= @successful_invoice_items.select do |ii|
-      find_successful_invoices.any? do |invoice|
-        invoice.id == ii.invoice_id
-      end
-    end
-  end
 
   def total_items_sold
     @item_total ||= find_successful_invoice_items.reduce(0) do |sum, ii|
@@ -53,21 +38,34 @@ class Merchant
   end
 
   def favorite_customer
-    #returns customer who has made the most successful transactions
-    #find successful invoices, of those, find the transactions (invoice.transactions)
-    #transaction.successful?
-    @transactions ||= find_successful_invoices.map do |invoice|
-      invoice.transactions
+
+    all_merchant_customers = find_successful_invoices.map do |invoice|
+      invoice.customer
     end
 
-    @successful_transactions ||= @transactions.select do |transaction|
-      transaction.result == "success"
-    end
-    
+     all_merchant_customers.max_by do |customer|
+       all_merchant_customers.count(customer)
+     end
 
   end
 
   private
+
+    def find_successful_invoices
+      @successful_invoices ||= repository.sales_engine.invoice_repository.all_successful_invoices
+      @all_successful_invoices_for_merchant ||= @successful_invoices.select do |invoice|
+        invoice.merchant_id == id
+      end
+    end
+
+    def find_successful_invoice_items
+      @successful_invoice_items ||= repository.sales_engine.invoice_item_repository.all_successful_invoice_items
+      @all_successful_invoice_items ||= @successful_invoice_items.select do |ii|
+        find_successful_invoices.any? do |invoice|
+          invoice.id == ii.invoice_id
+        end
+      end
+    end
 
     def revenue_by_date(date)
 

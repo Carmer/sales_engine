@@ -34,4 +34,8 @@ class TestMerchant < Minitest::Test
   def test_it_can_find_revenue_by_date
     assert_equal 24742.51, @merchant.revenue("2012-03-13 07:54:10 UTC")
   end
+
+  def test_it_has_a_favorite_customer
+    assert_equal 4, @merchant.favorite_customer.id
+  end
 end
