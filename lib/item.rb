@@ -23,12 +23,12 @@ class Item
   end
 
   def invoice_items
-    @invoice_items ||= repository.find_all_invoice_items(id)
+    @invoice_items = repository.find_all_invoice_items(id)
   end
 
   def merchant
-    @merchant ||= repository.find_merchant(merchant_id)
-  end 
+    @merchant = repository.find_merchant(merchant_id)
+  end
 
   def best_day
     dates = invoice_items.map { |invoice_items| invoice_items.created_at }

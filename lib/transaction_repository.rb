@@ -37,16 +37,6 @@ class TransactionRepository
     find_by_parameter(transaction, :credit_card_number, credit_card_number)
   end
 
-  # --> Do we need these method since we dont have cc expiration dates in data?
-
-  # def find_by_credit_card_expiration_date(credit_card_expiration_date)
-  #   find_by_parameter(transaction, :credit_card_expiration_date, credit_card_expiration_date)
-  # end
-
-  # def find_all_by_credit_card_expiration_date(credit_card_expiration_date)
-  #   find_all_by_parameter(transaction, :credit_card_expiration_date, credit_card_expiration_date)
-  # end
-
   def find_by_result(result)
     find_by_string_parameter(transaction, :result, result)
   end
