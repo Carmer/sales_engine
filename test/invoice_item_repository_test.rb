@@ -47,7 +47,7 @@ class InvoiceItemRepositortyTest < Minitest::Test
   end
 
   def test_it_can_find_by_unit_price
-    assert_equal 529, @invoice_item_objects.find_by_unit_price(BigDecimal.new("79140") / 100).item_id
+    assert_equal 529, @invoice_item_objects.find_by_unit_price(BigDecimal.new("79140")).item_id
   end
 
   def test_it_can_find_by_created_at
@@ -81,7 +81,7 @@ class InvoiceItemRepositortyTest < Minitest::Test
   end
 
   def test_it_can_find_all_by_unit_price
-    assert_equal 1, @invoice_item_objects.find_all_by_unit_price(BigDecimal.new("79140") / 100).size
+    assert_equal 3, @invoice_item_objects.find_all_by_unit_price(BigDecimal.new("72018")).size
   end
 
   def test_it_can_find_all_by_created_at

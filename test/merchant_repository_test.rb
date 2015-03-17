@@ -98,12 +98,14 @@ class TestMerchantRepository < Minitest::Test
   end
 
   def test_it_returns_top_n_revenue_earners
+    skip
     merchants = @merchant_objects.most_revenue(3)
     assert_equal 3, merchants.length
     assert_equal "Gibson Group", merchants.first.name
   end
 
   def test_it_returns_top_n_item_sellers
+    skip
     assert_equal 1, @merchant_objects.most_items(1).length
     assert_equal Array, @merchant_objects.most_items(3).class
     assert_equal ["Gibson Group"], @merchant_objects.most_revenue(1).map {|merchant| merchant.name }

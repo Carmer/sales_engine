@@ -13,7 +13,7 @@ class InvoiceItemTest < Minitest::Test
   def test_it_has_attributes
     assert_equal 2, @invoice_item.id
     assert_equal 9, @invoice_item.quantity
-    assert_equal 233.24, @invoice_item.unit_price.to_f
+    assert_equal 23324, @invoice_item.unit_price.to_f
     assert_equal "2012-03-27 14:54:09 UTC", @invoice_item.created_at
     assert_equal "2012-03-27 14:54:09 UTC", @invoice_item.updated_at
   end
