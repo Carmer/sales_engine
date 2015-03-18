@@ -10,12 +10,12 @@ class TestTransactions < Minitest::Test
 
   def setup
     sales_engine = SalesEngine.new
-    @transaction = sales_engine.transaction_repository.find_by_id("7")
+    @transaction = sales_engine.transaction_repository.find_by_id(7)
   end
 
   def test_a_transaction_has_attributes
-    assert_equal "7", @transaction.id
-    assert_equal "8", @transaction.invoice_id
+    assert_equal 7, @transaction.id
+    assert_equal 8, @transaction.invoice_id
     assert_equal nil, @transaction.credit_card_expiration_date
     assert_equal "4801647818676136", @transaction.credit_card_number
     assert_equal "success", @transaction.result
@@ -24,7 +24,11 @@ class TestTransactions < Minitest::Test
   end
 
   def test_it_returns_an_invoice
-    assert_equal "8", @transaction.invoice.id
+    assert_equal 8, @transaction.invoice.id
+  end
+
+  def test_it_has_a_successful_status
+    assert @transaction.successful?
   end
 
 end

@@ -28,16 +28,16 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_it_creates_an_array_of_item_objects
-    assert_equal 595, @item_objects.items.size
-    assert_equal Array, @item_objects.items.class
+    assert_equal 595, @item_objects.item.size
+    assert_equal Array, @item_objects.item.class
   end
 
   def test_it_can_find_an_item_by_id
-    assert_equal "Item Qui Esse", @item_objects.find_by_id("1").name
+    assert_equal "Item Qui Esse", @item_objects.find_by_id(1).name
   end
 
   def test_it_can_find_another_item_by_id
-    assert_equal "Item Ea Voluptatum", @item_objects.find_by_id("3").name
+    assert_equal "Item Ea Voluptatum", @item_objects.find_by_id( 3).name
   end
 
   def test_it_can_find_an_item_by_description
@@ -53,12 +53,12 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_an_item_by_unit_price
-    assert_equal "Item Provident At", @item_objects.find_by_unit_price(BigDecimal.new("15925") / 100 ).name
+    assert_equal "Item Provident At", @item_objects.find_by_unit_price(BigDecimal.new("15925") / 100).name
   end
 
   def test_it_can_find_an_item_by_merchant_id
-    assert_equal "Item Qui Esse", @item_objects.find_by_merchant_id("1").name
-    refute_equal "Item Ea Voluptatum", @item_objects.find_by_merchant_id("1").name
+    assert_equal "Item Qui Esse", @item_objects.find_by_merchant_id( 1).name
+    refute_equal "Item Ea Voluptatum", @item_objects.find_by_merchant_id(1).name
   end
 
   def test_it_can_find_an_item_by_created_at
@@ -70,7 +70,7 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_an_item_by_name
-    assert_equal "3", @item_objects.find_by_name("Item Ea Voluptatum").id
+    assert_equal 3, @item_objects.find_by_name("Item Ea Voluptatum").id
   end
 
   def test_it_can_find_all_items_by_name
@@ -78,7 +78,7 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_all_items_by_merchant_id
-    assert_equal 15, @item_objects.find_all_by_merchant_id("1").size
+    assert_equal 15, @item_objects.find_all_by_merchant_id(1).size
   end
 
   def test_it_can_find_all_items_by_created_at
@@ -95,5 +95,10 @@ class ItemRepositoryTest < Minitest::Test
 
   def test_it_can_find_all_by_unit_price
     assert_equal 1, @item_objects.find_all_by_unit_price(BigDecimal.new("59454") / 100 ).size
+  end
+
+  def test_it_can_find_the_top_n_items_ranked_by_revenue
+    assert_equal 3, @item_objects.most_revenue(3).length
+    assert_equal "Item Dicta Autem", @item_objects.most_revenue(3).first.name
   end
 end

@@ -32,8 +32,8 @@ class CustomerRepositortyTest < Minitest::Test
   end
 
   def test_it_can_find_by_id
-    result = @customer.find_by_id("3")
-    assert_equal "3", result.id
+    result = @customer.find_by_id(3)
+    assert_equal 3, result.id
   end
 
   def test_it_can_search_for_a_customer_by_first_name
@@ -102,10 +102,10 @@ class CustomerRepositortyTest < Minitest::Test
   end
 
   def test_it_can_find_a_customer_by_created_at
-    assert_equal "2", @customer.find_by_created_at("2012-03-27 14:54:10 UTC").id
+    assert_equal 2, @customer.find_by_created_at("2012-03-27 14:54:10 UTC").id
   end
 
   def test_it_can_find_a_customer_by_updated_at
-    assert_equal "2", @customer.find_by_updated_at("2012-03-27 14:54:10 UTC").id
+    assert_equal 2, @customer.find_by_updated_at("2012-03-27 14:54:10 UTC").id
   end
 end

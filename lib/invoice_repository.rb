@@ -70,7 +70,7 @@ class InvoiceRepository
   end
 
   def all_invoice_items(invoice_id)
-    sales_engine.all_invoice_items(invoice_id)
+    sales_engine.find_all_invoice_items(invoice_id)
   end
 
   def customer_instance(customer_id)
@@ -84,4 +84,15 @@ class InvoiceRepository
   def find_item(item_id)
     sales_engine.find_item(item_id)
   end
+
+  def all_successful_invoices
+    @successful_transactions ||= sales_engine.transaction_repository.find_all_successful_transactions
+    @successful_invoices ||= invoice.select do |invoice|
+      @successful_transactions.any?  do |transaction|
+        transaction.invoice_id == invoice.id
+      end
+    end
+  end
+
+  
 end

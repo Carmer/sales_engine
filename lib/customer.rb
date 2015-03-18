@@ -8,7 +8,7 @@ class Customer
               :repository
 
   def initialize(data, repository)
-    @id         = data[:id]
+    @id         = data[:id].to_i
     @first_name = data[:first_name]
     @last_name  = data[:last_name]
     @created_at = data[:created_at]
@@ -17,10 +17,24 @@ class Customer
   end
 
   def invoices
-    repository.all_invoices(id)
+    @invoices_result ||= repository.all_invoices(id)
   end
 
   def transactions
-    invoices.map { |invoice| invoice.transactions }
+    @all_transactions ||= invoices.map { |invoice| invoice.transactions }
+  end
+
+  def favorite_merchant
+    favorite_merchant = find_successful_invoices.max_by do |invoice|
+      find_successful_invoices.count(invoice.merchant_id)
+    end
+    repository.find_merchant(favorite_merchant.merchant_id)
+  end
+
+  def find_successful_invoices
+    @successful_invoices ||= repository.sales_engine.invoice_repository.all_successful_invoices
+    @all_successful_invoices_for_customer ||= @successful_invoices.select do |invoice|
+      invoice.customer_id == id
+    end
   end
 end

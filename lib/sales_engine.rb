@@ -2,7 +2,7 @@ require_relative "parser"
 require_relative "customer_repository"
 require_relative "merchant_repository"
 require_relative "item_repository"
-require_relative "invoice_items_repository"
+require_relative "invoice_item_repository"
 require_relative "invoice_repository"
 require_relative "transaction_repository"
 
@@ -19,47 +19,59 @@ class SalesEngine
     merchant_repository
     customer_repository
     item_repository
-    invoice_items_repository
+    invoice_item_repository
     invoice_repository
     transaction_repository
   end
 
   def customer_repository
-    data = parse(@filepath, "customers.csv")
-    CustomerRepository.new(data, self)
+    @customer_repository ||= begin
+      data = parse(@filepath, "customers.csv")
+      CustomerRepository.new(data, self)
+    end
   end
 
   def merchant_repository
-    data = parse(@filepath, "merchants.csv")
-    MerchantRepository.new(data, self)
+    @merchant_repository ||= begin
+      data = parse(@filepath, "merchants.csv")
+      MerchantRepository.new(data, self)
+    end
   end
 
   def item_repository
-    data = parse(@filepath, "items.csv")
-    ItemRepository.new(data, self)
+    @item_repository ||= begin
+      data = parse(@filepath, "items.csv")
+      ItemRepository.new(data, self)
+    end
   end
 
-  def invoice_items_repository
-    data = parse(@filepath, "invoice_items.csv")
-    InvoiceItemsRepository.new(data, self)
+  def invoice_item_repository
+    @invoice_item_repository ||= begin
+      data = parse(@filepath, "invoice_items.csv")
+      InvoiceItemRepository.new(data, self)
+    end
   end
 
   def invoice_repository
-    data = parse(@filepath, "invoices.csv")
-    InvoiceRepository.new(data, self)
+    @invoice_repository ||= begin
+      data = parse(@filepath, "invoices.csv")
+      InvoiceRepository.new(data, self)
+    end
   end
 
   def transaction_repository
-    data = parse(@filepath, "transactions.csv")
-    TransactionRepository.new(data, self)
+    @transaction_repository ||= begin
+      data = parse(@filepath, "transactions.csv")
+      TransactionRepository.new(data, self)
+    end
   end
 
   def all_customer_invoices(customer_id)
     invoice_repository.find_all_by_customer_id(customer_id)
   end
 
-  def all_invoice_item_instances(item_id)
-    invoice_items_repository.find_all_by_item_id(item_id)
+  def all_invoice_items(item_id)
+    invoice_item_repository.find_all_by_item_id(item_id)
   end
 
   def merchant_information(id)
@@ -90,8 +102,8 @@ class SalesEngine
     invoice_repository.find_by_id(invoice_id)
   end
 
-  def all_invoice_items(invoice_id)
-    invoice_items_repository.find_all_by_invoice_id(invoice_id)
+  def find_all_invoice_items(id)
+    invoice_item_repository.find_all_by_invoice_id(id)
   end
 
   def find_item(item_id)
@@ -100,5 +112,9 @@ class SalesEngine
 
   def find_an_invoice_instance(invoice_id)
     invoice_repository.find_by_id(invoice_id)
+  end
+
+  def find_merchant(merchant_id)
+    merchant_repository.find_by_id(merchant_id)
   end
 end
