@@ -94,7 +94,7 @@ class InvoiceRepositortyTest < Minitest::Test
   end
 
   def test_it_can_find_a_invoice_by_created_at
-    assert_equal 4, @invoice_objects.find_by_created_at("2012-03-24 15:54:10 UTC").id
+    assert_equal 4, @invoice_objects.find_by_created_at(Date.parse("2012-03-24 15:54:10 UTC")).id
   end
 
   def test_it_can_find_a_invoice_by_updated_at

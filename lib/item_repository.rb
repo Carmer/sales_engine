@@ -86,6 +86,18 @@ class ItemRepository
     sales_engine.merchant_information(merchant_id)
   end
 
+  def invoice_items_quantity
+    sales_engine.invoice_items_quantity(item_id)
+  end
+
+  def successful_invoice_items
+    sales_engine.successful_invoice_items
+  end
+
+  def most_items(n)
+    items.max_by(n) { |item| item.quantity_sold}
+  end
+
   def items_revenue
     sales_engine.successful_invoice_items.reduce(0) do |sum, ii|
       sum = (ii.quantity * ii.unit_price)
