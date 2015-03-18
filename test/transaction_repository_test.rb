@@ -13,8 +13,8 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_it_creates_an_array_of_invoice_objects
-    assert_equal 999, @transaction_objects.transaction.size
-    assert_equal Array, @transaction_objects.transaction.class
+    assert_equal 999, @transaction_objects.transactions.size
+    assert_equal Array, @transaction_objects.transactions.class
   end
 
   def test_it_can_find_an_item_by_id
@@ -84,6 +84,6 @@ class TransactionRepositoryTest < Minitest::Test
 
   def test_it_returns_all_successful_transactions
     assert_equal Transaction, @transaction_objects.find_all_successful_transactions[0].class
-    assert @transaction_objects.find_all_successful_transactions.length < @transaction_objects.transaction.length
+    assert @transaction_objects.find_all_successful_transactions.length < @transaction_objects.transactions.length
   end
 end

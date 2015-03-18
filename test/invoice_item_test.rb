@@ -25,5 +25,4 @@ class InvoiceItemTest < Minitest::Test
   def test_it_returns_an_item_instance
     assert_equal "Item Quae Dolore", @invoice_item.item.name
   end
-
 end
