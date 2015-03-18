@@ -87,8 +87,10 @@ class ItemRepository
   end
 
   def most_revenue(number)
-    item.max_by(number) do |item|
+    items.max_by(number) do |item|
       item.total_revenue
+    end
+  end
 
   def invoice_items_quantity
     sales_engine.invoice_items_quantity(item_id)
@@ -102,9 +104,4 @@ class ItemRepository
     items.max_by(n) { |item| item.quantity_sold}
   end
 
-  def items_revenue
-    sales_engine.successful_invoice_items.reduce(0) do |sum, ii|
-      sum = (ii.quantity * ii.unit_price)
-    end
-  end
 end

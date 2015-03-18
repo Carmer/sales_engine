@@ -100,6 +100,7 @@ class ItemRepositoryTest < Minitest::Test
   def test_it_can_find_the_top_n_items_ranked_by_revenue
     assert_equal 3, @item_objects.most_revenue(3).length
     assert_equal "Item Dicta Autem", @item_objects.most_revenue(3).first.name
+  end
 
   def test_it_can_find_top_n_items_by_total_sold
     assert_equal 4, @item_objects.most_items(4).size
