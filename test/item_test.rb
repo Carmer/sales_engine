@@ -32,6 +32,6 @@ class TestItem < Minitest::Test
   end
 
   def test_it_can_return_the_best_day
-    assert_equal "2012-03-27 14:54:10 UTC", @item.best_day
+    assert_equal "2012-03-13 07:54:10 UTC", @item.best_day
   end
 end

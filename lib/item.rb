@@ -31,6 +31,8 @@ class Item
   end
 
   def best_day
+    max = invoice_items.max_by { |ii| ii.quantity }
+    max.invoice.created_at
     # best_day_hash = {}    { "3/25/12": 6, "3/26/12": 4 }
     # self.successful_invoice_items.each do |invoice_item|
     #   date     = invoice_item.invoice_date
@@ -39,14 +41,14 @@ class Item
     # end
     # search the hash and return the key with highest value
     #   (aka the date with highest quant)
-    best_day = {}
-    find_successful_invoice_items.each do |ii|
-      date = ii.invoice.created_at
-      quantity = ii.quantity
-      best_day[date] += quantity
-     require 'pry' ; binding.pry
-    end
-     best_day.max_by {|k,v| v}
+    # best_day = {}
+    # find_successful_invoice_items.each do |ii|
+    #   date = ii.invoice.created_at
+    #   quantity = ii.quantity
+    #   best_day[date] += quantity
+    #  require 'pry' ; binding.pry
+    # end
+    #  best_day.max_by {|k,v| v}
     #group invoices by day
     #find all corresponding II for all invoices for that day
         #find all invoice items that have an invoice id invoice_by_day

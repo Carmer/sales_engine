@@ -125,4 +125,8 @@ class SalesEngine
   def find_customer(customer_id)
     customer_repository.find_by_id(customer_id)
   end
+
+  def successful_invoice_items
+    invoice_item_repository.all_successful_invoice_items
+  end
 end
