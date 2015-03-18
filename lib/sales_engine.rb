@@ -66,6 +66,10 @@ class SalesEngine
     end
   end
 
+  def find_successful_invoices
+    @successful_invoices ||= invoice_repository.all_successful_invoices
+  end
+
   def all_customer_invoices(customer_id)
     invoice_repository.find_all_by_customer_id(customer_id)
   end
@@ -112,6 +116,10 @@ class SalesEngine
 
   def find_an_invoice_instance(invoice_id)
     invoice_repository.find_by_id(invoice_id)
+  end
+
+  def invoice_date(invoice_id)
+    invoice_repository.find_by_created_at(invoice_id)
   end
 
   def find_merchant(merchant_id)

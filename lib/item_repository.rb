@@ -85,4 +85,10 @@ class ItemRepository
   def find_merchant(merchant_id)
     sales_engine.merchant_information(merchant_id)
   end
+
+  def most_revenue(n)
+    item.max_by(n) do |item|
+      item.revenue
+    end
+  end
 end

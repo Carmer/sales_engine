@@ -96,4 +96,9 @@ class ItemRepositoryTest < Minitest::Test
   def test_it_can_find_all_by_unit_price
     assert_equal 1, @item_objects.find_all_by_unit_price(BigDecimal.new("59454") / 100 ).size
   end
+
+  def test_it_returns_the_top_n_items_ranked_by_total_revenue_generated
+    skip
+    assert_equal [99,9,99], @item_objects.most_revenue(3)
+  end
 end

@@ -59,6 +59,14 @@ class MerchantRepository
     sales_engine.find_customer(customer_id)
   end
 
+  def find_successful_invoices
+    @successful_invoices ||= sales_engine.find_successful_invoices
+  end
+
+  def find_successful_invoice_items
+    @successful_invoice_items ||= sales_engine.invoice_item_repository.all_successful_invoice_items
+  end
+
   def all_items(merchant_id)
     sales_engine.find_items_sold_by_merchant(merchant_id)
   end
