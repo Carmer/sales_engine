@@ -94,15 +94,8 @@ class InvoiceItemRepository
     sales_engine.invoice_date(invoice_id)
   end
 
-  def find_successful_invoices
-    @successful_invoices ||= repository.sales_engine.invoice_repository.all_successful_invoices
-    @all_successful_invoices_for_merchant ||= @successful_invoices.select do |invoice|
-      invoice.id == invoice_id
-    end
-  end
-
   def all_successful_invoice_items
-    @successful_invoices ||= sales_engine.invoice_repository.all_successful_invoices
+    @successful_invoices ||= sales_engine.find_successful_invoices
     @successful_invoice_items ||= invoice_items.select do |invoice_item|
       @successful_invoices.any?  do |invoice|
         invoice.id == invoice_item.invoice_id

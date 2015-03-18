@@ -25,14 +25,14 @@ class Customer
   end
 
   def favorite_merchant
-    favorite_merchant = find_successful_invoices.max_by do |invoice|
-      find_successful_invoices.count(invoice.merchant_id)
+    favorite_merchant = successful_invoices.max_by do |invoice|
+      successful_invoices.count(invoice.merchant_id)
     end
     repository.find_merchant(favorite_merchant.merchant_id)
   end
 
-  def find_successful_invoices
-    @all_successful_invoices_for_customer ||= repository.find_successful_invoices.select do |invoice|
+  def successful_invoices
+    @all ||= repository.find_successful_invoices.select do |invoice|
       invoice.customer_id == id
     end
   end

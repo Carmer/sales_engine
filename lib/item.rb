@@ -36,17 +36,17 @@ class Item
   end
 
   def quantity_sold
-    @successful_invoice_items ||= repository.successful_invoice_items.select do |ii|
+    @successful_ii ||= repository.successful_invoice_items.select do |ii|
       ii.item_id == id
     end
 
-    @successful_invoice_items.reduce(0) do |sum, ii|
+    @successful_ii.reduce(0) do |sum, ii|
       sum + ii.quantity
     end
   end
 
   def total_revenue
-    specific_item_ids = repository.sales_engine.invoice_item_repository.all_successful_invoice_items.select do |ii|
+    specific_item_ids = repository.successful_invoice_items.select do |ii|
       ii.item_id == id
     end
 
@@ -55,5 +55,5 @@ class Item
     end
 
   end
-  
+
 end

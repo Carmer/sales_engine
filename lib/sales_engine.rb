@@ -110,6 +110,10 @@ class SalesEngine
     invoice_item_repository.find_all_by_item_id(item_id)
   end
 
+  def successful_invoice_items
+    invoice_item_repository.all_successful_invoice_items
+  end
+
   def find_items_sold_by_merchant(merchant_id)
     item_repository.find_all_by_merchant_id(merchant_id)
   end
@@ -122,11 +126,12 @@ class SalesEngine
     transaction_repository.find_all_by_invoice_id(invoice_id)
   end
 
+  def find_all_successful_transactions
+    transaction_repository.find_all_successful_transactions
+  end
+
   def find_customer(customer_id)
     customer_repository.find_by_id(customer_id)
   end
 
-  def successful_invoice_items
-    invoice_item_repository.all_successful_invoice_items
-  end
 end

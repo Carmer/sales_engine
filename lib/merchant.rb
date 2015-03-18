@@ -51,15 +51,19 @@ class Merchant
   # private
 
     def find_successful_invoices
+
       @successful_invoices ||= repository.find_successful_invoices
-      @all_successful_invoices_for_merchant ||= @successful_invoices.select do |invoice|
+
+      @all ||= @successful_invoices.select do |invoice|
         invoice.merchant_id == id
       end
     end
 
     def find_successful_invoice_items
+
       @successful_invoice_items ||= repository.find_successful_invoice_items
-      @all_successful_invoice_items ||= @successful_invoice_items.select do |ii|
+
+      @all ||= @successful_invoice_items.select do |ii|
         find_successful_invoices.any? do |invoice|
           invoice.id == ii.invoice_id
         end
@@ -69,7 +73,7 @@ class Merchant
     def revenue_by_date(date)
 
       invoices_by_date = find_successful_invoices.find_all do |invoice|
-      Date.parse(invoice.created_at.to_s) == Date.parse(date.to_s)
+        Date.parse(invoice.created_at.to_s) == Date.parse(date.to_s)
       end
 
       invoice_items = invoices_by_date.flat_map do |invoice|
@@ -82,6 +86,7 @@ class Merchant
     end
 
     def total_merchant_revenue
+
       find_successful_invoice_items.reduce(0) do |sum, ii|
         sum + (ii.quantity * ii.unit_price) / 100.00
       end
@@ -89,6 +94,7 @@ class Merchant
     end
 
     def customers_with_pending_invoices
+
       unsuccessful_invoices = invoices - find_successful_invoices
 
       unsuccessful_invoices.map {|ui| ui.customer}
