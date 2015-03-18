@@ -13,7 +13,7 @@ class Invoice
     @customer_id  = data[:customer_id].to_i
     @merchant_id  = data[:merchant_id].to_i
     @status       = data[:status]
-    @created_at   = data[:created_at]
+    @created_at   = Date.parse(data[:created_at])
     @updated_at   = data[:updated_at]
     @repository   = repository
   end
@@ -52,7 +52,7 @@ class Invoice
 #transaction.successful?
   def successful?
     @is_it_success ||= transactions.any? do |transaction|
-      transaction.result == "success"
+      transaction.successful?
     end
   end
 end

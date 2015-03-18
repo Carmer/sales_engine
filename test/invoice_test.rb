@@ -19,7 +19,7 @@ class InvoiceTest < Minitest::Test
     assert_equal 3, @invoice.customer_id
     assert_equal 8, @invoice.merchant_id
     assert_equal "shipped", @invoice.status
-    assert_equal "2012-03-21 13:54:10 UTC", @invoice.created_at
+    assert_equal Date.parse("2012-03-21 13:54:10 UTC"), @invoice.created_at
     assert_equal "2012-03-21 13:54:10 UTC", @invoice.updated_at
   end
 

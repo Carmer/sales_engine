@@ -13,8 +13,8 @@ class CustomerRepositortyTest < Minitest::Test
   end
 
   def test_it_creates_an_array_of_customer_objects
-    assert_equal 99, @customer.customer.size
-    assert_equal Array, @customer.customer.class
+    assert_equal 99, @customer.customers.size
+    assert_equal Array, @customer.customers.class
   end
 
   def test_it_can_pull_a_random_sample_customer

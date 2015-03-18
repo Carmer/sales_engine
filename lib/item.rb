@@ -31,8 +31,22 @@ class Item
   end
 
   def best_day
-    dates = invoice_items.map { |invoice_items| invoice_items.created_at }
-    dates.max_by { |date| dates.include?(date) }
+    max = invoice_items.max_by { |ii| ii.quantity }
+    max.invoice.created_at
+  end
+
+  # most_revenue
+  #order the items by their revenue:
+    #sortby item.revenue
+
+  def quantity_sold
+    @successful_invoice_items ||= repository.successful_invoice_items.select do |ii|
+      ii.item_id == id
+    end
+
+    @successful_invoice_items.reduce(0) do |sum, ii|
+      sum + ii.quantity
+    end
   end
 #me
   def total_revenue

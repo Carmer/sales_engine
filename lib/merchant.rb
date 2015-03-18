@@ -46,20 +46,19 @@ class Merchant
      all_merchant_customers.max_by do |customer|
        all_merchant_customers.count(customer)
      end
-
-  end
+   end
 
   private
 
     def find_successful_invoices
-      @successful_invoices ||= repository.sales_engine.invoice_repository.all_successful_invoices
+      @successful_invoices ||= repository.find_successful_invoices
       @all_successful_invoices_for_merchant ||= @successful_invoices.select do |invoice|
         invoice.merchant_id == id
       end
     end
 
     def find_successful_invoice_items
-      @successful_invoice_items ||= repository.sales_engine.invoice_item_repository.all_successful_invoice_items
+      @successful_invoice_items ||= repository.find_successful_invoice_items
       @all_successful_invoice_items ||= @successful_invoice_items.select do |ii|
         find_successful_invoices.any? do |invoice|
           invoice.id == ii.invoice_id

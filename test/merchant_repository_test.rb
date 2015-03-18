@@ -9,7 +9,7 @@ class TestMerchantRepository < Minitest::Test
   end
 
   def test_it_creates_an_array_of_merchants
-    assert_equal 100, @merchant_objects.merchant.size
+    assert_equal 100, @merchant_objects.merchants.size
   end
 
   def test_it_can_inspec_a_merchant_repostiory_can_inspec_itself
