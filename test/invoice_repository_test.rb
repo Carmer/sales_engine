@@ -86,7 +86,7 @@ class InvoiceRepositortyTest < Minitest::Test
   end
 
   def test_it_can_find_all_invoices_by_created_at
-    assert_equal 1, @invoice_objects.find_all_by_created_at("2012-03-24 15:54:10 UTC").length
+      assert_equal 6, @invoice_objects.find_all_by_created_at(Date.parse("2012-03-24 15:54:10 UTC")).length
   end
 
   def test_it_can_find_all_invoices_by_updated_at

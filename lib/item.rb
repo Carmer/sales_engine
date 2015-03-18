@@ -35,10 +35,6 @@ class Item
     max.invoice.created_at
   end
 
-  # most_revenue
-  #order the items by their revenue:
-    #sortby item.revenue
-
   def quantity_sold
     @successful_invoice_items ||= repository.successful_invoice_items.select do |ii|
       ii.item_id == id
@@ -48,7 +44,7 @@ class Item
       sum + ii.quantity
     end
   end
-#me
+
   def total_revenue
     specific_item_ids = repository.sales_engine.invoice_item_repository.all_successful_invoice_items.select do |ii|
       ii.item_id == id
@@ -59,12 +55,5 @@ class Item
     end
 
   end
-
-    # def revenue inside ii, revenue = q * u_p, def successful? = invoice.successful?
-    # inside item, revenue = successful
-    # def successful_ii
-    # variable name can be as short as its lifetime
-    # repository.sales_engine.invoice_item_repository.all_successful_invoice_items.reduce(0) do |sum, ii|
-    #   sum + (ii.quantity * ii.unit_price)
-
+  
 end
