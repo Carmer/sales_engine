@@ -5,64 +5,64 @@ class InvoiceRepository
 
   include Finder
 
-  attr_reader :invoice,
+  attr_reader :invoices,
               :sales_engine
 
   def initialize(data, sales_engine)
-    @invoice     = data.map {|row| Invoice.new(row, self)}
+    @invoices     = data.map {|row| Invoice.new(row, self)}
     @sales_engine = sales_engine
   end
 
   def inspect
-    "#<#{self.class} #{@invoice.size} rows>"
+    "#<#{self.class} #{@invoices.size} rows>"
   end
 
   def random
-    @invoice.sample
+    @invoices.sample
   end
 
   def find_by_id(id)
-    find_by_parameter(invoice, :id, id)
+    find_by_parameter(invoices, :id, id)
   end
 
   def find_by_status(status)
-    find_by_string_parameter(invoice, :status, status)
+    find_by_string_parameter(invoices, :status, status)
   end
 
   def find_all_by_status(status)
-    find_all_by_string_parameter(invoice, :status, status)
+    find_all_by_string_parameter(invoices, :status, status)
   end
 
   def find_by_customer_id(customer_id)
-    find_by_parameter(invoice, :customer_id, customer_id)
+    find_by_parameter(invoices, :customer_id, customer_id)
   end
 
   def find_all_by_customer_id(customer_id)
-    find_all_by_parameter(invoice, :customer_id, customer_id)
+    find_all_by_parameter(invoices, :customer_id, customer_id)
   end
 
   def find_by_merchant_id(merchant_id)
-    find_by_parameter(invoice, :merchant_id, merchant_id)
+    find_by_parameter(invoices, :merchant_id, merchant_id)
   end
 
   def find_all_by_merchant_id(merchant_id)
-    find_all_by_parameter(invoice, :merchant_id, merchant_id)
+    find_all_by_parameter(invoices, :merchant_id, merchant_id)
   end
 
   def find_by_created_at(created_at)
-    find_by_parameter(invoice, :created_at, created_at)
+    find_by_parameter(invoices, :created_at, created_at)
   end
 
   def find_all_by_created_at(created_at)
-    find_all_by_parameter(invoice, :created_at, created_at)
+    find_all_by_parameter(invoices, :created_at, created_at)
   end
 
   def find_by_updated_at(updated_at)
-    find_by_parameter(invoice, :updated_at, updated_at)
+    find_by_parameter(invoices, :updated_at, updated_at)
   end
 
   def find_all_by_updated_at(updated_at)
-    find_all_by_parameter(invoice, :updated_at, updated_at)
+    find_all_by_parameter(invoices, :updated_at, updated_at)
   end
 
   def all_transactions(invoice_id)
@@ -87,7 +87,7 @@ class InvoiceRepository
 
   def all_successful_invoices
     @successful_transactions ||= sales_engine.transaction_repository.find_all_successful_transactions
-    @successful_invoices ||= invoice.select do |invoice|
+    @successful_invoices ||= invoices.select do |invoice|
       @successful_transactions.any?  do |transaction|
         transaction.invoice_id == invoice.id
       end

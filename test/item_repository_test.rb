@@ -28,8 +28,8 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_it_creates_an_array_of_item_objects
-    assert_equal 595, @item_objects.item.size
-    assert_equal Array, @item_objects.item.class
+    assert_equal 595, @item_objects.items.size
+    assert_equal Array, @item_objects.items.class
   end
 
   def test_it_can_find_an_item_by_id
