@@ -91,4 +91,5 @@ class ItemRepository
       item.total_revenue
     end
   end
+
 end

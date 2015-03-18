@@ -49,10 +49,18 @@ class Invoice
     end
   end
 
-#transaction.successful?
   def successful?
     @is_it_success ||= transactions.any? do |transaction|
       transaction.result == "success"
     end
+  end
+
+  #jeff's create
+  def add_items(items)
+    #remember there could be repeats
+    #call group_by on items to group them by item id
+    #iterate through that result and for each pair create an invoice item, set the item id to the key, set the quantity to the number of items in thevalue
+    #set the invoice id to my id
+    #add the ii to ii repo
   end
 end
