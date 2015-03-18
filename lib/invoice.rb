@@ -49,6 +49,7 @@ class Invoice
     end
   end
 
+#transaction.successful?
   def successful?
     @is_it_success ||= transactions.any? do |transaction|
       transaction.result == "success"

@@ -38,4 +38,8 @@ class TestMerchant < Minitest::Test
   def test_it_has_a_favorite_customer
     assert_equal 4, @merchant.favorite_customer.id
   end
+
+  def test_it_finds_customers_with_pending_invoies
+
+  end
 end
