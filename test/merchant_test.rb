@@ -40,6 +40,6 @@ class TestMerchant < Minitest::Test
   end
 
   def test_it_finds_customers_with_pending_invoies
-
+    assert_equal 0, @merchant.customers_with_pending_invoices.size
   end
 end

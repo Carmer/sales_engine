@@ -48,7 +48,7 @@ class Merchant
      end
    end
 
-  private
+  # private
 
     def find_successful_invoices
       @successful_invoices ||= repository.find_successful_invoices
@@ -85,5 +85,14 @@ class Merchant
       find_successful_invoice_items.reduce(0) do |sum, ii|
         sum + (ii.quantity * ii.unit_price) / 100.00
       end
+
     end
+
+    def customers_with_pending_invoices
+      unsuccessful_invoices = invoices - find_successful_invoices
+
+      unsuccessful_invoices.map {|ui| ui.customer}
+
+    end
+
 end
