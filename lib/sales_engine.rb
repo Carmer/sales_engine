@@ -74,44 +74,12 @@ class SalesEngine
     invoice_repository.find_all_by_customer_id(customer_id)
   end
 
-  def all_invoice_items(item_id)
-    invoice_item_repository.find_all_by_item_id(item_id)
-  end
-
-  def merchant_information(id)
-    merchant_repository.find_by_id(id)
-  end
-
-  def find_items_sold_by_merchant(merchant_id)
-    item_repository.find_all_by_merchant_id(merchant_id)
-  end
-
   def find_invoices_for_merchant(merchant_id)
     invoice_repository.find_all_by_merchant_id(merchant_id)
   end
 
-  def find_all_transactions_for_invoice(invoice_id)
-    transaction_repository.find_all_by_invoice_id(invoice_id)
-  end
-
-  def find_customer(customer_id)
-    customer_repository.find_by_id(customer_id)
-  end
-
-  def find_merchant(merchant_id)
-    merchant_repository.find_by_id(merchant_id)
-  end
-
   def find_invoice_for_invoice_item(invoice_id)
     invoice_repository.find_by_id(invoice_id)
-  end
-
-  def find_all_invoice_items(id)
-    invoice_item_repository.find_all_by_invoice_id(id)
-  end
-
-  def find_item(item_id)
-    item_repository.find_by_id(item_id)
   end
 
   def find_an_invoice_instance(invoice_id)
@@ -124,5 +92,37 @@ class SalesEngine
 
   def find_merchant(merchant_id)
     merchant_repository.find_by_id(merchant_id)
+  end
+
+  def merchant_information(id)
+    merchant_repository.find_by_id(id)
+  end
+
+  def find_merchant(merchant_id)
+    merchant_repository.find_by_id(merchant_id)
+  end
+
+  def find_all_invoice_items(id)
+    invoice_item_repository.find_all_by_invoice_id(id)
+  end
+
+  def all_invoice_items(item_id)
+    invoice_item_repository.find_all_by_item_id(item_id)
+  end
+
+  def find_items_sold_by_merchant(merchant_id)
+    item_repository.find_all_by_merchant_id(merchant_id)
+  end
+
+  def find_item(item_id)
+    item_repository.find_by_id(item_id)
+  end
+
+  def find_all_transactions_for_invoice(invoice_id)
+    transaction_repository.find_all_by_invoice_id(invoice_id)
+  end
+
+  def find_customer(customer_id)
+    customer_repository.find_by_id(customer_id)
   end
 end
