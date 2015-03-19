@@ -97,10 +97,6 @@ class ItemRepositoryTest < Minitest::Test
     assert_equal 1, @item_objects.find_all_by_unit_price(BigDecimal.new("59454") / 100 ).size
   end
 
-  def test_it_can_find_invoice_items_quantity
-    assert_equal 30, @item_objects.invoice_items_quantity
-  end
-
   def test_it_can_find_the_top_n_items_ranked_by_revenue
     assert_equal 3, @item_objects.most_revenue(3).length
     assert_equal "Item Dicta Autem", @item_objects.most_revenue(3).first.name
@@ -108,6 +104,8 @@ class ItemRepositoryTest < Minitest::Test
 
   def test_it_can_find_top_n_items_by_total_sold
     assert_equal 4, @item_objects.most_items(4).size
+    assert_equal [227, 543, 528], @item_objects.most_items(3).map(&:id)
+    assert_equal [227, 543], @item_objects.most_items(2).map(&:id)
   end
 
 end
