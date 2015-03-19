@@ -7,6 +7,7 @@ class TestMerchant < Minitest::Test
   def setup
     sales_engine = SalesEngine.new
     @merchant= sales_engine.merchant_repository.find_by_name('Dicki-Bednar')
+    @merchant2 = sales_engine.merchant_repository.find_by_name('Schroeder-Jerde')
   end
 
   def test_a_merchant_has_attributes
@@ -37,9 +38,11 @@ class TestMerchant < Minitest::Test
 
   def test_it_has_a_favorite_customer
     assert_equal 4, @merchant.favorite_customer.id
+    assert_equal 7, @merchant2.favorite_customer.id
   end
 
   def test_it_finds_customers_with_pending_invoies
     assert_equal 0, @merchant.customers_with_pending_invoices.size
+    assert_equal 0, @merchant2.customers_with_pending_invoices.size
   end
 end

@@ -108,9 +108,8 @@ class TestMerchantRepository < Minitest::Test
   end
 
   def test_it_returns_top_n_item_sellers
-    assert_equal 1, @merchant_objects.most_items(1).length
-    assert_equal Array, @merchant_objects.most_items(3).class
-    assert_equal ["Terry-Moore"], @merchant_objects.most_revenue(1).map {|merchant| merchant.name }
+    assert_equal 10, @merchant_objects.most_items(10).length
+    assert_equal ["Terry-Moore", "Johnston, Gleason and O'Keefe"], @merchant_objects.most_revenue(2).map {|merchant| merchant.name }
   end
 
   def test_it_returns_the_total_revenue_for_a_particular_date_across_all_merchants
