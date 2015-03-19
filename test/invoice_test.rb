@@ -44,6 +44,6 @@ class InvoiceTest < Minitest::Test
   end
 
   def test_it_charges_a_new_invoice
-    assert_equal 1000, @invoice.charge({credit_card_number: "4444333322221111", credit_card_expiration: "10/13", result: "success"} ).length
+    assert_equal 1000, @invoice.charge({credit_card_number: "4444333322221111", credit_card_expiration: "10/13", result: "success"}).length
   end
 end

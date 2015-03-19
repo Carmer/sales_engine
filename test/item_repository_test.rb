@@ -97,6 +97,10 @@ class ItemRepositoryTest < Minitest::Test
     assert_equal 1, @item_objects.find_all_by_unit_price(BigDecimal.new("59454") / 100 ).size
   end
 
+  def test_it_can_find_invoice_items_quantity
+    assert_equal 30, @item_objects.invoice_items_quantity
+  end
+
   def test_it_can_find_the_top_n_items_ranked_by_revenue
     assert_equal 3, @item_objects.most_revenue(3).length
     assert_equal "Item Dicta Autem", @item_objects.most_revenue(3).first.name
