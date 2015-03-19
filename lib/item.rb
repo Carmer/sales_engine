@@ -26,7 +26,7 @@ class Item
   end
 
   def merchant
-    @merchant ||= repository.find_merchant(merchant_id)
+    @merchant ||= repository.merchant(merchant_id)
   end
 
   def best_day

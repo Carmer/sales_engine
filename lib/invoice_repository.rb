@@ -103,11 +103,11 @@ class InvoiceRepository
   end
 
   def customer_instance(customer_id)
-    sales_engine.find_customer(customer_id)
+    sales_engine.customer(customer_id)
   end
 
   def merchant_instance(merchant_id)
-    sales_engine.find_merchant(merchant_id)
+    sales_engine.merchant(merchant_id)
   end
 
   def find_item(item_id)

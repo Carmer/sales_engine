@@ -54,8 +54,8 @@ class MerchantRepository
     find_all_as_string(merchants, :updated_at, updated_at)
   end
 
-  def find_customer(customer_id)
-    sales_engine.find_customer(customer_id)
+  def customer(customer_id)
+    sales_engine.customer(customer_id)
   end
 
   def successful_invoices

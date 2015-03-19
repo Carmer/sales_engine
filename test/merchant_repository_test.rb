@@ -98,7 +98,7 @@ class TestMerchantRepository < Minitest::Test
   end
 
   def test_it_can_find_a_customer
-    assert_equal "Mariah", @merchant_objects.find_customer(3).first_name
+    assert_equal "Mariah", @merchant_objects.customer(3).first_name
   end
 
   def test_it_returns_top_n_revenue_earners

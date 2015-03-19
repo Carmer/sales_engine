@@ -27,7 +27,7 @@ class Customer
     favorite_merchant = successful_invoices.max_by do |invoice|
       successful_invoices.count(invoice.merchant_id)
     end
-    repository.find_merchant(favorite_merchant.merchant_id)
+    repository.merchant(favorite_merchant.merchant_id)
   end
 
   def successful_invoices

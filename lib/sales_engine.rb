@@ -89,7 +89,7 @@ class SalesEngine
     merchant_repository.find_by_id(id)
   end
 
-  def find_merchant(merchant_id)
+  def merchant(merchant_id)
     merchant_repository.find_by_id(merchant_id)
   end
 
@@ -129,7 +129,7 @@ class SalesEngine
     transaction_repository.charge(data, id)
   end
 
-  def find_customer(customer_id)
+  def customer(customer_id)
     customer_repository.find_by_id(customer_id)
   end
 end

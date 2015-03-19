@@ -81,12 +81,12 @@ class ItemRepository
     sales_engine.all_invoice_items(item_id)
   end
 
-  def find_merchant(merchant_id)
+  def merchant(merchant_id)
     sales_engine.merchant_information(merchant_id)
   end
 
   def most_revenue(number)
-    @items.max_by(number) do |item|
+    items.max_by(number) do |item|
       item.total_revenue
     end
   end
@@ -96,6 +96,6 @@ class ItemRepository
   end
 
   def most_items(n)
-    @items.max_by(n) { |item| item.quantity_sold}
+    items.max_by(n) { |item| item.quantity_sold}
   end
 end
