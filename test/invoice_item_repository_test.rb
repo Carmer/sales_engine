@@ -91,4 +91,5 @@ class InvoiceItemRepositortyTest < Minitest::Test
   def test_it_can_find_all_by_updated_at
     assert_equal 15, @invoice_item_objects.find_all_by_updated_at("2012-03-27 14:54:09 UTC").size
   end
+
 end

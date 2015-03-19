@@ -8,6 +8,7 @@ class InvoiceItemTest < Minitest::Test
   def setup
     sales_engine  = SalesEngine.new
     @invoice_item = sales_engine.invoice_item_repository.find_by_id(2)
+    @invoice_item2 = sales_engine.invoice_item_repository.find_by_id(3)
   end
 
   def test_it_has_attributes
@@ -24,5 +25,6 @@ class InvoiceItemTest < Minitest::Test
 
   def test_it_returns_an_item_instance
     assert_equal "Item Quae Dolore", @invoice_item.item.name
+    assert_equal "Item Pariatur Quia", @invoice_item2.item.name
   end
 end

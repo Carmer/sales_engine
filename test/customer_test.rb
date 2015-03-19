@@ -11,6 +11,8 @@ class CustomerTest < Minitest::Test
   def setup
     sales_engine = SalesEngine.new
     @customer = sales_engine.customer_repository.find_by_id(1)
+    @customer2 = sales_engine.customer_repository.find_by_id(3)
+    @customer4 = sales_engine.customer_repository.find_by_id(10)
   end
 
   def test_it_has_attributes
@@ -31,5 +33,7 @@ class CustomerTest < Minitest::Test
 
   def test_it_can_find_favorite_merchant
     assert_equal "Balistreri, Schaefer and Kshlerin", @customer.favorite_merchant.name
+    assert_equal "Marvin Group", @customer2.favorite_merchant.name
+    assert_equal "Zemlak, Volkman and Haley", @customer4.favorite_merchant.name
   end
 end

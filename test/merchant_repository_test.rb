@@ -97,6 +97,10 @@ class TestMerchantRepository < Minitest::Test
     assert_equal "Schroeder-Jerde", @merchant_objects.find_by_updated_at("2012-03-27 14:53:59 UTC").name
   end
 
+  def test_it_can_find_a_customer
+    assert_equal "Mariah", @merchant_objects.find_customer(3).first_name
+  end
+
   def test_it_returns_top_n_revenue_earners
     merchants = @merchant_objects.most_revenue(3)
     assert_equal 3, merchants.length
@@ -112,4 +116,5 @@ class TestMerchantRepository < Minitest::Test
   def test_it_returns_the_total_revenue_for_a_particular_date_across_all_merchants
     assert_equal 61042.10, @merchant_objects.revenue("2012-03-07 12:54:10 UTC")
   end
+
 end
