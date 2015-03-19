@@ -21,7 +21,7 @@ class InvoiceRepository
       id:           next_id,
       customer_id:  inputs[:customer].id,
       merchant_id:  inputs[:merchant].id,
-      status:       "shipped",
+      status:       inputs[:status],
       created_at:   Time.now.to_s,
       updated_at:   Time.now.to_s
   }
