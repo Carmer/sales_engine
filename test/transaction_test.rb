@@ -11,6 +11,7 @@ class TestTransactions < Minitest::Test
   def setup
     sales_engine = SalesEngine.new
     @transaction = sales_engine.transaction_repository.find_by_id(7)
+    @transaction2 = sales_engine.transaction_repository.find_by_id(11)
   end
 
   def test_a_transaction_has_attributes
@@ -29,6 +30,7 @@ class TestTransactions < Minitest::Test
 
   def test_it_has_a_successful_status
     assert @transaction.successful?
+    refute @transaction2.successful?
   end
 
 end
