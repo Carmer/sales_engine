@@ -59,7 +59,7 @@ class SalesEngine
   end
 
   def transaction_repository
-    @transaction_repository ||= begin
+      @transaction_repository ||= begin
       data = parse(@filepath, "transactions.csv")
       TransactionRepository.new(data, self)
     end
@@ -128,6 +128,14 @@ class SalesEngine
 
   def find_all_successful_transactions
     transaction_repository.find_all_successful_transactions
+  end
+
+  def all_transactions
+    transaction_repository.transactions
+  end
+
+  def charge(data, id)
+    transaction_repository.charge(data, id)
   end
 
   def find_customer(customer_id)

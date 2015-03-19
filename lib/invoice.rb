@@ -18,8 +18,12 @@ class Invoice
     @repository   = repository
   end
 
+  def charge(data)
+    repository.charge(data, id)
+  end
+
   def transactions
-    @transactions ||= repository.all_transactions(id)
+    repository.all_transactions(id)
   end
 
   def invoice_items

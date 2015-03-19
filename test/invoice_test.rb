@@ -42,4 +42,8 @@ class InvoiceTest < Minitest::Test
   def test_it_can_return_associated_merchant
     assert_equal "Osinski, Pollich and Koelpin", @invoice.merchant.name
   end
+
+  def test_it_charges_a_new_invoice
+    assert_equal "succcess", @invoice.charge({credit_card_number: "4444333322221111", credit_card_expiration: "10/13", result: "success"} )
+  end
 end

@@ -11,6 +11,7 @@ class InvoiceRepository
   def initialize(data, sales_engine)
     @invoices     = data.map {|row| Invoice.new(row, self)}
     @sales_engine = sales_engine
+
   end
 
   def create(inputs)
@@ -37,7 +38,9 @@ class InvoiceRepository
     invoices.last.id + 1
   end
 
-
+  def charge(data, id)
+    sales_engine.charge(data, id)
+  end
 
   def inspect
     "#<#{self.class} #{@invoices.size} rows>"
