@@ -11,6 +11,7 @@ class InvoiceRepository
   def initialize(data, sales_engine)
     @invoices     = data.map {|row| Invoice.new(row, self)}
     @sales_engine = sales_engine
+
   end
 
   def create(inputs)

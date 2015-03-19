@@ -130,6 +130,10 @@ class SalesEngine
     transaction_repository.find_all_successful_transactions
   end
 
+  def all_transactions
+    transaction_repository.transactions
+  end
+
   def find_customer(customer_id)
     customer_repository.find_by_id(customer_id)
   end
