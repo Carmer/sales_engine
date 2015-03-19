@@ -43,14 +43,10 @@ class Invoice
   end
 
   def items
-    @invoice_items ||= repository.all_invoice_items(id)
+    invoice_items.map(&:item).uniq
+  end
 
-    item_ids = invoice_items.map do |invoice_items|
-      invoice_items.item_id
-    end.uniq
-
-     item_ids.map do |item_id|
-       repository.find_item(item_id)
-     end
+  def revenue
+    invoice_items.map(&:revenue).reduce(:+)
   end
 end

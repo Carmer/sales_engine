@@ -35,15 +35,16 @@ class Merchant
     end
   end
 
-  def favorite_customer
-  @all_merchant_customers ||= successful_invoices.map do |invoice|
-    invoice.customer
+  def all_merchant_customers
+    @all_merchant_customers ||= successful_invoices.map do |invoice|
+      invoice.customer
+    end
   end
-
-   @all_merchant_customers.max_by do |customer|
-     @all_merchant_customers.count(customer)
-   end
- end
+  def favorite_customer
+    all_merchant_customers.max_by do |customer|
+      @all_merchant_customers.count(customer)
+    end
+  end
 
   def successful_invoices
     @successful_invoices ||= repository.successful_invoices

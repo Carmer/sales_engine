@@ -16,11 +16,11 @@ class Customer
   end
 
   def invoices
-    @invoices_result ||= repository.all_invoices(id)
+    @invoices ||= repository.all_invoices(id)
   end
 
   def transactions
-    @all_transactions ||= invoices.map { |invoice| invoice.transactions }
+    @transactions ||= invoices.map { |invoice| invoice.transactions }
   end
 
   def favorite_merchant
@@ -31,7 +31,13 @@ class Customer
   end
 
   def successful_invoices
-    @all ||= repository.successful_invoices.select do |invoice|
+    @succesful_invoices ||= find_successful_matching_invoices
+  end
+
+  private
+
+  def find_successful_matching_invoices
+    repository.successful_invoices.select do |invoice|
       invoice.customer_id == id
     end
   end

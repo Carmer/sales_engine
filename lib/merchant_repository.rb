@@ -86,19 +86,11 @@ class MerchantRepository
     end
   end
 
+  def invoices_by_date(date)
+    successful_invoices.group_by(&:date)
+  end
+
   def revenue(date)
-    @successful_invoices ||= sales_engine.successful_invoices
-
-    @invoices_by_date ||= @successful_invoices.find_all do |invoice|
-      Date.parse(invoice.created_at.to_s) == Date.parse(date.to_s)
-    end
-
-    @invoice_items ||= @invoices_by_date.flat_map do |invoice|
-      invoice.invoice_items
-    end
-
-    @invoice_items.reduce(0) do |sum, i_item|
-      sum + (i_item.quantity * i_item.unit_price) / 100.00
-    end
+    invoices_by_date[date].map(&:revenue).reduce(:+)
   end
 end
