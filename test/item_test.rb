@@ -10,6 +10,7 @@ class TestItem < Minitest::Test
   def setup
     sales_engine = SalesEngine.new
     @item = sales_engine.item_repository.find_by_id(227)
+    @item1 = sales_engine.item_repository.find_by_id(396)
   end
 
   def test_an_item_attributes
@@ -37,5 +38,6 @@ class TestItem < Minitest::Test
 
   def test_it_can_find_the_quantity_sold_for_an_item
     assert_equal 29, @item.quantity_sold
+    assert_equal 0, @item1.quantity_sold
   end
 end
