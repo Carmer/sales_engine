@@ -97,7 +97,7 @@ class InvoiceItemRepository
         :id         => next_id,
         :item_id    => i.id,
         :invoice_id => invoice_id,
-        :quantity   => 4,
+        :quantity   => count_items(items)[i],
         :unit_price => i.unit_price,
         :created_at => Time.now,
         :updated_at => Time.now
