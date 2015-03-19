@@ -2,7 +2,6 @@ require_relative "finder"
 require_relative "transaction"
 
 class TransactionRepository
-
   include Finder
 
   attr_reader :transactions,
@@ -74,7 +73,6 @@ class TransactionRepository
   end
 
   def find_all_successful_transactions
-    @successful_transactions ||= transactions.select {|transaction| transaction.successful? }
+    @trans ||= transactions.select { |transaction| transaction.successful? }
   end
-  
 end

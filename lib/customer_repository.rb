@@ -2,7 +2,6 @@ require_relative "customer"
 require_relative "finder"
 
 class CustomerRepository
-
   include Finder
 
   attr_reader :customers,
@@ -10,7 +9,7 @@ class CustomerRepository
 
 
   def initialize(data, sales_engine)
-    @customers    = data.map {|row| Customer.new(row, self)}
+    @customers    = data.map { |row| Customer.new(row, self) }
     @sales_engine = sales_engine
   end
 
@@ -71,6 +70,6 @@ class CustomerRepository
   end
 
   def find_successful_invoices
-    @successful_invoices ||= sales_engine.invoice_repository.all_successful_invoices
+    @successful_invoices ||= sales_engine.find_successful_invoices
   end
 end

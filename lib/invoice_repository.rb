@@ -13,6 +13,32 @@ class InvoiceRepository
     @sales_engine = sales_engine
   end
 
+  def create(inputs)
+
+    data = {
+
+      id:           next_id,
+      customer_id:  inputs[:customer].id,
+      merchant_id:  inputs[:merchant].id,
+      status:       "shipped",
+      created_at:   Time.now.to_s,
+      updated_at:   Time.now.to_s
+  }
+
+    invoice = Invoice.new(data, self)
+
+    @invoices << invoice
+
+    invoice.add_items(inputs[:items], invoice.id)
+    invoice
+  end
+
+  def next_id
+    invoices.last.id + 1
+  end
+
+
+
   def inspect
     "#<#{self.class} #{@invoices.size} rows>"
   end
@@ -86,13 +112,11 @@ class InvoiceRepository
   end
 
   def all_successful_invoices
-    @successful_transactions ||= sales_engine.transaction_repository.find_all_successful_transactions
+    @successful_transactions ||= sales_engine.find_all_successful_transactions
     @successful_invoices ||= invoices.select do |invoice|
       @successful_transactions.any?  do |transaction|
         transaction.invoice_id == invoice.id
       end
     end
   end
-
-  
 end

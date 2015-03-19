@@ -3,14 +3,13 @@ require_relative "item"
 require_relative "sales_engine"
 
 class ItemRepository
-
   include Finder
 
   attr_reader :items,
               :sales_engine
 
   def initialize(data, sales_engine)
-    @items        = data.map {|row| Item.new(row, self)}
+    @items        = data.map { |row| Item.new(row, self) }
     @sales_engine = sales_engine
   end
 
@@ -103,5 +102,4 @@ class ItemRepository
   def most_items(n)
     items.max_by(n) { |item| item.quantity_sold}
   end
-
 end

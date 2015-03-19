@@ -3,7 +3,6 @@ require_relative "finder"
 require "bigdecimal"
 
 class MerchantRepository
-
   include Finder
 
   attr_reader :merchants,
@@ -44,7 +43,7 @@ class MerchantRepository
   end
 
   def find_all_by_created_at(created_at)
-    find_all_by_parameter(merchants, :created_at, created_at )
+    find_all_by_parameter(merchants, :created_at, created_at)
   end
 
   def find_by_updated_at(updated_at)
@@ -64,7 +63,7 @@ class MerchantRepository
   end
 
   def find_successful_invoice_items
-    @successful_invoice_items ||= sales_engine.invoice_item_repository.all_successful_invoice_items
+    @successful_invoice_items ||= sales_engine.successful_invoice_items
   end
 
   def all_items(merchant_id)
@@ -76,9 +75,9 @@ class MerchantRepository
   end
 
   def most_revenue(number)
-    merchants.sort_by do |merchants|
-      merchants.revenue
-    end.reverse.take(number)
+    merchants.max_by(number) do |merchant|
+      merchant.revenue
+    end
   end
 
   def most_items(number)
@@ -88,8 +87,8 @@ class MerchantRepository
   end
 
   def revenue(date)
-    successful_invoices = sales_engine.invoice_repository.all_successful_invoices
-    invoices_by_date = successful_invoices.find_all do |invoice|
+    @successful_invoices ||= sales_engine.find_successful_invoices
+    invoices_by_date = @successful_invoices.find_all do |invoice|
       Date.parse(invoice.created_at.to_s) == Date.parse(date.to_s)
     end
 
@@ -101,10 +100,4 @@ class MerchantRepository
       sum + (ii.quantity * ii.unit_price) / 100.00
     end
   end
-
-  # private
-
-  # def all_invoices_across_all_merchants
-  #   @all_invoices_across_all_merchants ||= merchants.flat_map {|merchant| all_invoices(merchant.id) }
-  # end
 end
