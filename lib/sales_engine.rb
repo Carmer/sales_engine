@@ -7,7 +7,6 @@ require_relative "invoice_repository"
 require_relative "transaction_repository"
 
 class SalesEngine
-
   include Parser
 
   def initialize(filepath = './data/fixtures')
@@ -86,14 +85,6 @@ class SalesEngine
     invoice_repository.find_by_id(invoice_id)
   end
 
-  def invoice_date(invoice_id)
-    invoice_repository.find_by_created_at(invoice_id)
-  end
-
-  def find_merchant(merchant_id)
-    merchant_repository.find_by_id(merchant_id)
-  end
-
   def merchant_information(id)
     merchant_repository.find_by_id(id)
   end
@@ -118,6 +109,15 @@ class SalesEngine
     item_repository.find_all_by_merchant_id(merchant_id)
   end
 
+  # def add_items(data, invoice_id)
+  #   invoice_item_repository.invoice_items << data
+  # end
+
+  def add_item(items, invoice_id)
+    invoice_item_repository.add_item(items, invoice_id)
+    # require 'pry' ; binding.pry
+  end
+
   def find_item(item_id)
     item_repository.find_by_id(item_id)
   end
@@ -133,5 +133,4 @@ class SalesEngine
   def find_customer(customer_id)
     customer_repository.find_by_id(customer_id)
   end
-
 end

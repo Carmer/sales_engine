@@ -105,4 +105,5 @@ class ItemRepositoryTest < Minitest::Test
   def test_it_can_find_top_n_items_by_total_sold
     assert_equal 4, @item_objects.most_items(4).size
   end
+
 end

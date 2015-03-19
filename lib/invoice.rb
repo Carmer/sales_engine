@@ -34,24 +34,20 @@ class Invoice
     @merchant = repository.merchant_instance(merchant_id)
   end
 
-  def items
-    @items ||= begin
-
-      invoice_items = repository.all_invoice_items(id)
-
-      item_ids = invoice_items.map do |invoice_items|
-        invoice_items.item_id
-      end.uniq
-
-       item_ids.map do |item_id|
-         repository.find_item(item_id)
-       end
-    end
+  def add_items(items, invoice_id)
+    repository.sales_engine.add_item(items, invoice_id)
   end
 
-  def successful?
-    @is_it_success ||= transactions.any? do |transaction|
-      transaction.successful?
-    end
+  def items
+
+    invoice_items = repository.all_invoice_items(id)
+
+    item_ids = invoice_items.map do |invoice_items|
+      invoice_items.item_id
+    end.uniq
+
+     item_ids.map do |item_id|
+       repository.find_item(item_id)
+     end
   end
 end

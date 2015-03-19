@@ -1,5 +1,4 @@
 class Transaction
-
   attr_reader :id,
               :invoice_id,
               :credit_card_number,
@@ -23,7 +22,6 @@ class Transaction
   def invoice
     repository.find_an_invoice(invoice_id)
   end
-
 
   def successful?
     @result == "success"

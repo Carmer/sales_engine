@@ -90,8 +90,36 @@ class InvoiceItemRepository
     sales_engine.find_item(item_id)
   end
 
-  def invoice_date(invoice_id)
-    sales_engine.invoice_date(invoice_id)
+  def add_item(items, invoice_id)
+    items.each do |i|
+
+      data = {
+        :id         => next_id,
+        :item_id    => i.id,
+        :invoice_id => invoice_id,
+        :quantity   => 4,
+        :unit_price => i.unit_price,
+        :created_at => Time.now,
+        :updated_at => Time.now
+        }
+
+      invoice_items << InvoiceItem.new(data, self)
+
+    end
+
+  end
+
+  def next_id
+    invoice_items.last.id + 1
+  end
+
+  def count_items(items)
+    item_count = Hash.new(0)
+
+    items.each do |i|
+      item_count[i] += 1
+    end
+    item_count
   end
 
   def all_successful_invoice_items

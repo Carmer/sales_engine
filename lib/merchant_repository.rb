@@ -3,7 +3,6 @@ require_relative "finder"
 require "bigdecimal"
 
 class MerchantRepository
-
   include Finder
 
   attr_reader :merchants,
@@ -88,8 +87,8 @@ class MerchantRepository
   end
 
   def revenue(date)
-    successful_invoices = sales_engine.find_successful_invoices
-    invoices_by_date = successful_invoices.find_all do |invoice|
+    @successful_invoices ||= sales_engine.find_successful_invoices
+    invoices_by_date = @successful_invoices.find_all do |invoice|
       Date.parse(invoice.created_at.to_s) == Date.parse(date.to_s)
     end
 

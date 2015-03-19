@@ -9,7 +9,8 @@ class InvoiceRepositortyTest < Minitest::Test
   end
 
   def setup
-    @invoice_objects = SalesEngine.new.invoice_repository
+    @sales_engine = SalesEngine.new
+    @invoice_objects = @sales_engine.invoice_repository
   end
 
   def test_it_creates_an_array_of_invoice_objects
@@ -99,5 +100,9 @@ class InvoiceRepositortyTest < Minitest::Test
 
   def test_it_can_find_a_invoice_by_updated_at
     assert_equal 6, @invoice_objects.find_by_updated_at("2012-03-09 01:54:10 UTC").id
+  end
+
+  def test_it_can_add_invoice
+    assert_equal 101, @invoice_objects.create(customer: @sales_engine.customer_repository.customers[3], merchant: @sales_engine.merchant_repository.merchants[5], items: [@sales_engine.item_repository.items[2],@sales_engine.item_repository.items[2],@sales_engine.item_repository.items[2],@sales_engine.item_repository.items[3],@sales_engine.item_repository.items[4]]).id
   end
 end

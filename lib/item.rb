@@ -1,7 +1,6 @@
 require "bigdecimal"
 
 class Item
-
   attr_reader :id,
               :name,
               :description,
@@ -53,7 +52,5 @@ class Item
     total_revenue = specific_item_ids.reduce(0) do |sum, ii|
       sum + (ii.quantity * ii.unit_price)
     end
-
   end
-
 end
