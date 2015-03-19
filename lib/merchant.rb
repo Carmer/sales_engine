@@ -23,8 +23,8 @@ class Merchant
 
 
   def total_items_sold
-    @item_total ||= find_successful_invoice_items.reduce(0) do |sum, ii|
-      sum + ii.quantity
+    @item_total ||= find_successful_invoice_items.reduce(0) do |sum, i_item|
+      sum + i_item.quantity
     end
   end
 
@@ -60,9 +60,9 @@ class Merchant
     def find_successful_invoice_items
       @successful_invoice_items ||= repository.find_successful_invoice_items
 
-      @all_i_items ||= @successful_invoice_items.select do |ii|
+      @all_i_items ||= @successful_invoice_items.select do |i_item|
         find_successful_invoices.any? do |invoice|
-          invoice.id == ii.invoice_id
+          invoice.id == i_item.invoice_id
         end
       end
     end
@@ -76,14 +76,14 @@ class Merchant
         invoice.invoice_items
       end
 
-      invoice_items.reduce(0)  do |sum , ii|
-        sum + (ii.quantity * ii.unit_price) / 100.00
+      invoice_items.reduce(0)  do |sum , i_item|
+        sum + (i_item.quantity * i_item.unit_price) / 100.00
       end
     end
 
     def total_merchant_revenue
-      find_successful_invoice_items.reduce(0) do |sum, ii|
-        sum + (ii.quantity * ii.unit_price) / 100.00
+      find_successful_invoice_items.reduce(0) do |sum, i_item|
+        sum + (i_item.quantity * i_item.unit_price) / 100.00
       end
     end
 

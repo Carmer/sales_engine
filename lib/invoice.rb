@@ -43,8 +43,7 @@ class Invoice
   end
 
   def items
-
-    invoice_items = repository.all_invoice_items(id)
+    @invoice_items ||= repository.all_invoice_items(id)
 
     item_ids = invoice_items.map do |invoice_items|
       invoice_items.item_id
