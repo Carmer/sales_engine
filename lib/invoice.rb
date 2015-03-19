@@ -18,29 +18,12 @@ class Invoice
     @repository   = repository
   end
 
-  def charge(inputs)
-    data = {
-      :id => next_id,
-      :invoice_id => id,
-      :credit_card_number => inputs[:credit_card_number],
-      :credit_card_expiration_date => inputs[:credit_card_expiration],
-      :result => "success",
-      :created_at => Time.now.to_s,
-      :updated_at => Time.now.to_s
-    }
-
-    transaction = Transaction.new(data, self)
-    repository.sales_engine.transaction_repository.transactions << transaction
-    require 'pry' ; binding.pry
-    transaction
-  end
-
-  def next_id
-    all_transactions.last.id + 1
+  def charge(data)
+    repository.charge(data, id)
   end
 
   def transactions
-    @transactions ||= repository.all_transactions(id)
+    repository.all_transactions(id)
   end
 
   def invoice_items

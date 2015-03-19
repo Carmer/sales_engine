@@ -22,10 +22,10 @@ class InvoiceItem
   end
 
   def invoice
-    an_invoice ||= repository.invoice_instance(invoice_id)
+    @an_invoice ||= repository.invoice_instance(invoice_id)
   end
 
   def item
-    an_item ||= repository.item(item_id)
+    @an_item ||= repository.item(item_id)
   end
 end

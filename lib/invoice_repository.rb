@@ -38,7 +38,9 @@ class InvoiceRepository
     invoices.last.id + 1
   end
 
-
+  def charge(data, id)
+    sales_engine.charge(data, id)
+  end
 
   def inspect
     "#<#{self.class} #{@invoices.size} rows>"

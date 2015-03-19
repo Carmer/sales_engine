@@ -4,12 +4,33 @@ require_relative "transaction"
 class TransactionRepository
   include Finder
 
-  attr_reader :transactions,
-              :sales_engine
+  attr_accessor :transactions
+
+  attr_reader  :sales_engine
 
   def initialize(data, sales_engine)
     @transactions = data.map {|row| Transaction.new(row, self)}
     @sales_engine = sales_engine
+  end
+
+  def charge(inputs, invoice_id)
+    data = {
+      :id => next_id,
+      :invoice_id => invoice_id,
+      :credit_card_number => inputs[:credit_card_number],
+      :credit_card_expiration_date => inputs[:credit_card_expiration],
+      :result => inputs[:result],
+      :created_at => Time.now.to_s,
+      :updated_at => Time.now.to_s
+    }
+
+    new_transaction = Transaction.new(data, self)
+    transactions.push(new_transaction)
+    # require 'pry' ; binding.pry
+  end
+
+  def next_id
+    transactions.last.id + 1
   end
 
   def inspect
