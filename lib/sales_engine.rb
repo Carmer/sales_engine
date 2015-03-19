@@ -109,13 +109,8 @@ class SalesEngine
     item_repository.find_all_by_merchant_id(merchant_id)
   end
 
-  # def add_items(data, invoice_id)
-  #   invoice_item_repository.invoice_items << data
-  # end
-
   def add_item(items, invoice_id)
     invoice_item_repository.add_item(items, invoice_id)
-    # require 'pry' ; binding.pry
   end
 
   def find_item(item_id)
@@ -128,10 +123,6 @@ class SalesEngine
 
   def find_all_successful_transactions
     transaction_repository.find_all_successful_transactions
-  end
-
-  def all_transactions
-    transaction_repository.transactions
   end
 
   def charge(data, id)
