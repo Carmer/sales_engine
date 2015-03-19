@@ -122,7 +122,7 @@ class InvoiceItemRepository
   end
 
   def all_successful_invoice_items
-    @successful_invoices ||= sales_engine.find_successful_invoices
+    @successful_invoices ||= sales_engine.successful_invoices
     @successful_invoice_items ||= invoice_items.select do |invoice_item|
       @successful_invoices.any?  do |invoice|
         invoice.id == invoice_item.invoice_id

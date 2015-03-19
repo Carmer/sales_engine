@@ -31,7 +31,7 @@ class Customer
   end
 
   def successful_invoices
-    @all ||= repository.find_successful_invoices.select do |invoice|
+    @all ||= repository.successful_invoices.select do |invoice|
       invoice.customer_id == id
     end
   end

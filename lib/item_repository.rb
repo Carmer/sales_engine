@@ -86,7 +86,7 @@ class ItemRepository
   end
 
   def most_revenue(number)
-    items.max_by(number) do |item|
+    @items.max_by(number) do |item|
       item.total_revenue
     end
   end
@@ -96,6 +96,6 @@ class ItemRepository
   end
 
   def most_items(n)
-    items.max_by(n) { |item| item.quantity_sold}
+    @items.max_by(n) { |item| item.quantity_sold}
   end
 end

@@ -93,6 +93,6 @@ class TransactionRepository
   end
 
   def find_all_successful_transactions
-    @trans ||= transactions.select { |transaction| transaction.successful? }
+    transactions.select { |transaction| transaction.successful? }
   end
 end

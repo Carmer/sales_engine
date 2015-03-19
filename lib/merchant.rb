@@ -21,9 +21,8 @@ class Merchant
     @invoices ||= repository.all_invoices(id)
   end
 
-
   def total_items_sold
-    @item_total ||= find_successful_invoice_items.reduce(0) do |sum, i_item|
+    @item_total ||= successful_invoice_items.reduce(0) do |sum, i_item|
       sum + i_item.quantity
     end
   end
@@ -37,8 +36,7 @@ class Merchant
   end
 
   def favorite_customer
-
-  @all_merchant_customers ||= find_successful_invoices.map do |invoice|
+  @all_merchant_customers ||= successful_invoices.map do |invoice|
     invoice.customer
   end
 
@@ -47,26 +45,26 @@ class Merchant
    end
  end
 
-  def find_successful_invoices
-    @successful_invoices ||= repository.find_successful_invoices
+  def successful_invoices
+    @successful_invoices ||= repository.successful_invoices
 
     @all_i ||= @successful_invoices.select do |invoice|
       invoice.merchant_id == id
     end
   end
 
-  def find_successful_invoice_items
-    @successful_invoice_items ||= repository.find_successful_invoice_items
+  def successful_invoice_items
+    @successful_invoice_items ||= repository.successful_invoice_items
 
     @all_i_items ||= @successful_invoice_items.select do |i_item|
-      find_successful_invoices.any? do |invoice|
+      successful_invoices.any? do |invoice|
         invoice.id == i_item.invoice_id
       end
     end
   end
 
   def revenue_by_date(date)
-    @invoices_by_date ||= find_successful_invoices.find_all do |invoice|
+    @invoices_by_date ||= successful_invoices.find_all do |invoice|
       Date.parse(invoice.created_at.to_s) == Date.parse(date.to_s)
     end
 
@@ -80,13 +78,13 @@ class Merchant
   end
 
   def total_merchant_revenue
-    find_successful_invoice_items.reduce(0) do |sum, i_item|
+    successful_invoice_items.reduce(0) do |sum, i_item|
       sum + (i_item.quantity * i_item.unit_price) / 100.00
     end
   end
 
   def customers_with_pending_invoices
-    unsuccessful_invoices = invoices - find_successful_invoices
+    unsuccessful_invoices = invoices - successful_invoices
 
     unsuccessful_invoices.map {|ui| ui.customer}
   end

@@ -58,11 +58,11 @@ class MerchantRepository
     sales_engine.find_customer(customer_id)
   end
 
-  def find_successful_invoices
-    @successful_invoices ||= sales_engine.find_successful_invoices
+  def successful_invoices
+    @successful_invoices ||= sales_engine.successful_invoices
   end
 
-  def find_successful_invoice_items
+  def successful_invoice_items
     @successful_invoice_items ||= sales_engine.successful_invoice_items
   end
 
@@ -87,7 +87,7 @@ class MerchantRepository
   end
 
   def revenue(date)
-    @successful_invoices ||= sales_engine.find_successful_invoices
+    @successful_invoices ||= sales_engine.successful_invoices
 
     @invoices_by_date ||= @successful_invoices.find_all do |invoice|
       Date.parse(invoice.created_at.to_s) == Date.parse(date.to_s)

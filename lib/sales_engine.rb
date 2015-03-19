@@ -65,7 +65,7 @@ class SalesEngine
     end
   end
 
-  def find_successful_invoices
+  def successful_invoices
     @successful_invoices ||= invoice_repository.all_successful_invoices
   end
 
