@@ -65,8 +65,8 @@ class CustomerRepository
     sales_engine.all_customer_invoices(customer_id)
   end
 
-  def find_merchant(merchant_id)
-    sales_engine.find_merchant(merchant_id)
+  def merchant(merchant_id)
+    sales_engine.merchant(merchant_id)
   end
 
   def successful_invoices
