@@ -103,7 +103,12 @@ class InvoiceRepositortyTest < Minitest::Test
   end
 
   def test_it_can_add_invoice
-    assert_equal 101, @invoice_objects.create(customer: @sales_engine.customer_repository.customers[3], merchant: @sales_engine.merchant_repository.merchants[5], items: [@sales_engine.item_repository.items[2],@sales_engine.item_repository.items[2],@sales_engine.item_repository.items[2],@sales_engine.item_repository.items[3],@sales_engine.item_repository.items[4]]).id
+    customer = @sales_engine.customer_repository.customers[3]
+    merchant = @sales_engine.merchant_repository.merchants[5]
+    items = [@sales_engine.item_repository.items[2],@sales_engine.item_repository.items[2],@sales_engine.item_repository.items[2],@sales_engine.item_repository.items[3],@sales_engine.item_repository.items[4]]
+    assert_equal 101, @invoice_objects.create(customer: customer,
+                                              merchant: merchant,
+                                              items: items).id
     assert_equal 102, @invoice_objects.create(customer: @sales_engine.customer_repository.customers[4], merchant: @sales_engine.merchant_repository.merchants[6], items: [@sales_engine.item_repository.items[3],@sales_engine.item_repository.items[3],@sales_engine.item_repository.items[3],@sales_engine.item_repository.items[4],@sales_engine.item_repository.items[5]]).id
   end
 end

@@ -113,20 +113,16 @@ class InvoiceItemRepository
   end
 
   def count_items(items)
-    item_count = Hash.new(0)
-
-    items.each do |i|
-      item_count[i] += 1
+    items.reduce(Hash.new(0)) do |hash,item|
+      hash[item] += 1
     end
-    item_count
+  end
+
+  def successful_invoices
+    @successful_invoices ||= sales_engine.successful_invoices
   end
 
   def all_successful_invoice_items
-    @successful_invoices ||= sales_engine.successful_invoices
-    @successful_invoice_items ||= invoice_items.select do |invoice_item|
-      @successful_invoices.any?  do |invoice|
-        invoice.id == invoice_item.invoice_id
-      end
-    end
+    @successful_invoice_items ||= successful_invoices.flat_map(&:invoice_items)
   end
 end

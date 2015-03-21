@@ -22,10 +22,14 @@ class InvoiceItem
   end
 
   def invoice
-    @an_invoice ||= repository.invoice_instance(invoice_id)
+    @invoice ||= repository.invoice_instance(invoice_id)
   end
 
   def item
-    @an_item ||= repository.item(item_id)
+    @item ||= repository.item(item_id)
+  end
+
+  def revenue
+    quantity * price/100
   end
 end

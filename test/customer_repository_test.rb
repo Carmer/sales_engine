@@ -20,7 +20,7 @@ class CustomerRepositortyTest < Minitest::Test
   def test_it_can_pull_a_random_sample_customer
     sample = []
     10.times {sample << @customer.random}
-    assert sample.uniq
+    assert sample.uniq.count > 1
   end
 
   def test_it_can_find_all_customers
